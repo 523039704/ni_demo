@@ -19,6 +19,27 @@ public class Userinfo extends Model<Userinfo> {
 		return messager;
 	}
 
+	
+	
+	public String see_role(String username, String password) {
+		Userinfo user = Userinfo.dao
+				.findFirst("select * from admin where adminname='" + username
+						+ "' and password ='" + MD5.md5Digest(password) + "'");
+		 
+		return user.get("role").toString();
+	}
+	
+	public boolean see_name(String username)// 用户登录成功
+	{
+		boolean messager = true;
+		if (Userinfo.dao.findFirst("select * from admin where adminname='"
+				+ username + "'") == null) {
+			messager = false;
+		}
+		return messager;
+	}
+
+	
 	public Page<Userinfo> paginate(int pageNumber, int pageSize, String where,
 			Object[] objects) {
 		return paginate(pageNumber, pageSize, "select *",
