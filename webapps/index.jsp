@@ -34,9 +34,9 @@
 <script src="BJUI/other/jquery.iframe-transport.js"></script>    
 <![endif]-->
 <!-- BJUI.all 分模块压缩版 -->
-<script src="BJUI/js/bjui-all.js"></script>
+<!-- <script src="BJUI/js/bjui-all.js"></script> -->
 <!-- 以下是B-JUI的分模块未压缩版，建议开发调试阶段使用下面的版本 -->
-<!--
+ 
 <script src="BJUI/js/bjui-core.js"></script>
 <script src="BJUI/js/bjui-regional.zh-CN.js"></script>
 <script src="BJUI/js/bjui-frag.js"></script>
@@ -63,7 +63,7 @@
 <script src="BJUI/js/bjui-theme.js"></script>
 <script src="BJUI/js/bjui-initui.js"></script>
 <script src="BJUI/js/bjui-plugins.js"></script>
--->
+ 
 <!-- plugins -->
 <!-- swfupload for uploadify && kindeditor -->
 <script src="BJUI/plugins/swfupload/swfupload.js"></script>
@@ -101,7 +101,7 @@ $(function() {
     BJUI.init({
         JSPATH       : 'BJUI/',         //[可选]框架路径
         PLUGINPATH   : 'BJUI/plugins/', //[可选]插件路径
-        loginInfo    : {url:'login_timeout.html', title:'登录', width:400, height:200}, // 会话超时后弹出登录对话框
+        loginInfo    : {url:'login_timeout.jsp', title:'登录', width:400, height:200}, // 会话超时后弹出登录对话框
         statusCode   : {ok:200, error:300, timeout:301}, //[可选]
         ajaxTimeout  : 50000, //[可选]全局Ajax请求超时时间(毫秒)
         pageInfo     : {pageCurrent:'pageCurrent', pageSize:'pageSize', orderField:'orderField', orderDirection:'orderDirection'}, //[可选]分页参数
@@ -178,7 +178,7 @@ $(function(){
                         <li><a href="changepwd.html" data-toggle="dialog" data-id="changepwd_page" data-mask="true" data-width="400" data-height="260">&nbsp;<span class="glyphicon glyphicon-lock"></span> 修改密码&nbsp;</a></li>
                         <li><a href="#">&nbsp;<span class="glyphicon glyphicon-user"></span> 我的资料</a></li>
                         <li class="divider"></li>
-                        <li><a href="login.html" class="red">&nbsp;<span class="glyphicon glyphicon-off"></span> 注销登陆</a></li>
+                        <li><a href="/logout" class="red">&nbsp;<span class="glyphicon glyphicon-off"></span> 注销登陆</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#" class="dropdown-toggle theme purple" data-toggle="dropdown"><i class="fa fa-tree"></i></a>
@@ -199,74 +199,45 @@ $(function(){
             <i class="fa fa-bars"></i>
         </button>
         <ul id="bjui-hnav-navbar">
-            <li style="width:204px;"><a>欢迎您，超级管理员！</a></li>
-            <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-check-square-o"></i> 表单元素</a>
+            <li style="width:204px;"><a>欢迎您，${sessionScope.name}！</a></li>
+            <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-check-square-o"></i>用户管理</a>
                 <ul id="bjui-hnav-tree1" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true" data-noinit="true">
-                    <li data-id="1" data-pid="0" data-faicon="th-large">表单元素</li>
-                    <li data-id="10" data-pid="1" data-url="form-button.html" data-tabid="form-button" data-faicon="hand-o-up">按钮</li>
-                    <li data-id="11" data-pid="1" data-url="form-input.html" data-tabid="form-input" data-faicon="terminal">文本框</li>
-                    <li data-id="12" data-pid="1" data-url="form-select.html" data-tabid="form-select" data-faicon="caret-square-o-down">下拉选择框</li>
-                    <li data-id="13" data-pid="1" data-url="form-checkbox.html" data-tabid="table" data-faicon="check-square-o">复选、单选框</li>
-                    <li data-id="14" data-pid="1" data-url="form.html" data-tabid="form" data-faicon="list">表单综合演示</li>
+                    <li data-id="1" data-pid="0" data-faicon="th-large">用户管理</li>
+                    <li data-id="10" data-pid="1" data-url="/user" data-tabid="form-button" data-faicon="hand-o-up">用户预览</li>
+                    <li data-id="11" data-pid="1" data-url="/user/add" data-tabid="form-input" data-faicon="terminal">用户添加</li>
+                    <li data-id="12" data-pid="1" data-url="/user" data-tabid="form-select" data-faicon="caret-square-o-down">设置分组</li>
                 </ul>
             </li>
-            <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-table"></i> 表格</a>
+            <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-table"></i>产品管理</a>
                 <ul id="bjui-hnav-tree2" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true" data-noinit="true">
-                    <li data-id="2" data-pid="0">表格</li>
-                    <li data-id="20" data-pid="2" data-url="/user" data-tabid="table">普通表格</li>
-                    <li data-id="21" data-pid="2" data-url="table-fixed.html" data-tabid="table-fixed">固定表头表格</li>
-                    <li data-id="22" data-pid="2" data-url="table-edit.html" data-tabid="table-edit">可编辑表格</li>
+                    <li data-id="2" data-pid="0">产品管理</li>
+                    <li data-id="20" data-pid="2" data-url="/product" data-tabid="table">产品预览</li>
+                    <li data-id="20" data-pid="2" data-url="/product/add" data-tabid="table">产品添加</li>
+                    <li data-id="22" data-pid="2" data-url="/course" data-tabid="table-edit">课程预览</li>
+                    <li data-id="21" data-pid="2" data-url="/course/add" data-tabid="table-fixed">课程添加</li>
+                    <li data-id="21" data-pid="2" data-url="/product" data-tabid="table-fixed">P2P预览</li>
                 </ul>
             </li>
-            <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-table"></i> Datagrid(beta)</a>
+            <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-table"></i> 财务管理</a>
                 <ul id="bjui-hnav-tree-datagrid" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true" data-noinit="true">
-                    <li data-id="3" data-pid="0">datagrid (beta)</li>
-                    <li data-id="31" data-pid="3" data-url="datagrid-convertable.html" data-tabid="datagrid-convertable">转换普通表格</li>
-                    <li data-id="32" data-pid="3" data-url="datagrid-demo.html" data-tabid="datagrid-demo">完整示例</li>
-                    <li data-id="33" data-pid="3" data-url="datagrid-datatype.html" data-tabid="datagrid-datatype">三种数据类型</li>
+                    <li data-id="3" data-pid="0">财务管理</li>
+                    <li data-id="31" data-pid="3" data-url="/order" data-tabid="datagrid-convertable">账务信息</li>
+                    <li data-id="32" data-pid="3" data-url="/order/performance" data-tabid="datagrid-demo">业绩统计</li>
                 </ul>
             </li>
-            <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-plane"></i> 弹出窗口</a>
+            <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-plane"></i> 个人中心</a>
                 <ul id="bjui-hnav-tree4" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true" data-noinit="true">
                     <li data-id="4" data-pid="0">弹出窗口</li>
                     <li data-id="40" data-pid="4" data-url="dialog.html" data-tabid="dialog">弹出窗口</li>
                     <li data-id="41" data-pid="4" data-url="alert.html" data-tabid="alert">信息提示</li>
                 </ul>
             </li>
-            <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-image"></i> 图形报表</a>
+            <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-image"></i>系统设置</a>
                 <ul id="bjui-hnav-tree5" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true" data-noinit="true">
-                    <li data-id="5" data-pid="0">图形报表</li>
-                    <li data-id="51" data-pid="5" data-url="highcharts.html" data-tabid="chart">Highcharts图表</li>
-                    <li data-id="52" data-pid="5" data-url="echarts.html" data-tabid="echarts">ECharts图表</li>
-                </ul>
-            </li>
-            <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-coffee"></i> 框架组件</a>
-                <ul id="bjui-hnav-tree6" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true" data-noinit="true">
-                    <li data-id="6" data-pid="0">框架组件</li>
-                    <li data-id="61" data-pid="6" data-url="tabs.html" data-tabid="tabs">选项卡</li>
-                </ul>
-            </li>
-            <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-bug"></i> 其他插件</a>
-                <ul id="bjui-hnav-tree6" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true" data-noinit="true">
-                    <li data-id="7" data-pid="0">其他插件</li>
-                    <li data-id="71" data-pid="7" data-url="ztree.html" data-tabid="ztree">zTree</li>
-                    <li data-id="72" data-pid="7" data-url="ztree-select.html" data-tabid="ztree-select">zTree下拉选择</li>
-                </ul>
-            </li>
-            <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-database"></i> 综合应用</a>
-                <ul id="bjui-hnav-tree8" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true" data-noinit="true">
-                    <li data-id="8" data-pid="0">综合应用</li>
-                    <li data-id="80" data-pid="8" data-url="table-layout.html" data-tabid="table-layout">局部刷新1</li>
-                </ul>
-            </li>
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i> 系统设置 <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">角色权限</a></li>
-                    <li><a href="#">用户列表</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">关于我们</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">友情链接</a></li>
+                    <li data-id="5" data-pid="0">系统设置</li>
+                    <li data-id="51" data-pid="5" data-url="${pageContext.request.contextPath}/role" data-tabid="chart">角色预览</li>
+                    <li data-id="52" data-pid="5" data-url="${pageContext.request.contextPath}/function" data-tabid="echarts">功能预览</li>
+                    <li data-id="53" data-pid="5" data-url="${pageContext.request.contextPath}/function/add" data-tabid="echarts">功能添加</li>
                 </ul>
             </li>
         </ul>
@@ -289,38 +260,26 @@ $(function(){
                 <div class="panel-group panel-main" data-toggle="accordion" id="bjui-accordionmenu" data-heightbox="#bjui-sidebar" data-offsety="26">
                     <div class="panel panel-default">
                         <div class="panel-heading panelContent">
-                            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#bjui-accordionmenu" href="#bjui-collapse0" class="active"><i class="fa fa-caret-square-o-down"></i>&nbsp;Demo演示</a></h4>
+                            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#bjui-accordionmenu" href="#bjui-collapse0" class="active"><i class="fa fa-caret-square-o-down"></i>&nbsp;基本功能</a></h4>
                         </div>
                         <div id="bjui-collapse0" class="panel-collapse panelContent collapse in">
                             <div class="panel-body" >
                                 <ul id="bjui-tree0" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true">
-                                    <li data-id="1" data-pid="0" data-faicon="th-large">表单元素</li>
-                                    <li data-id="10" data-pid="1" data-url="form-button.html" data-tabid="form-button" data-faicon="hand-o-up">按钮</li>
-                                    <li data-id="11" data-pid="1" data-url="form-input.html" data-tabid="form-input" data-faicon="terminal">文本框</li>
-                                    <li data-id="12" data-pid="1" data-url="form-select.html" data-tabid="form-select" data-faicon="caret-square-o-down">下拉选择框</li>
-                                    <li data-id="13" data-pid="1" data-url="form-checkbox.html" data-tabid="table" data-faicon="check-square-o">复选、单选框</li>
-                                    <li data-id="14" data-pid="1" data-url="form.html" data-tabid="form" data-faicon="list">表单综合演示</li>
-                                    <li data-id="2" data-pid="0">表格</li>
-                                    <li data-id="20" data-pid="2" data-url="table.html" data-tabid="table">普通表格</li>
-                                    <li data-id="21" data-pid="2" data-url="table-fixed.html" data-tabid="table-fixed">固定表头表格</li>
-                                    <li data-id="22" data-pid="2" data-url="table-edit.html" data-tabid="table-edit">可编辑表格</li>
-                                    <li data-id="3" data-pid="0">datagrid (beta)</li>
-                                    <li data-id="31" data-pid="3" data-url="datagrid-convertable.html" data-tabid="datagrid-convertable">转换普通表格</li>
-                                    <li data-id="32" data-pid="3" data-url="datagrid-demo.html" data-tabid="datagrid-demo">完整示例</li>
-                                    <li data-id="33" data-pid="3" data-url="datagrid-datatype.html" data-tabid="datagrid-datatype">三种数据类型</li>
-                                    <li data-id="4" data-pid="0">弹出窗口</li>
-                                    <li data-id="40" data-pid="4" data-url="dialog.html" data-tabid="dialog">弹出窗口</li>
-                                    <li data-id="41" data-pid="4" data-url="alert.html" data-tabid="alert">信息提示</li>
-                                    <li data-id="5" data-pid="0">图形报表</li>
-                                    <li data-id="50" data-pid="5" data-url="highcharts.html" data-tabid="chart">Highcharts图表</li>
-                                    <li data-id="50" data-pid="5" data-url="echarts.html" data-tabid="echarts">ECharts图表</li>
-                                    <li data-id="6" data-pid="0">框架组件</li>
-                                    <li data-id="61" data-pid="6" data-url="tabs.html" data-tabid="tabs">选项卡</li>
-                                    <li data-id="7" data-pid="0">其他插件</li>
-                                    <li data-id="71" data-pid="7" data-url="ztree.html" data-tabid="ztree">zTree</li>
-                                    <li data-id="72" data-pid="7" data-url="ztree-select.html" data-tabid="ztree-select">zTree下拉选择</li>
-                                    <li data-id="8" data-pid="0">综合应用</li>
-                                    <li data-id="80" data-pid="8" data-url="table-layout.html" data-tabid="table-layout">局部刷新1</li>
+                                    <li data-id="1" data-pid="0" data-faicon="th-large">用户</li>
+                                    <li data-id="10" data-pid="1" data-url="/user" data-tabid="form-button" data-faicon="hand-o-up">用户查询</li>
+                                    <li data-id="11" data-pid="1" data-url="/user/add" data-tabid="form-input" data-faicon="terminal">用户添加</li>
+                                    <li data-id="12" data-pid="1" data-url="/user" data-tabid="form-select" data-faicon="caret-square-o-down">设置分组</li>
+                                    <li data-id="2" data-pid="0">账户</li>
+                                    <li data-id="20" data-pid="2" data-url="/order" data-tabid="table">账户信息</li>
+                                    <li data-id="21" data-pid="2" data-url="/order/performance" data-tabid="table-fixed">业绩统计</li>
+                                    <li data-id="3" data-pid="0">产品</li>
+                                    <li data-id="32" data-pid="3" data-url="/product" data-tabid="datagrid-demo">产品查询</li>
+                                    <li data-id="31" data-pid="3" data-url="/product/add" data-tabid="datagrid-convertable">产品添加</li>
+                                    <li data-id="4" data-pid="0">课程</li>
+                                    <li data-id="40" data-pid="4" data-url="/course" data-tabid="dialog">课程查询</li>
+                                    <li data-id="41" data-pid="4" data-url="/course/add" data-tabid="alert">课程添加</li>
+                                    <li data-id="6" data-pid="0">P2P</li>
+                                    <li data-id="61" data-pid="6" data-url="/product" data-tabid="tabs">P2P查询</li>
                                 </ul>
                             </div>
                         </div>
@@ -328,67 +287,16 @@ $(function(){
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading panelContent">
-                            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#bjui-accordionmenu" href="#bjui-collapse1" class="" style="color:#FF1100;"><i class="fa fa-caret-square-o-right"></i>&nbsp;简要文档</a></h4>
+                            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#bjui-accordionmenu" href="#bjui-collapse1" class="" style="color:#FF1100;"><i class="fa fa-caret-square-o-right"></i>&nbsp;高级功能</a></h4>
                         </div>
                         <div id="bjui-collapse1" class="panel-collapse panelContent collapse">
                             <div class="panel-body">
                                 <ul id="bjui-tree1" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="false">
-                                    <li data-id="99" data-pid="0">文件列表</li>
-                                    <li data-id="100" data-pid="99" data-url="doc/base/filelist.html" data-tabid="doc-file">文件详解</li>
-                                    <li data-id="1" data-pid="0">框架介绍</li>
-                                    <li data-id="10" data-pid="1" data-url="doc/base/structure.html" data-tabid="doc-base">页面结构</li>
-                                    <li data-id="11" data-pid="1" data-url="doc/base/init.html" data-tabid="doc-base">框架初始化</li>
-                                    <li data-id="12" data-pid="1" data-url="doc/base/hnav.html" data-tabid="doc-base">横向导航菜单</li>
-                                    <li data-id="13" data-pid="1" data-url="doc/base/navtab.html" data-tabid="doc-base">标签工作区(navtab)</li>
-                                    <li data-id="14" data-pid="1" data-url="doc/base/dialog.html" data-tabid="doc-base">弹窗工作区(dialog)</li>
-                                    <li data-id="15" data-pid="1" data-url="doc/base/idname.html" data-tabid="doc-base">元素ID命名规范</li>
-                                    <li data-id="16" data-pid="1" data-url="doc/base/data.html" data-tabid="doc-base">data属性</li>
-                                    <li data-id="17" data-pid="1" data-url="doc/base/api.html" data-tabid="doc-base">jQuery API调用</li>
-                                    <li data-id="18" data-pid="1" data-url="doc/base/event.html" data-tabid="doc-base">事件</li>
-                                    <li data-id="19" data-pid="1" data-url="doc/base/url.html" data-tabid="doc-base" data-update="true">URL动态赋值</li>
-                                    <li data-id="2" data-pid="0">标签navtab</li>
-                                    <li data-id="20" data-pid="2" data-url="doc/navtab/navtab.html" data-tabid="doc-navtab">创建navtab</li>
-                                    <li data-id="21" data-pid="2" data-url="doc/navtab/navtab-op.html" data-tabid="doc-navtab">参数及方法</li>
-                                    <li data-id="3" data-pid="0">弹窗dialog</li>
-                                    <li data-id="30" data-pid="3" data-url="doc/dialog/dialog.html" data-tabid="doc-dialog">创建dialog</li>
-                                    <li data-id="31" data-pid="3" data-url="doc/dialog/dialog-op.html" data-tabid="doc-dialog">参数及方法</li>
-                                    <li data-id="alertmsg" data-pid="0">信息提示alertmsg</li>
-                                    <li data-id="alertmsg-op" data-pid="alertmsg" data-url="doc/alertmsg/alertmsg.html" data-tabid="doc-alertmsg">提示框alertmsg</li>
-                                    <li data-id="4" data-pid="0">Ajax</li>
-                                    <li data-id="40" data-pid="4" data-url="doc/ajax/callback.html" data-tabid="doc-ajax">回调函数</li>
-                                    <li data-id="41" data-pid="4" data-url="doc/ajax/form.html" data-tabid="doc-ajax">提交表单</li>
-                                    <li data-id="42" data-pid="4" data-url="doc/ajax/search.html" data-tabid="doc-ajax">搜索表单</li>
-                                    <li data-id="43" data-pid="4" data-url="doc/ajax/load.html" data-tabid="doc-ajax">加载(局部刷新)</li>
-                                    <li data-id="44" data-pid="4" data-url="doc/ajax/action.html" data-tabid="doc-ajax">执行动作</li>
-                                    <li data-id="5" data-pid="0">图形报表(插件)</li>
-                                    <li data-id="50" data-pid="5" data-url="doc/chart/highcharts.html" data-tabid="doc-highcharts">Highcharts图表</li>
-                                    <li data-id="50" data-pid="5" data-url="doc/chart/echarts.html" data-tabid="doc-echarts">ECharts图表</li>
-                                    <li data-id="6" data-pid="0">表单相关</li>
-                                    <li data-id="60" data-pid="6" data-url="doc/form/datepicker.html" data-tabid="doc-form">日期选择器</li>
-                                    <li data-id="61" data-pid="6" data-url="doc/form/spinner.html" data-tabid="doc-form">微调器</li>
-                                    <li data-id="62" data-pid="6" data-url="doc/form/lookup.html" data-tabid="doc-form">查找带回</li>
-                                    <li data-id="63" data-pid="6" data-url="doc/form/tags.html" data-tabid="doc-form">自动完成标签</li>
-                                    <li data-id="64" data-pid="6" data-url="doc/form/upload.html" data-tabid="doc-form">上传组件</li>
-                                    <li data-id="7" data-pid="0">表格相关</li>
-                                    <li data-id="70" data-pid="7" data-url="doc/table/style.html" data-tabid="doc-table">表格样式</li>
-                                    <li data-id="71" data-pid="7" data-url="doc/table/order.html" data-tabid="doc-table">字段排序</li>
-                                    <li data-id="72" data-pid="7" data-url="doc/table/paging.html" data-tabid="doc-table">分页组件</li>
-                                    <li data-id="73" data-pid="7" data-url="doc/table/selected.html" data-tabid="doc-table">行选中操作</li>
-                                    <li data-id="74" data-pid="7" data-url="doc/table/fixed.html" data-tabid="doc-table">固定表头</li>
-                                    <li data-id="75" data-pid="7" data-url="doc/table/edit.html" data-tabid="doc-table">可编辑表格</li>
-                                    <li data-id="datagrid" data-pid="0">Datagrid</li>
-                                    <li data-id="datagrid-demo" data-pid="datagrid" data-url="doc/datagrid/datagrid-demo.html" data-tabid="doc-datagrid-demo">datagrid示例</li>
-                                    <li data-id="datagrid-op" data-pid="datagrid" data-url="doc/datagrid/datagrid-op.html" data-tabid="doc-datagrid-op">datagrid参数</li>
-                                    <li data-id="8" data-pid="0">右键菜单</li>
-                                    <li data-id="80" data-pid="8" data-url="doc/other/contextmenu.html" data-tabid="doc-other">右键菜单</li>
-                                    <li data-id="other" data-pid="0">其他插件</li>
-                                    <li data-id="ztree" data-pid="other" data-url="doc/plugin/ztree.html" data-tabid="doc-ztree">zTree</li>
-                                    <li data-id="icheck" data-pid="other" data-url="doc/plugin/checkbox.html" data-tabid="doc-icheck">复选/单选</li>
-                                    <li data-id="selectpicker" data-pid="other" data-url="doc/plugin/select.html" data-tabid="doc-selectpicker">下拉选择框</li>
-                                    <li data-id="nicevalidator" data-pid="other" data-url="doc/plugin/validate.html" data-tabid="doc-nicevalidator">表单验证</li>
-                                    <li data-id="kindeditor" data-pid="other" data-url="doc/plugin/kindeditor.html" data-tabid="doc-kindeditor">KindEditor</li>
-                                    <li data-id="9" data-pid="0">框架皮肤</li>
-                                    <li data-id="90" data-pid="9" data-url="doc/theme/color.html" data-tabid="doc-theme">颜色值</li>
+                                    <li data-id="99" data-pid="0">角色</li>
+                                    <li data-id="100" data-pid="99" data-url="${pageContext.request.contextPath}/role" data-tabid="doc-file">角色预览</li>
+                                    <li data-id="1" data-pid="0">功能</li>
+                                    <li data-id="10" data-pid="1" data-url="${pageContext.request.contextPath}/function" data-tabid="doc-base">功能预览</li>
+                                    <li data-id="11" data-pid="1" data-url="${pageContext.request.contextPath}/function/add" data-tabid="doc-base">功能添加</li>
                                 </ul>
                             </div>
                         </div>
@@ -401,7 +309,7 @@ $(function(){
             <div class="tabsPageHeader">
                 <div class="tabsPageHeaderContent">
                     <ul class="navtab-tab nav nav-tabs">
-                        <li data-url="index_layout.html"><a href="javascript:;"><span><i class="fa fa-home"></i> #maintab#</span></a></li>
+                        <li data-url="index_layout.jsp"><a href="javascript:;"><span><i class="fa fa-home"></i> #maintab#</span></a></li>
                     </ul>
                 </div>
                 <div class="tabsLeft"><i class="fa fa-angle-double-left"></i></div>
@@ -417,15 +325,15 @@ $(function(){
                         <div style="padding: 0 15px;">
                             <h4>
                                 B-JUI 前端框架　
-                                <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=0047455f3845597286edd381d54076b1e10a45c0c735115f0ee74961f70880af"><img border="0" src="images/group.png" alt="B-JUI前端框架-群1" title="B-JUI前端框架-群1" style="vertical-align:top;"></a>
+                                <a target="_blank" href="#"><img border="0" src="images/group.png" alt="B-JUI前端框架-群1" title="B-JUI前端框架-群1" style="vertical-align:top;"></a>
                                 <span class="label label-default" style="vertical-align:middle;">(1群已满)</span>　
-                                <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=96974f9b311cb8566e371703e2e4c2abb23c4835f4ec6c2893652f7a3b920c32"><img border="0" src="images/group.png" alt="B-JUI前端框架-群2" title="B-JUI前端框架-群2" style="vertical-align:top;"></a>
+                                <a target="_blank" href="#"><img border="0" src="images/group.png" alt="B-JUI前端框架-群2" title="B-JUI前端框架-群2" style="vertical-align:top;"></a>
                             </h4>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="alert alert-success" role="alert" style="margin:0 0 5px; padding:5px 15px;">
                                         <strong>B-JUI团队欢迎你!</strong>
-                                        <br><span class="label label-default">开发：</span> <a href="http://weibo.com/xknaan" target="_blank">@萧克南 （成都锦杨）</a> <a href="http://www.topstack.cn" target="_blank">@小策一喋 （北京）</a>
+                                        <br><span class="label label-default">开发 ：</span> <a href="http://weibo.com/xknaan" target="_blank">@萧克南 （成都锦杨）</a> <a href="http://www.topstack.cn" target="_blank">@小策一喋 （北京）</a>
                                         <br><span class="label label-default">测试 & 推广：</span> <a href="#" target="_blank">@Jack Yuan （成都锦杨）</a>
                                     </div>
                                 </div>
@@ -437,14 +345,7 @@ $(function(){
                                         <h5>PHP整合：<a href="http://git.oschina.net/xvpindex/ewsdCMS" target="_blank">ThinkPHP整合</a></h5>
                                     </div>                                  
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="alert alert-info" role="alert" style="margin:0 0 5px; padding:5px 15px;">
-                                        <h5>框架演示：<a href="http://b-jui.com/" target="_blank">http://b-jui.com/</a></h5>
-                                        <h5>DWZ(J-UI)官网：<a href="http://www.j-ui.com/" target="_blank">http://www.j-ui.com/</a></h5>
-                                        <h5>Bootstrap中文网：<a href="http://www.bootcss.com/" target="_blank">http://www.bootcss.com/</a></h5>
-                                        <h5>JAVA整合：<a href="http://git.oschina.net/xvpindex/ewsdOA" target="_blank">SSM整合</a></h5>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -452,8 +353,5 @@ $(function(){
             </div>
         </div>
     </div>
-    <footer id="bjui-footer">Copyright &copy; 2013 - 2015　<a href="http://www.cdjinyang.com/" target="_blank">成都锦杨科技</a>　
-        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1252983288'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/stat.php%3Fid%3D1252983288%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
-    </footer>
 </body>
 </html>

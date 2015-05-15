@@ -1,83 +1,82 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-
-<link href="/css/main.css" rel="stylesheet" type="text/css" />
-<script src="/js/jquery-1.3.2.min.js" language="javascript"
-	type="text/javascript"></script>
-</head>
-
-<body>
-<div class="mtitle">
-  <h1>添加会员</h1>
+<script type="text/javascript">
+function pic_upload_success(file, data) {
+    var json = $.parseJSON(data)
+    
+    $(this).bjuiajax('ajaxDone', json)
+    if (json[BJUI.keys.statusCode] == BJUI.statusCode.ok) {
+        $('#j_custom_pic').val(json.filename).trigger('validate')
+        $('#j_custom_span_pic').html('<img src="'+ json.filename +'" width="100" />')
+    }
+}
+function do_OK(json, $form) {
+    console.log(json)
+    console.log($form)
+}
+//护照有效日期  = 签发日期 + 10年
+$('#j_custom_issuedate').on('afterchange.bjui.datepicker', function(e, data) {
+    var pattern = 'yyyy-MM-dd'
+    var start   = end = data.value
+    
+    end.setFullYear(start.getFullYear() + 10)
+    end.setDate(start.getDate() - 1)
+    
+    $('#j_custom_indate').val(end.formatDate(pattern))
+})
+</script>
+<div class="bjui-pageContent">
+    <form action="${pageContext.request.contextPath}/course/insert" id="j_custom_form" data-toggle="validate" data-alertmsg="false">
+        <input type="hidden" name="custom.id" value="edce142bc2ed4ec6b623aacaf602a4de">
+        <table class="table table-condensed table-hover" width="100%">
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="j_custom_color" class="control-label x85">课程名称：</label>
+                        <input type="text" name="username" id="username" value="" data-toggle="colorpicker" data-bgcolor="true" size="15"  >
+                    </td>
+                
+                </tr>
+                <tr>
+                 <td>
+                        <label for="j_custom_birthday" class="control-label x85">起购日期：</label>
+                        <input type="text" name="custom.birthday" id="j_custom_birthday" value="1980-08-08" data-toggle="datepicker" data-rule="required;date" size="15">
+                    </td>
+                     <td>
+                        <label for="j_custom_birthday" class="control-label x85">截止日期：</label>
+                        <input type="text" name="custom.birthday" id="j_custom_birthday" value="1980-08-08" data-toggle="datepicker" data-rule="required;date" size="15">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="j_custom_name" class="control-label x85">金额：</label>
+                        <input type="text" name="custom.name" id="j_custom_name" value="张三" data-rule="required" size="15">
+                    </td>
+                    <td>
+                        <label for="j_custom_fname" class="control-label x85">人数：</label>
+                        <input type="text" name="custom.fname" id="j_custom_fname" value="Zhang" data-rule="required;letters" size="15">
+                    </td>
+                </tr>
+                <tr>
+                <td>
+                        <label for="j_custom_sale" class="control-label x85">服务费率：</label>
+                          <input type="text" name="custom.fname" id="j_custom_fname" value="Zhang" data-rule="required;letters" size="15">
+                   </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="j_custom_birthday" class="control-label x85">产品详情：</label>
+                        <textarea name="custom.note" id="j_custom_note" data-toggle="autoheight" cols="60" rows="1"></textarea>
+                    </td>
+                   
+                </tr>
+            </tbody>
+        </table>
+    </form>
 </div>
-
-	<form method="post"
-		action="${pageContext.request.contextPath}/course/insert">
-		<input type='hidden' name='dopost' value='listArchives' />
-		<table width='100%' border='0' cellpadding='1' cellspacing='1'
-			align="center" style="margin-top: 8px">
-			<tr bgcolor='#f8f8f8'>
-				<td align='center'>
-					<table border='0' cellpadding='0' cellspacing='0'>
-						<tr>
-							<td width='90' align='center'>课程名称</td>
-							<td width='160'>
-						             	<input type="text" class="input" id="username" name="username" size="50" placeholder="课程名称" data-validate="required:请填写课程名称" />
-								</td>
-						</tr>
-
-						<tr>
-							<td width='90' align='center'>起购日期</td>
-							<td width='160'><input type="text" class="input"
-								id="numbercard" name="numbercard" size="50" placeholder="身份证号"
-								data-validate="required:请输入业务员的身份证号码,number:请填写正确身份证" /></td>
-						</tr>
-
-						<tr>
-							<td width='90' align='center'>截止日期</td>
-							<td width='160'><input type="text" class="input" id="phone"
-								name="phone" size="50" placeholder="手机号"
-								data-validate="required:请输入业务员真实的手机号信息" maxlength="11" /></td>
-						</tr>
-						<tr>
-							<td width='90' align='center'>金额</td>
-							<td width='160'>    
-							      	<input type="text" class="input" id="phone" name="phone" size="50" placeholder="金额" data-validate="required:请输入购买金额数" maxlength="11" />
-                   			</td>
-						</tr>
-						<tr>
-							<td width='90' align='center'>人数</td>
-							<td width='160'>    
-						           	<input type="text" class="input" id="email" name="email" size="50" placeholder="人数" data-validate="required:请输入最大听课人数" />
-             				</td>
-						</tr>
-						<tr>
-							<td width='90' align='center'>服务费率</td>
-							<td width='160'>              
-								 <input type="text" class="input" id="servce" name="email" size="50" placeholder="服务费率" data-validate="required:请输入服务费率" />
-           					</td>
-						</tr>
-						<tr>
-							<td width='90' align='center'>详情介绍</td>
-							<td width='160'>
-							     	<textarea class="input" rows="5" cols="43" id="servce" name="email" placeholder="请填写课程详情" data-validate="required:请填写课程详情"></textarea>
-							</td>
-						</tr>
-
-						<tr>
-							<td></td>
-							<td width='90' align='center'>
-								<button class="btn1" type="submit">提交</button>
-							</td>
-						</tr>
-
-					</table>
-				</td>
-			</tr>
-		</table>
-	</form>
-</body>
-</html>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
+        <li><button type="submit" class="btn-default" data-icon="save">保存</button></li>
+    </ul>
+</div>

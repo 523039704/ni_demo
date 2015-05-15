@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.demo.model.Productinfo;
 import com.jfinal.core.Controller;
+import com.jfinal.plugin.activerecord.Page;
 
 public class Productcontroller extends Controller {
 
@@ -18,8 +19,14 @@ public class Productcontroller extends Controller {
 		param.add(address); 
 		setAttr("address",address);
 		}else{setAttr("address","-1");}
+		
 		where.append(" order by id  ");
-		setAttr("product", Productinfo.dao.paginate(getParaToInt(0, 1), 10,where.toString(),param.toArray()));
+		
+		Page<Productinfo> pager=Productinfo.dao.paginate(getParaToInt("pageCurrent", 1),
+				getParaToInt("pageSize", 20),where.toString(),param.toArray());
+		List<Productinfo> articlesList = pager.getList();
+		setAttr("product",articlesList );
+		setAttr("pager", pager);
 		render("/sys/product.jsp");
 	}
 	public void add()

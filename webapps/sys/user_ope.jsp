@@ -1,74 +1,80 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-
-<link href="/css/main.css" rel="stylesheet" type="text/css" />
-<script src="/js/jquery-1.3.2.min.js" language="javascript"
-	type="text/javascript"></script>
-</head>
-
-<body>
-<div class="mtitle">
-  <h1>添加会员</h1>
+ <script type="text/javascript">
+function pic_upload_success(file, data) {
+    var json = $.parseJSON(data)
+    
+    $(this).bjuiajax('ajaxDone', json)
+    if (json[BJUI.keys.statusCode] == BJUI.statusCode.ok) {
+        $('#j_custom_pic').val(json.filename).trigger('validate')
+        $('#j_custom_span_pic').html('<img src="'+ json.filename +'" width="100" />')
+    }
+}
+function do_OK(json, $form) {
+    console.log(json)
+    console.log($form)
+}
+//护照有效日期  = 签发日期 + 10年
+$('#j_custom_issuedate').on('afterchange.bjui.datepicker', function(e, data) {
+    var pattern = 'yyyy-MM-dd'
+    var start   = end = data.value
+    
+    end.setFullYear(start.getFullYear() + 10)
+    end.setDate(start.getDate() - 1)
+    
+    $('#j_custom_indate').val(end.formatDate(pattern))
+})
+</script>
+<div class="bjui-pageContent">
+    <form action="/user/insert" id="j_custom_form" data-toggle="validate" data-alertmsg="false">
+        <input type="hidden" name="custom.id" value="edce142bc2ed4ec6b623aacaf602a4de">
+        <table class="table table-condensed table-hover" width="100%">
+            <tbody>
+                <tr>
+                    
+                    <td>
+                        <label for="j_custom_color" class="control-label x85">业务员姓名：</label>
+                        <input type="text" name="username" id="username" value="" data-toggle="colorpicker" data-bgcolor="true" size="15"  >
+                    </td>
+                     <td>
+                        <label for="j_custom_color" class="control-label x85">业务员姓名：</label>
+                             <input type="text" name="realtname" id="realtname" value="" data-toggle="colorpicker" data-bgcolor="true" size="15"  >
+                    </td>
+                   
+                </tr>
+                <tr>
+                 <td >
+                        <label class="control-label x85">业务员身份证号：</label>
+                        <input type="text" name="numbercard" id="numbercard" value="" data-toggle="colorpicker" data-bgcolor="true" size="15"  >
+                    </td>
+                    <td>
+                        <label for="j_custom_name" class="control-label x85">业务员手机：</label>
+                        <input type="text" name="custom.name" id="j_custom_name" value="" data-rule="required" size="15">
+                    </td>
+                   
+                </tr>
+                <tr>
+                 <td>
+                        <label for="j_custom_fname" class="control-label x85">业务员Email</label>
+                        <input type="text" name="custom.fname" id="j_custom_fname" value="" data-rule="required;letters" size="15">
+                    </td>
+                    <td>
+                        <label for="j_custom_lname" class="control-label x85">操作类型：</label>
+                    	 <select name="ope" id="ope"  data-toggle="selectpicker" data-rule="required">
+       					   <option value="-1">请选择功能</option>
+   						   <option value="1">子公司</option>
+ 						   <option value="2">代理商</option>
+ 						   <option value="3">业务员</option>
+						</select>
+				     </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
 </div>
-
-	<form method="post"
-		action="${pageContext.request.contextPath}/user/insert">
-		<input type='hidden' name='dopost' value='listArchives' />
-		<table width='100%' border='0' cellpadding='1' cellspacing='1'
-			align="center" style="margin-top: 8px">
-			<tr bgcolor='#f8f8f8'>
-				<td align='center'>
-					<table border='0' cellpadding='0' cellspacing='0'>
-						<tr>
-							<td width='90' align='center'>业务员登录名</td>
-							<td width='160'><input type="text" class="input"
-								id="username" name="username" size="50" placeholder="登录名称"
-								data-validate="required:请填写业务员登录名称,integer:请输入信息" /></td>
-						</tr>
-
-						<tr>
-							<td width='90' align='center'>业务员身份证号</td>
-							<td width='160'><input type="text" class="input"
-								id="numbercard" name="numbercard" size="50" placeholder="身份证号"
-								data-validate="required:请输入业务员的身份证号码,number:请填写正确身份证" /></td>
-						</tr>
-
-						<tr>
-							<td width='90' align='center'>业务员手机</td>
-							<td width='160'><input type="text" class="input" id="phone"
-								name="phone" size="50" placeholder="手机号"
-								data-validate="required:请输入业务员真实的手机号信息" maxlength="11" /></td>
-						</tr>
-						<tr>
-							<td width='90' align='center'>业务员Email</td>
-							<td width='160'><input type="text" class="input" id="email"
-								name="email" size="50" placeholder="Email"
-								data-validate="required:请输入业务员的邮箱信息,email:请输入正确格式" /></td>
-						</tr>
-						<tr>
-							<td width='90' align='center'>操作类型</td>
-							<td width='160'><select name="ope" id="ope">
-									<option value="-1">请选择功能</option>
-									<option value="1">子公司</option>
-									<option value="2">代理商</option>
-									<option value="3">业务员</option>
-							</select></td>
-						</tr>
-
-						<tr>
-							<td></td>
-							<td width='90' align='center'>
-								<button class="btn1" type="submit">提交</button>
-							</td>
-						</tr>
-
-					</table>
-				</td>
-			</tr>
-		</table>
-	</form>
-</body>
-</html>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
+        <li><button type="submit" class="btn-default" data-icon="save">保存</button></li>
+    </ul>
+</div>

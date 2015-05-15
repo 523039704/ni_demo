@@ -39,9 +39,8 @@ public class Usercontroller extends Controller {
 			param.add(datetime[1].trim()+" 23:59:59");
 			}
 		where.append(" order by admin_id  ");
-		System.out.println(getParaToInt("pageCurrent", 1));
 		Page<Userinfo> pager =Userinfo.dao.paginate(getParaToInt("pageCurrent", 1),
-				getParaToInt("pageSize", 12),where.toString(),param.toArray());
+				getParaToInt("pageSize", 20),where.toString(),param.toArray());
 		List<Userinfo> articlesList = pager.getList();
 		setAttr("blogPage", articlesList);
 		setAttr("pager", pager);

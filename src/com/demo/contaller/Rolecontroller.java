@@ -1,13 +1,20 @@
 package com.demo.contaller;
 
+import java.util.List;
+
 import com.demo.model.Functioninfo;
 import com.demo.model.Roleinfo;
 import com.jfinal.core.Controller;
+import com.jfinal.plugin.activerecord.Page;
 
 public class Rolecontroller extends Controller {
 
 	public void index() {
-		setAttr("role", Roleinfo.dao.paginate(getParaToInt(0, 1), 10));
+		Page<Roleinfo> pager =Roleinfo.dao.paginate(getParaToInt("pageCurrent", 1),
+				getParaToInt("pageSize", 20));
+		List<Roleinfo> articlesList = pager.getList();
+		setAttr("role", articlesList);
+		setAttr("pager", pager);
 		render("/sys/role.jsp");
 	}
 

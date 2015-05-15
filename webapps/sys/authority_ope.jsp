@@ -1,15 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-
-<link href="/css/main.css" rel="stylesheet" type="text/css" />
-<script src="/js/jquery-1.3.2.min.js" language="javascript" type="text/javascript"></script>
-
-
- <script>
+    
+     <script>
  	$(document).ready(function() {
          var hour=$("#username1")[0].value.split(","); 
            	for(var i=0;i < hour.length;i++){    //循环
@@ -17,51 +10,31 @@
                     	}
  	});              	 
    		 </script>
-
-
-</head>
-
-<body>
-<div class="mtitle">
-  <h1>添加会员</h1>
+<div class="bjui-pageContent">
+    <form action="${pageContext.request.contextPath}/role/add" class="pageForm" data-toggle="validate">
+        <input type="hidden" name="dialog.id" value="edce142bc2ed4ec6b623aacaf602a4de">
+        <table class="table table-condensed table-hover">
+            <tbody>
+                <tr>
+                    <td colspan="2" align="center"><h3>给：${names}——分配权限</h3></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="j_dialog_visa" class="control-label x85">名称：</label>
+                    	<input type="hidden" name="username1" id="username1"	value="${auts}" />
+							<input type="hidden" name="ids" id="ids"	value="${ids}" />
+								<c:forEach items="${authority}" var="authority">
+                       			 <input type="checkbox" name="dialog.visa" id="j_dialog_visa" value="${authority.id}"  data-toggle="icheck" data-label="${authority.path}">
+                       		 </c:forEach>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
 </div>
-
-	<form method="post"
-		action="${pageContext.request.contextPath}/role/add">
-		<input type='hidden' name='dopost' value='listArchives' />
-		<table width='100%' border='0' cellpadding='1' cellspacing='1'
-			align="center" style="margin-top: 8px">
-			<tr bgcolor='#f8f8f8'>
-				<td align='center'>
-					<table border='0' cellpadding='0' cellspacing='0'>
-						<tr>
-							<td width='90' align='center'>名称</td>
-							<td width='160'>
-							   <span  class="input" >${names}</span>
-							   <input type="hidden" name="username1" id="username1"	value="${auts}" />
-							   <input type="hidden" name="ids" id="ids"	value="${ids}" />
-								</td>
-						</tr>
-
-						<tr>
-							<td width='90' align='center'>路径</td>
-							<td width='160'>
-							<c:forEach items="${authority}" var="authority">
-                       		<input type="checkbox"   class="checkbox"  name="authorityid"  value="${authority.id}" />${authority.path}
-                       		</c:forEach>	
-								</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td width='90' align='center'>
-								<button class="btn1" type="submit">提交</button>
-							</td>
-						</tr>
-
-					</table>
-				</td>
-			</tr>
-		</table>
-	</form>
-</body>
-</html>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close">关闭</button></li>
+        <li><button type="submit" class="btn-default">保存</button></li>
+    </ul>
+</div>
