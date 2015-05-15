@@ -3,11 +3,17 @@ package com.basic.common;
 import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
 import com.demo.contaller.Coursecontroller;
+import com.demo.contaller.Functioncontroller;
 import com.demo.contaller.Indexcontroller;
+import com.demo.contaller.Ordercontroller;
 import com.demo.contaller.Productcontroller;
+import com.demo.contaller.Rolecontroller;
 import com.demo.contaller.Usercontroller;
 import com.demo.model.Courseinfo;
+import com.demo.model.Functioninfo;
+import com.demo.model.Orderinfo;
 import com.demo.model.Productinfo;
+import com.demo.model.Roleinfo;
 import com.demo.model.Userinfo;
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
@@ -37,15 +43,16 @@ public class WebConfig extends JFinalConfig {
 		me.add("/user", Usercontroller.class); 
 		me.add("/product", Productcontroller.class); 
 		me.add("/course", Coursecontroller.class); 
+		me.add("/order", Ordercontroller.class); 
+		me.add("/function", Functioncontroller.class); 
+		me.add("/role", Rolecontroller.class); 
 		 
 	}
 
 	@Override
 	public void configPlugin(Plugins me) {
 		// TODO Auto-generated method stub
-
 		// 配置alibaba数据库连接池插件
-		System.out.println(getProperty("jdbc.url"));
 		DruidPlugin druidPlugin = new DruidPlugin(getProperty("jdbc.url"),
 				getProperty("jdbc.username"), getProperty("jdbc.password"),
 				getProperty("jdbc.driverClassName"));
@@ -62,6 +69,9 @@ public class WebConfig extends JFinalConfig {
 		arp.addMapping("admin","admin_id", Userinfo.class); 
 		arp.addMapping("product", Productinfo.class); 
 		arp.addMapping("course", Courseinfo.class); 
+		arp.addMapping("order", Orderinfo.class); 
+		arp.addMapping("function", Functioninfo.class); 
+		arp.addMapping("role", Roleinfo.class); 
 	}
 
 	@Override

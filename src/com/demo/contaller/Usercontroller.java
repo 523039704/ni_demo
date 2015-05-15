@@ -1,7 +1,6 @@
 package com.demo.contaller;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import com.basic.util.DateUtil;
@@ -10,7 +9,6 @@ import com.demo.innterceptor.BasiceInterceptor;
 import com.demo.model.Userinfo;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
-
 
 
 @Before(BasiceInterceptor.class)
@@ -25,7 +23,7 @@ public class Usercontroller extends Controller {
 		if(username!=null&&username.length()>0){
 		where.append("   and adminname=?");
 		param.add(username); 
-		}
+		} 
 		if(phone!=null&&phone.length()>0){
 			where.append("   and  phone=?  ");
 			param.add(phone);

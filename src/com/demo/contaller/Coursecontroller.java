@@ -9,9 +9,7 @@ public class Coursecontroller extends Controller {
 		setAttr("course", Courseinfo.dao.paginate(getParaToInt(0, 1), 10));
 		render("/sys/course.jsp");
 	}
-	
-	
-	
+
 	public void add()
 	{
 		render("/sys/course_ope.jsp");

@@ -5,17 +5,18 @@ import com.jfinal.core.Controller;
 
 public class Indexcontroller extends Controller {
 	public void index() {
-		if (getSession().getAttribute("username") == null) {
+		System.out.println(getSession().getAttribute("name"));
+		if (getSession().getAttribute("name") == null) {
 			renderJsp("/login.jsp");
 		} else {
 			renderJsp("/index.jsp");
 		}
 	}
 	public void login() { 
-		String username = getPara("username");
+		String username = getPara("name");
 		String password = getPara("password");
 		if (Userinfo.dao.login(username, password)) {
-			setSessionAttr("username", username);
+			setSessionAttr("name", username);
 			redirect("/");
 		} else {
 			renderJsp("/login.jsp");

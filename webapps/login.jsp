@@ -3,54 +3,45 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="renderer" content="webkit">
-    <title>拼图后台管理-管理员登录</title>
-    <link rel="stylesheet" href="css/pintuer.css">
-    <link rel="stylesheet" href="css/admin.css">
-    <script src="js/jquery.js"></script>
-    <script src="js/pintuer.js"></script>
-    <script src="js/respond.js"></script>
-    <script src="js/admin.js"></script>
-    <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" />
-    <link href="/favicon.ico" rel="bookmark icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+body{background:#fff;margin:0;padding:0;color:#333;}
+h1{float:left;width:410px;margin:20px;display:inline;}
+h1 img{float:left;}
+h1 span{float:right;width:290px;height:47px;background:#ebebeb;font:22px/46px "黑体";text-indent:20px;}
+.login-body{margin-top:50px;height:392px;width:100%;background:url(images/lor_bg.gif) repeat-x;}
+.login-con{width:450px;height:392px;background:url(images/login_bg.gif) no-repeat;margin:0 auto;}
+.login{float:right;width:290px;margin-right:20px;display:inline}
+.login li{float:left;width:100%;margin-bottom:20px;}
+.login label{float:left;width:100%;font-size:14px;margin-bottom:3px;}
+.login input{float:left;padding:4px 2px;margin:0}
+.submit{float:left;border:none;width:70px; height:28px;background:transparent url(images/lg_buttom.gif) no-repeat;cursor: pointer;font-size:14px;color:#fff;font-weight:bold;}
+-->
+</style>
 </head>
-
 <body>
-<div class="container">
-    <div class="line">
-        <div class="xs6 xm4 xs3-move xm4-move">
-            <br /><br />
-            <div class="media media-y">
-                <a href="#" target="_blank"><img src="images/logo.png" class="radius" alt="后台管理系统" /></a>
-            </div>
-            <br /><br />
-            <form action="login" method="post">
-            <div class="panel">
-                <div class="panel-head"><strong>登录拼图后台管理系统</strong></div>
-                <div class="panel-body" style="padding:30px;">
-                    <div class="form-group">
-                        <div class="field field-icon-right">
-                            <input type="text" class="input" name="username" placeholder="登录账号" data-validate="required:请填写账号,length#>=5:账号长度不符合要求" />
-                            <span class="icon icon-user"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="field field-icon-right">
-                            <input type="password" class="input" name="password" placeholder="登录密码" data-validate="required:请填写密码,length#>=6:密码长度不符合要求" />
-                            <span class="icon icon-key"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-foot text-center"><button class="button button-block bg-main text-big">立即登录后台</button></div>
-            </div>
-            </form>
-            <div class="text-right text-small text-gray padding-top">基于<a class="text-gray" target="_blank" href="#">拼图前端框架</a>构建</div>
-        </div>
-    </div>
+<div class="login-body">
+<div class="login-con">
+<h1><img src="/images/login_logo.png" height="50" width="100" alt="管理后台" /><span>后台管理中心</span></h1>
+<div class="login">
+ <form action="/login" method="post" name="form1">
+            <ul>
+              <li><label>用户名：</label>
+                <input type="text" class="text" name="name" style="_width:208px;"/>
+              </li>
+              <li><label>密   码：</label>
+                <input type="password" class="text" name="password" style="_width:208px;"/>
+              </li>
+              <li> 
+              <input type="submit" onclick="this.form.submit();" class="submit" value="登录" name="sm1"/></li>
+            </ul>
+ </form>  
 </div>
-
+            
+</div>
+</div>
 </body>
 </html>

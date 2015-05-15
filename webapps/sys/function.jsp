@@ -13,44 +13,35 @@
   <h1>数据管理</h1>
 </div>
 <div class="tform">
-		<button type="button" class="btn1" onClick="location='/course/add?channelid={dede:global.channelid/}&cid={dede:global.cid/}&dopost=addArchives';" >添加数据</button>
+		<button type="button" class="btn1" onClick="location='/function/add?channelid={dede:global.channelid/}&cid={dede:global.cid/}&dopost=addArchives';" >添加数据</button>
 </div>
 <form name="form2">
   <table class="tlist" >
     <thead>
    			  <tr class="title">
 					<th>id</th>
-					<th>课程名称</th>
-					<th>起购日期</th>
-					<th>截止日期</th>
-					<th>金额</th>
-					<th>人数</th>
-					<th>费率</th>
+					<th>名称</th>
+					<th>路径</th>
 					<th>操作</th>
 				</tr>  
 </thead>
 <tbody>
-			<c:forEach items="${course.list}" var="course">
+ 			<c:forEach items="${function.list}" var="function">
 					<tr>
-						<td>${course.id}</td>
-						<td>${course.name}</td>
-						<td>${course.createdatetime}</td>
-						<td>${course.coursedatetime}</td>
-						<td>${course.price}</td>
-						<td>${course.peoples}</td>
-						<td>${course.service}</td>
+						<td>${function.id}</td>
+						<td>${function.name}</td>
+						<td>${function.path}</td>
 						<td><a class="button border-blue button-little" href="#">修改</a>
 							<a class="button border-yellow button-little" href="#"
 							onclick="{if(confirm('确认删除?')){return true;}return false;}">删除</a>
-							<a class="button border-black button-little" href="${pageContext.request.contextPath}/order/add?id=${course.id}&ptoducti=2">认购</a>
 						</td>
 					</tr>
 				</c:forEach>	
 </tbody>    
  
 </table>
-			<c:set var="currentPage" value="${course.pageNumber}" />
-			<c:set var="totalPage" value="${course.totalPage}" />
+			<c:set var="currentPage" value="${function.pageNumber}" />
+			<c:set var="totalPage" value="${function.totalPage}" />
 			<c:set var="actionUrl" value="${pageContext.request.contextPath}/course/" />
 			<c:set var="urlParas" value="" />
 			<%@ include file="/common/_paginate.jsp"%>

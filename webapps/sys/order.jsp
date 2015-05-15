@@ -12,55 +12,51 @@
 <div class="mtitle">
   <h1>数据管理</h1>
 </div>
-<div class="tform">
-		<button type="button" class="btn1" onClick="location='/user/add?channelid={dede:global.channelid/}&cid={dede:global.cid/}&dopost=addArchives';" >添加数据</button>
-</div>
+ 
 <form name="form2">
   <table class="tlist" >
     <thead>
    			  <tr class="title">
-					<th align="left">id</th>
-					<th align="left">登陆名字</th>
-					<th align="left">简称</th>
-					<th align="left">电话</th>
-					<th align="left">注册时间</th>
-					<th align="left">拥有的人数</th>
-					<th align="left">角色</th>
-					<th align="left">有无申请</th>
-					<th align="left">操作</th>
+					<th>id</th>
+					<th>用户名称</th>
+					<th>购买日期</th>
+					<th>分类</th>
+					<th>产品</th>
+					<th>金额</th>
+					<th>费率</th>
+					<th>状态</th>
+					<th>业务员</th>
+					<th>操作</th>
 				</tr>  
 </thead>
 <tbody>
- 			<c:forEach items="${blogPage.list}" var="blog">
+ 			<c:forEach items="${order.list}" var="order">
 					<tr>
-						<td>${blog.admin_id}</td>
-						<td>${blog.adminname}</td>
-						<td>${blog.nickname}</td>
-						<td>${blog.phone}</td>
-						<td>${blog.add_time}</td>
-						<td><a  href="${pageContext.request.contextPath}/user?id=${blog.admin_id}">${blog.amount}</a></td>
-						<td>${blog.role}</td>
-						<td>${blog.apply}</td>
+						<td>${order.id}</td>
+						<td>${order.uid}</td>
+						<td>${order.createdatetime}</td>
+						<td>${order.ptoducti}</td>
+						<td>${order.productid}</td>
+						<td>${order.montey}</td>
+						<td>${order.serviceid}</td>
+						<td>${order.status}</td>
+						<td>${order.businessid}</td>
 						<td>
-						<a class="button border-blue button-little" href="#">修改</a>
-						<a class="button border-yellow button-little" href="#"onclick="{if(confirm('确认删除?')){return true;}return false;}">删除</a>
+							<a class="button border-yellow button-little" href="#"  onclick="return false" >审核</a>
 						</td>
 					</tr>
 				</c:forEach>	
 </tbody>    
  
 </table>
-			<c:set var="username" value="${param.username}" />
-			<c:set var="phone" value="${param.phone}" />
-			<c:set var="reservation" value="${param.reservation}" />
-			<c:set var="currentPage" value="${blogPage.pageNumber}" />
-			<c:set var="totalPage" value="${blogPage.totalPage}" />
-			<c:set var="actionUrl" value="${pageContext.request.contextPath}/user/" />
+			<c:set var="currentPage" value="${order.pageNumber}" />
+			<c:set var="totalPage" value="${order.totalPage}" />
+			<c:set var="actionUrl" value="${pageContext.request.contextPath}/order/" />
 			<c:set var="urlParas" value="" />
 			<%@ include file="/common/_paginate.jsp"%>
 </form>
 <!--  搜索表单  -->
-<form name='form3' action='/user'  method="post">
+<%-- <form name='form3' action='/user'  method="post">
 <input type='hidden' name='dopost' value='listArchives' />
 <table width='100%'  border='0' cellpadding='1' cellspacing='1' align="center" style="margin-top:8px">
   <tr bgcolor='#f8f8f8'>
@@ -91,7 +87,7 @@
     </td>
   </tr>
 </table>
-</form>
+</form> --%>
 
 </body>
 </html>

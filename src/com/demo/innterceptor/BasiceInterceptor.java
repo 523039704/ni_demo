@@ -9,7 +9,7 @@ public class BasiceInterceptor implements Interceptor {
 	public void intercept(ActionInvocation ai) {
 		// TODO Auto-generated method stub
 
-		if (ai.getController().getSession().getAttribute("username") != null) {
+		if (ai.getController().getSession().getAttribute("name") != null) {
 			ai.invoke();
 		} else {
 			ai.getController().redirect("/");
