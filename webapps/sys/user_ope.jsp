@@ -72,6 +72,18 @@ function do_OK(json, $form) {
                         <input type="radio" name="captain" id="captain" data-toggle="icheck" value="0" data-label="否" checked="checked">
 				     </td>
                 </tr>
+                 <tr>
+                            <td>
+                           		<label for="j_custom_lname" class="control-label x185">用户所在城市：</label> 
+	       					       <DevTag:FormSelectProvinceListTag/>
+                                <select name="city" id="j_form_city2" data-toggle="selectpicker" data-nextselect="#j_form_area2" data-refurl="/zone/area?id={value}" data-emptytxt="--城市--">
+                                    <option value="all">--城市--</option>
+                                </select>
+                                <select name="area" id="j_form_area2" data-toggle="selectpicker" data-emptytxt="--区县--">
+                                    <option value="all">--区县--</option>
+                                </select>
+                            </td>
+                        </tr>
             </tbody>
         </table>
     </form>

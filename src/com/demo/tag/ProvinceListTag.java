@@ -1,0 +1,37 @@
+package com.demo.tag;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.tagext.TagSupport;
+
+import com.demo.model.Provinceinfo;
+ 
+ 
+@SuppressWarnings("serial")
+public class ProvinceListTag extends TagSupport {
+
+	public int doStartTag() {
+		JspWriter out = pageContext.getOut();
+		
+		List<Provinceinfo> Infos = new ArrayList<Provinceinfo>();
+		Infos = Provinceinfo.dao.find("select * from `hat_province`  ");
+		try {
+			out.println("<select name=\"province\" data-toggle=\"selectpicker\" data-nextselect=\"#j_form_city2\" data-refurl=\"/zone/city?id={value}\">");
+			out.println("  <option value=\"-1\">分组列表</option>");
+			for (int i = 0; i < Infos.size(); i++) {
+				out.println("  <option value=\"" + Infos.get(i).get("provinceID")
+						+ "\"  >" + Infos.get(i).get("province")+ "</option>");
+			}
+			out.println("</select>");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return EVAL_BODY_INCLUDE;
+	}
+	
+}

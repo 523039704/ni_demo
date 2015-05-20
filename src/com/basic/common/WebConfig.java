@@ -11,12 +11,16 @@ import com.demo.contaller.Productcontroller;
 import com.demo.contaller.Rangecontroller;
 import com.demo.contaller.Rolecontroller;
 import com.demo.contaller.Usercontroller;
+import com.demo.contaller.Zonecontroller;
+import com.demo.model.Areainfo;
+import com.demo.model.Cityinfo;
 import com.demo.model.Courseinfo;
 import com.demo.model.Functioninfo;
 import com.demo.model.Groupinfo;
 import com.demo.model.Orderinfo;
 import com.demo.model.Productinfo;
 import com.demo.model.Productsoninfo;
+import com.demo.model.Provinceinfo;
 import com.demo.model.Rangeinfo;
 import com.demo.model.Roleinfo;
 import com.demo.model.Userinfo;
@@ -53,6 +57,7 @@ public class WebConfig extends JFinalConfig {
 		me.add("/role", Rolecontroller.class); 
 		me.add("/range", Rangecontroller.class); 
 		me.add("/group", Groupcontroller.class); 
+		me.add("/zone", Zonecontroller.class); 
 	}
 
 	@Override
@@ -81,6 +86,9 @@ public class WebConfig extends JFinalConfig {
 		arp.addMapping("product_son", Productsoninfo.class); 
 		arp.addMapping("range", Rangeinfo.class); 
 		arp.addMapping("group", Groupinfo.class); 
+		arp.addMapping("hat_province", Provinceinfo.class); 
+		arp.addMapping("hat_city", Cityinfo.class); 
+		arp.addMapping("hat_area", Areainfo.class); 
 	}
 
 	@Override
