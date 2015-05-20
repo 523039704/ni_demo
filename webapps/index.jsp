@@ -215,9 +215,7 @@ $(function(){
                     	    <c:if test="${function.id  eq '3'}">
                     		<li data-id="12" data-pid="1" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
                     	  </c:if>
-                    	   <c:if test="${function.id  eq '13'}">
-                    		<li data-id="13" data-pid="1" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
-                    	  </c:if>
+                    	   
                     </c:forEach>
                 </ul>
             </li>
@@ -276,6 +274,26 @@ $(function(){
                 </ul>
             </li>
             </c:if>  
+            
+             <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-plane"></i> 微信管理</a>
+                <ul id="bjui-hnav-tree-datagrid" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true" data-noinit="true">
+                    <li data-id="6" data-pid="0">微信管理</li>
+                    <c:forEach items="${sessionScope.function}" var="function">
+                        <c:if test="${function.id  eq '13'}"> 
+                    <li data-id="60" data-pid="6" data-url="${function.path}" data-tabid="table-wgzyh">${function.name}</li>
+                    </c:if>
+                     <c:if test="${function.id  eq '14'}"> 
+                    <li data-id="61" data-pid="6" data-url="${function.path}" data-tabid="table-wgzyh">${function.name}</li>
+                    </c:if>
+                     <c:if test="${function.id  eq '15'}"> 
+                    <li data-id="62" data-pid="6" data-url="${function.path}" data-tabid="table-wgzyh">${function.name}</li>
+                    </c:if>
+                     <c:if test="${function.id  eq '16'}"> 
+                    <li data-id="63" data-pid="6" data-url="${function.path}" data-tabid="table-wgzyh">${function.name}</li>
+                    </c:if>
+                    </c:forEach>
+                </ul>
+            </li>
         </ul>
         <form class="hnav-form">
             <div class="input-group">
@@ -312,9 +330,7 @@ $(function(){
                                  		<c:if test="${function.id  eq '3'}"> 
                                    			 <li data-id="12" data-pid="1" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
                                  		</c:if>
-                                 		  <c:if test="${function.id  eq '13'}">
-                    						<li data-id="13" data-pid="1" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
-                    	 				 </c:if>
+                                 		  
                                     </c:forEach>
                                     <li data-id="2" data-pid="0">账户</li>
                                     <c:forEach items="${sessionScope.function}" var="function">
@@ -349,6 +365,21 @@ $(function(){
                                    			 <li data-id="50" data-pid="5" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
                                  		</c:if>
                                     </c:forEach>
+                                    <li data-id="6" data-pid="0">微信管理</li>
+                                     <c:forEach items="${sessionScope.function}" var="function">
+                                        <c:if test="${function.id  eq '13'}"> 
+				                    <li data-id="60" data-pid="6" data-url="${function.path}" data-tabid="table-wgzyh">${function.name}</li>
+				                    </c:if>
+				                    <c:if test="${function.id  eq '14'}"> 
+				                    <li data-id="61" data-pid="6" data-url="${function.path}" data-tabid="table-wgzyh">${function.name}</li>
+				                    </c:if>
+				                     <c:if test="${function.id  eq '15'}"> 
+				                    <li data-id="62" data-pid="6" data-url="${function.path}" data-tabid="table-wgzyh">${function.name}</li>
+				                    </c:if>
+				                     <c:if test="${function.id  eq '16'}"> 
+				                    <li data-id="63" data-pid="6" data-url="${function.path}" data-tabid="table-wgzyh">${function.name}</li>
+				                    </c:if>
+				                    </c:forEach>
                                 </ul>
                             </div>
                         </div>

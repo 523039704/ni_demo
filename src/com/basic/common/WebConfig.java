@@ -11,6 +11,8 @@ import com.demo.contaller.Productcontroller;
 import com.demo.contaller.Rangecontroller;
 import com.demo.contaller.Rolecontroller;
 import com.demo.contaller.Usercontroller;
+import com.demo.contaller.WeixinApiController;
+import com.demo.contaller.WeixinMsgController;
 import com.demo.contaller.Zonecontroller;
 import com.demo.model.Areainfo;
 import com.demo.model.Cityinfo;
@@ -24,6 +26,7 @@ import com.demo.model.Provinceinfo;
 import com.demo.model.Rangeinfo;
 import com.demo.model.Roleinfo;
 import com.demo.model.Userinfo;
+import com.demo.model.Wxconfig;
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
 import com.jfinal.config.Interceptors;
@@ -32,7 +35,7 @@ import com.jfinal.config.Plugins;
 import com.jfinal.config.Routes;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
-import com.jfinal.render.ViewType;
+import com.jfinal.render.ViewType; 
 
 public class WebConfig extends JFinalConfig {
 
@@ -58,6 +61,12 @@ public class WebConfig extends JFinalConfig {
 		me.add("/range", Rangecontroller.class); 
 		me.add("/group", Groupcontroller.class); 
 		me.add("/zone", Zonecontroller.class); 
+		
+		
+		//微信
+		me.add("/msg", WeixinMsgController.class);
+		me.add("/api", WeixinApiController.class, "/api");
+		 
 	}
 
 	@Override
@@ -89,6 +98,8 @@ public class WebConfig extends JFinalConfig {
 		arp.addMapping("hat_province", Provinceinfo.class); 
 		arp.addMapping("hat_city", Cityinfo.class); 
 		arp.addMapping("hat_area", Areainfo.class); 
+		//微信配置
+		arp.addMapping("Wxconfig", Wxconfig.class); 
 	}
 
 	@Override
