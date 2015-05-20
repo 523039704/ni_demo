@@ -13,7 +13,7 @@ public static Functioninfo dao = new Functioninfo();
  
 	public boolean insert(String name,String path)
 	{
-		int id=Functioninfo.dao.ids()+1;
+		int id=Functioninfo .dao.findFirst("select * from function ORDER BY id DESC").getInt("id")+1;
 		return Functioninfo.dao.set("id", id).set("name", name).set("path", path).save();
 	}
 	
@@ -23,10 +23,7 @@ public static Functioninfo dao = new Functioninfo();
 	}
 	
 	
-	public int ids()
-	{
-		return Functioninfo .dao.findFirst("select * from function ORDER BY id DESC").getInt("id");
-	}
+	 
 	
 	public Functioninfo see_index(String id)
 	{

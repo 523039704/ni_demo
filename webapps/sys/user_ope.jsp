@@ -3,7 +3,7 @@
 <%@ taglib uri="/WEB-INF/tld/DevTag.tld" prefix="DevTag"%>
  <script type="text/javascript">
 	$(document).ready(function() {
-		$("#ope").val($("#role")[0].value);
+		$("#roleID").val($("#role")[0].value);
 	});
 	
 function pic_upload_success(file, data) {
@@ -59,6 +59,17 @@ function do_OK(json, $form) {
                     <td>
                         <label for="j_custom_lname" class="control-label x85">操作类型：</label>
        					       <DevTag:FormSelectRoleListTag/>
+				     </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <label for="j_custom_lname" class="control-label x85">设置分组：</label>
+       					       <DevTag:FormSelectGroupListTag/>
+				     </td>
+               		<td>
+                        <label for="j_custom_lname" class="control-label x85">是否为队长：</label>
+       					<input type="radio" name="captain" id="captain" data-toggle="icheck" value="1" data-rule="checked" data-label="是&nbsp;&nbsp;">
+                        <input type="radio" name="captain" id="captain" data-toggle="icheck" value="0" data-label="否" checked="checked">
 				     </td>
                 </tr>
             </tbody>

@@ -3,7 +3,6 @@ package com.demo.contaller;
 import java.util.List;
 
 import com.demo.model.Functioninfo;
-import com.demo.model.Rangeinfo;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Page;
 

@@ -4,6 +4,7 @@ import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
 import com.demo.contaller.Coursecontroller;
 import com.demo.contaller.Functioncontroller;
+import com.demo.contaller.Groupcontroller;
 import com.demo.contaller.Indexcontroller;
 import com.demo.contaller.Ordercontroller;
 import com.demo.contaller.Productcontroller;
@@ -12,6 +13,7 @@ import com.demo.contaller.Rolecontroller;
 import com.demo.contaller.Usercontroller;
 import com.demo.model.Courseinfo;
 import com.demo.model.Functioninfo;
+import com.demo.model.Groupinfo;
 import com.demo.model.Orderinfo;
 import com.demo.model.Productinfo;
 import com.demo.model.Productsoninfo;
@@ -50,6 +52,7 @@ public class WebConfig extends JFinalConfig {
 		me.add("/function", Functioncontroller.class); 
 		me.add("/role", Rolecontroller.class); 
 		me.add("/range", Rangecontroller.class); 
+		me.add("/group", Groupcontroller.class); 
 	}
 
 	@Override
@@ -77,6 +80,7 @@ public class WebConfig extends JFinalConfig {
 		arp.addMapping("role", Roleinfo.class); 
 		arp.addMapping("product_son", Productsoninfo.class); 
 		arp.addMapping("range", Rangeinfo.class); 
+		arp.addMapping("group", Groupinfo.class); 
 	}
 
 	@Override

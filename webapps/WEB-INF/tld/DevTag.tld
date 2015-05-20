@@ -16,5 +16,9 @@
 		<body-content>empty</body-content>
 	</tag>
 	
-	
+	<tag>
+		<name>FormSelectGroupListTag</name>
+		<tag-class>com.demo.tag.GroupListTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
 </taglib>

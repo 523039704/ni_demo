@@ -6,6 +6,7 @@ import java.util.List;
 import com.basic.util.DateUtil;
 import com.basic.util.MD5;
 import com.demo.innterceptor.BasiceInterceptor;
+import com.demo.model.Groupinfo;
 import com.demo.model.Userinfo;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
@@ -22,7 +23,7 @@ public class Usercontroller extends Controller {
 		String reservation = getPara("reservation");
 		List<Object> param = new ArrayList<Object>();
 		StringBuffer where = new StringBuffer();
-		where.append("   and role>=?");
+		where.append("   and role>=? and  role<10 ");
 		param.add(role);
 		if (id != null && id.length() > 0) {
 			setAttr("id", id);
@@ -94,10 +95,18 @@ public class Usercontroller extends Controller {
 		String numbercard = getPara("numbercard");
 		String phone = getPara("phone");
 		String email = getPara("email");
-		String ope = getPara("ope");
-
+		String ope = getPara("roleID");
+		String captain = getPara("captain");
+		String groupID = getPara("groupID");
+		if(captain.equals("1"))//设置队长id 更新队长id 和人数
+		{
+			Groupinfo.dao.update_gname(groupID,id);
+		}else
+		{
+			Groupinfo.dao.update_gname(groupID);
+		}
 		if (Userinfo.dao.update(id, username, realtname, numbercard, phone,
-				email, ope)) {
+				email, ope,groupID)) {
 			renderJson("{\"statusCode\":\"200\",\"message\":\"\u64cd\u4f5c\u6210\u529f\",\"tabid\":\"table, table-fixed\",\"closeCurrent\":true, \"forward\":\"/user\"}");
 		}
 	}

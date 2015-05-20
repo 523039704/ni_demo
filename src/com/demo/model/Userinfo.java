@@ -54,11 +54,11 @@ public class Userinfo extends Model<Userinfo> {
 	}
 
 	public boolean update(String id, String username, String realtname,
-			String numbercard, String phone, String email, String ope) {
+			String numbercard, String phone, String email, String ope,String groupID) {
 
 		return Userinfo.dao.findById(id).set("adminname", username)
 				.set("realname", realtname).set("numbercard", numbercard)
-				.set("phone", phone).set("email", email).set("ope", ope)
+				.set("phone", phone).set("email", email).set("ope", ope).set("groupid", groupID)
 				.update();
 	}
 }

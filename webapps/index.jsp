@@ -215,6 +215,9 @@ $(function(){
                     	    <c:if test="${function.id  eq '3'}">
                     		<li data-id="12" data-pid="1" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
                     	  </c:if>
+                    	   <c:if test="${function.id  eq '13'}">
+                    		<li data-id="13" data-pid="1" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
+                    	  </c:if>
                     </c:forEach>
                 </ul>
             </li>
@@ -309,6 +312,9 @@ $(function(){
                                  		<c:if test="${function.id  eq '3'}"> 
                                    			 <li data-id="12" data-pid="1" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
                                  		</c:if>
+                                 		  <c:if test="${function.id  eq '13'}">
+                    						<li data-id="13" data-pid="1" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
+                    	 				 </c:if>
                                     </c:forEach>
                                     <li data-id="2" data-pid="0">账户</li>
                                     <c:forEach items="${sessionScope.function}" var="function">
