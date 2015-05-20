@@ -49,7 +49,7 @@
     </form>
 </div>
 <div class="bjui-pageContent">
-    <table class="table table-bordered table-hover table-striped table-top" data-selected-multi="true">
+    <table class="table table-bordered table-hover table-striped table-top" data-selected-multi="true"id="table1">
         <thead>
             <tr>
                 <th data-order-field="operation" align="center">id</th>
@@ -71,12 +71,21 @@
 						<td>${blog.nickname}</td>
 						<td>${blog.phone}</td>
 						<td>${blog.add_time}</td>
-						<td><a  href="${pageContext.request.contextPath}/user?id=${blog.admin_id}">${blog.amount}</a></td>
-						<td>${blog.role}</td>
-						<td>${blog.apply}</td>
+						<td><a data-toggle="navtab" data-id="form"  href="${pageContext.request.contextPath}/user?id=${blog.admin_id}">您拥有的人数：${blog.amount}</a></td>
+						<td> 
+							<c:if test="${blog.role ==1}">系统管理者</c:if>     
+							<c:if test="${blog.role ==2}"> 分公司</c:if>     
+							<c:if test="${blog.role ==3}"> 分销商</c:if>     
+							<c:if test="${blog.role ==4}"> 业务员</c:if>     
+							<c:if test="${blog.role ==5}"> 普通用户</c:if>     
+						</td>
 						<td>
-						<a class="button border-blue button-little" href="#">修改</a>
-						<a class="button border-yellow button-little" href="#"onclick="{if(confirm('确认删除?')){return true;}return false;}">删除</a>
+						<c:if test="${blog.apply ==0}">无</c:if>   
+						<c:if test="${blog.apply ==1}">有</c:if>   
+						</td>
+						<td>
+						<a class="btn btn-default" data-toggle="navtab" data-id="form"   href="/user/edit?id=${blog.admin_id}">修改</a>
+						<a class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除该行信息吗？"  href="/user/delete?id=${blog.admin_id}">删</a>
 						</td>
 					</tr>
 				</c:forEach>

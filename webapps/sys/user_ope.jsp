@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="/WEB-INF/tld/DevTag.tld" prefix="DevTag"%>
  <script type="text/javascript">
+	$(document).ready(function() {
+		$("#ope").val($("#role")[0].value);
+	});
+	
 function pic_upload_success(file, data) {
     var json = $.parseJSON(data)
     
@@ -14,58 +19,46 @@ function do_OK(json, $form) {
     console.log(json)
     console.log($form)
 }
-//护照有效日期  = 签发日期 + 10年
-$('#j_custom_issuedate').on('afterchange.bjui.datepicker', function(e, data) {
-    var pattern = 'yyyy-MM-dd'
-    var start   = end = data.value
-    
-    end.setFullYear(start.getFullYear() + 10)
-    end.setDate(start.getDate() - 1)
-    
-    $('#j_custom_indate').val(end.formatDate(pattern))
-})
+ 
 </script>
 <div class="bjui-pageContent">
-    <form action="/user/insert" id="j_custom_form" data-toggle="validate" data-alertmsg="false">
+    <form action="/user/<%if( request.getAttribute("user")==null){out.print("insert");}else{out.print("update");}%>" id="j_custom_form" data-toggle="validate" data-alertmsg="false">
         <input type="hidden" name="custom.id" value="edce142bc2ed4ec6b623aacaf602a4de">
         <table class="table table-condensed table-hover" width="100%">
             <tbody>
                 <tr>
                     
                     <td>
+						<input type=hidden id="id" name="id" value="${(user.admin_id)}">
+						<input type=hidden id="role" name="role" value="${(user.role)}">
                         <label for="j_custom_color" class="control-label x85">业务员姓名：</label>
-                        <input type="text" name="username" id="username" value="" data-toggle="colorpicker" data-bgcolor="true" size="15"  >
+                        <input type="text" name="username" id="username"  value="${(user.adminname)}" data-rule="required"  size="15"  >
                     </td>
                      <td>
                         <label for="j_custom_color" class="control-label x85">业务员姓名：</label>
-                             <input type="text" name="realtname" id="realtname" value="" data-toggle="colorpicker" data-bgcolor="true" size="15"  >
+                             <input type="text" name="realtname" id="realtname"  value="${(user.realname)}" data-rule="required"  size="15"  >
                     </td>
                    
                 </tr>
                 <tr>
                  <td >
                         <label class="control-label x85">业务员身份证号：</label>
-                        <input type="text" name="numbercard" id="numbercard" value="" data-toggle="colorpicker" data-bgcolor="true" size="15"  >
+                        <input type="text" name="numbercard" id="numbercard"  value="${(user.numbercard)}" data-rule="required"  size="15"  >
                     </td>
                     <td>
                         <label for="j_custom_name" class="control-label x85">业务员手机：</label>
-                        <input type="text" name="custom.name" id="j_custom_name" value="" data-rule="required" size="15">
+                        <input type="text" name="phone" id="phone"  value="${(user.phone)}" data-rule="required" size="15">
                     </td>
                    
                 </tr>
                 <tr>
                  <td>
                         <label for="j_custom_fname" class="control-label x85">业务员Email</label>
-                        <input type="text" name="custom.fname" id="j_custom_fname" value="" data-rule="required;letters" size="15">
+                        <input type="text" name="email" id="email"  value="${(user.email)}" data-rule="required" size="15">
                     </td>
                     <td>
                         <label for="j_custom_lname" class="control-label x85">操作类型：</label>
-                    	 <select name="ope" id="ope"  data-toggle="selectpicker" data-rule="required">
-       					   <option value="-1">请选择功能</option>
-   						   <option value="1">子公司</option>
- 						   <option value="2">代理商</option>
- 						   <option value="3">业务员</option>
-						</select>
+       					       <DevTag:FormSelectRoleListTag/>
 				     </td>
                 </tr>
             </tbody>

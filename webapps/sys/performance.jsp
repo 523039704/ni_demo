@@ -58,21 +58,35 @@
                 <th>分类</th>
                 <th data-order-field="sex">产品</th>
                 <th data-order-field="birthday">金额</th>
+                  <c:if test="${sessionScope.role  eq '3'}"> 
                 <th data-order-field="birthplace">业务员</th>
+                </c:if>
+                  <c:if test="${sessionScope.role  eq '2'}"> 
                 <th data-order-field="add"  align="center">代理商</th>
+                </c:if>
+                  <c:if test="${sessionScope.role  eq '1'}"> 
+                <th data-order-field="add"  align="center">分公司</th>
+                </c:if>
             </tr>
         </thead>
         <tbody>
 				<c:forEach items="${performance}" var="performance">
 					<tr>
 						<td>${performance.id}</td>
-						<td>${performance.uid}</td>
+						<td>${performance.nickname}</td>
 						<td>${performance.createdatetime}</td>
 						<td>${performance.ptoducti}</td>
 						<td>${performance.productid}</td>
 						<td>${performance.montey}</td>
+						   <c:if test="${sessionScope.role  eq '3'}"> 
 						<td>${performance.businessid}</td>
+						</c:if>
+						   <c:if test="${sessionScope.role  eq '2'}"> 
 						<td>${performance.agentid}</td>
+						   </c:if>
+						   <c:if test="${sessionScope.role  eq '1'}"> 
+						<td>${performance.filialeid}</td>
+						</c:if>
 					</tr>
 				</c:forEach>
         </tbody>

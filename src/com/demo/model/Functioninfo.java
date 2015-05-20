@@ -17,18 +17,22 @@ public static Functioninfo dao = new Functioninfo();
 		return Functioninfo.dao.set("id", id).set("name", name).set("path", path).save();
 	}
 	
+	public boolean update(String id,String name,String path)
+	{
+		return Functioninfo.dao.findById(id).set("name", name).set("path", path).update();
+	}
 	
 	
 	public int ids()
 	{
-		
-		
-		
-		
 		return Functioninfo .dao.findFirst("select * from function ORDER BY id DESC").getInt("id");
-		
 	}
 	
+	public Functioninfo see_index(String id)
+	{
+		return Functioninfo .dao.findById(id);	
+		
+	}
 	
 	
 	

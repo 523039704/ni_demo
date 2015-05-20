@@ -65,16 +65,20 @@
         <tbody>
 					<c:forEach items="${course}" var="course">
 					<tr>
-						<td>${course.id}</td>
+						<td >${course.id}</td>
 						<td>${course.name}</td>
 						<td>${course.createdatetime}</td>
 						<td>${course.coursedatetime}</td>
 						<td>${course.price}</td>
 						<td>${course.peoples}</td>
 						<td>${course.service}</td>
-						<td>
-                   			 <a href="form.html?id=1" class="btn btn-green" data-toggle="navtab" data-id="form" data-reload-warn="本页已有打开的内容，确定将刷新本页内容，是否继续？" data-title="编辑-孙悟空">编辑</a>
-                  			 <a href="ajaxDone2.html" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除该行信息吗？">删</a>
+						<td  width="200">
+						   <c:if test="${sessionScope.role  eq '1'}"> 
+                   			 <a href="/course/edit?sid=1&id=${course.id}" class="btn btn-green"  data-toggle="navtab" data-id="form" >编辑</a>
+                  			 <a href="/course/delete?id=${course.id}" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除该行信息吗？">删</a>
+                   			 </c:if>
+                   			 <a href="/course/edit?sid=0&id=${course.id}" class="btn btn-green"  data-toggle="navtab" data-id="form" >详情</a>
+                   			 <a  class="btn btn-default" href="/order/add?id=${course.id}&ptoducti=2" data-toggle="navtab" data-id="form">认购</a>
                			 </td>
 					</tr>
 				</c:forEach>

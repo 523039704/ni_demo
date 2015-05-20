@@ -61,23 +61,37 @@
                 <th data-order-field="birthday">费率</th>
                 <th data-order-field="birthday">状态</th>
                 <th data-order-field="birthplace">业务员</th>
+                   <c:if test="${sessionScope.role  eq '2'||sessionScope.role  eq '3'}"> 
                 <th data-order-field="add"  align="center">操作</th>
+                </c:if>
             </tr>
         </thead>
         <tbody>
 				<c:forEach items="${order}" var="order">
 					<tr>
 						<td>${order.id}</td>
-						<td>${order.uid}</td>
+						<td>${order.nickname}</td>
 						<td>${order.createdatetime}</td>
-						<td>${order.ptoducti}</td>
+						<td> 
+							<c:if test="${order.ptoducti ==1}">基金产品</c:if>   
+							<c:if test="${order.ptoducti ==2}">专家课程</c:if>   
+							<c:if test="${order.ptoducti ==3}">P2P理财</c:if>   
+						</td>
 						<td>${order.productid}</td>
 						<td>${order.montey}</td>
 						<td>${order.serviceid}</td>
-						<td>${order.status}</td>
+						<td>
+							<c:if test="${order.status ==0}">未付款</c:if>   
+							<c:if test="${order.status ==1}">已付款</c:if>   
+							<c:if test="${order.status ==2}">审核通过</c:if>   
+							<c:if test="${order.status ==-1}">审核失败</c:if>   
+						
+						</td>
 						<td>${order.businessid}</td>
 						<td>
+						   <c:if test="${sessionScope.role  eq '2'||sessionScope.role  eq '3'}"> 
                    			 <a href="#" class="btn btn-green" data-toggle="navtab" data-id="form" data-reload-warn="本页已有打开的内容，确定将刷新本页内容，是否继续？" data-title="编辑-孙悟空">审核</a>
+                            </c:if>
                			 </td>
 					</tr>
 				</c:forEach>

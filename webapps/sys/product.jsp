@@ -53,8 +53,9 @@
         <thead>
             <tr>
                 <th data-order-field="operation" align="center">id</th>
-                <th data-order-field="name">产品名字</th>
+                <th  >产品名字</th>
                 <th>期限(月)</th>
+                <th>起点金额(万元)</th>
                 <th>起点金额(万元)</th>
                 <th width="100">操作</th>
             </tr>
@@ -62,13 +63,18 @@
         <tbody>
 				<c:forEach items="${product}" var="product">
 					<tr>
-						<td>${product.id}</td>
-						<td>${product.name}</td>
-						<td>${product.longtime}</td>
-						<td>${product.small_mony}</td>
-						<td>
-						<a class="button border-blue button-little" href="#">修改</a>
-						<a class="button border-yellow button-little" href="#"onclick="{if(confirm('确认删除?')){return true;}return false;}">删除</a>
+						<td  "  align="center">${product.id}</td>
+						<td  >${product.name}</td>
+						<td  >${product.longtime}</td>
+						<td  >${product.small_mony}</td>
+						<td  >${product.small_mony}</td>
+						<td  width="200">
+						   <c:if test="${sessionScope.role  eq '1'}"> 
+						<a  class="btn btn-default" data-toggle="navtab" data-id="form"   href="/product/edit?sid=1&id=${product.id}">修改</a>
+						<a  class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除该行信息吗？"  href="/product/delete?id=${product.id}">删</a>
+						</c:if>
+						<a  class="btn btn-default" data-toggle="navtab" data-id="form"   href="/product/edit?sid=0&id=${product.id}">详情</a>
+						<a  class="btn btn-default" href="/order/add?id=${product.id}&ptoducti=1" data-toggle="navtab" data-id="form">认购</a>
 						</td>
 					</tr>
 				</c:forEach>

@@ -65,8 +65,10 @@
 						<td>${function.name}</td>
 						<td>${function.path}</td>
 						<td>
-                   			 <a href="form.html?id=1" class="btn btn-green" data-toggle="navtab" data-id="form" data-reload-warn="本页已有打开的内容，确定将刷新本页内容，是否继续？" data-title="编辑-孙悟空">编辑</a>
-                  			 <a href="ajaxDone2.html" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除该行信息吗？">删</a>
+                   			 <a href="/function/edit?id=${function.id}" class="btn btn-green"  data-toggle="navtab" data-id="form">编辑</a>
+                   			  <c:if test="${sessionScope.role  eq '100'}"> 
+                  			 <a href="/function/delete?id=${function.id}" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除该行信息吗？">删</a>
+                  			 </c:if>
                			 </td>
 					</tr>
 				</c:forEach>

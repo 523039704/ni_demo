@@ -20,4 +20,11 @@ public class Roleinfo extends Model<Roleinfo> {
 		return Roleinfo.dao.findById(ids).set("authority", authorityid).update();
 	}
 
+	
+	public boolean update_serve(String id,String social,String serve)
+	{
+		return Roleinfo.dao.findById(id).set("social", social).set("serve", serve).update();
+		
+	}
+	
 }

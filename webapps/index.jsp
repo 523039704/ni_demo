@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -200,46 +201,78 @@ $(function(){
         </button>
         <ul id="bjui-hnav-navbar">
             <li style="width:204px;"><a>欢迎您，${sessionScope.name}！</a></li>
+           
             <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-check-square-o"></i>用户管理</a>
                 <ul id="bjui-hnav-tree1" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true" data-noinit="true">
                     <li data-id="1" data-pid="0" data-faicon="th-large">用户管理</li>
-                    <li data-id="10" data-pid="1" data-url="/user" data-tabid="form-button" data-faicon="hand-o-up">用户预览</li>
-                    <li data-id="11" data-pid="1" data-url="/user/add" data-tabid="form-input" data-faicon="terminal">用户添加</li>
-                    <li data-id="12" data-pid="1" data-url="/user" data-tabid="form-select" data-faicon="caret-square-o-down">设置分组</li>
+                    	<c:forEach items="${sessionScope.function}" var="function">
+                           <c:if test="${function.id  eq '1'}">
+                    		<li data-id="10" data-pid="1" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
+                    	  </c:if>
+                    	    <c:if test="${function.id  eq '2'}">
+                    		<li data-id="11" data-pid="1" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
+                    	  </c:if>
+                    	    <c:if test="${function.id  eq '3'}">
+                    		<li data-id="12" data-pid="1" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
+                    	  </c:if>
+                    </c:forEach>
                 </ul>
             </li>
             <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-table"></i>产品管理</a>
                 <ul id="bjui-hnav-tree2" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true" data-noinit="true">
                     <li data-id="2" data-pid="0">产品管理</li>
-                    <li data-id="20" data-pid="2" data-url="/product" data-tabid="table">产品预览</li>
-                    <li data-id="20" data-pid="2" data-url="/product/add" data-tabid="table">产品添加</li>
-                    <li data-id="22" data-pid="2" data-url="/course" data-tabid="table-edit">课程预览</li>
-                    <li data-id="21" data-pid="2" data-url="/course/add" data-tabid="table-fixed">课程添加</li>
-                    <li data-id="21" data-pid="2" data-url="/product" data-tabid="table-fixed">P2P预览</li>
+                    	<c:forEach items="${sessionScope.function}" var="function">
+                           <c:if test="${function.id  eq '6'}">
+                    		<li data-id="20" data-pid="2" data-url="${function.path}" data-tabid="table">${function.name}</li>
+                   		  </c:if>
+                   		   <c:if test="${function.id  eq '7'}">
+                    		<li data-id="21" data-pid="2" data-url="${function.path}" data-tabid="table">${function.name}</li>
+                   		  </c:if>
+                   		   <c:if test="${function.id  eq '8'}">
+                    		<li data-id="22" data-pid="2" data-url="${function.path}" data-tabid="table">${function.name}</li>
+                   		  </c:if>
+                   		   <c:if test="${function.id  eq '9'}">
+                    		<li data-id="23" data-pid="2" data-url="${function.path}" data-tabid="table">${function.name}</li>
+                   		  </c:if>
+                   		  <c:if test="${function.id  eq '10'}">
+                    		<li data-id="24" data-pid="2" data-url="${function.path}" data-tabid="table">${function.name}</li>
+                   		  </c:if>
+                    </c:forEach>
                 </ul>
             </li>
             <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-table"></i> 财务管理</a>
                 <ul id="bjui-hnav-tree-datagrid" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true" data-noinit="true">
                     <li data-id="3" data-pid="0">财务管理</li>
-                    <li data-id="31" data-pid="3" data-url="/order" data-tabid="datagrid-convertable">账务信息</li>
-                    <li data-id="32" data-pid="3" data-url="/order/performance" data-tabid="datagrid-demo">业绩统计</li>
+                    <c:forEach items="${sessionScope.function}" var="function">
+                           <c:if test="${function.id  eq '4'}">
+                    <li data-id="31" data-pid="3" data-url="${function.path}" data-tabid="datagrid-convertable">${function.name}</li>
+                    </c:if>
+                     <c:if test="${function.id  eq '5'}">
+                    <li data-id="32" data-pid="3" data-url="${function.path}" data-tabid="datagrid-convertable">${function.name}</li>
+                    </c:if>
+                    </c:forEach>
                 </ul>
             </li>
+             <c:if test="${sessionScope.role  eq '1'||sessionScope.role  eq '100'}"> 
             <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-plane"></i> 个人中心</a>
                 <ul id="bjui-hnav-tree4" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true" data-noinit="true">
                     <li data-id="4" data-pid="0">弹出窗口</li>
-                    <li data-id="40" data-pid="4" data-url="dialog.html" data-tabid="dialog">弹出窗口</li>
-                    <li data-id="41" data-pid="4" data-url="alert.html" data-tabid="alert">信息提示</li>
+                    <li data-id="40" data-pid="4" data-url="/range" data-tabid="dialog">收益和金额列表</li>
+                    <li data-id="41" data-pid="4" data-url="/range/add" data-tabid="alert">添加操作</li>
                 </ul>
             </li>
+            
             <li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-image"></i>系统设置</a>
                 <ul id="bjui-hnav-tree5" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true" data-noinit="true">
                     <li data-id="5" data-pid="0">系统设置</li>
                     <li data-id="51" data-pid="5" data-url="${pageContext.request.contextPath}/role" data-tabid="chart">角色预览</li>
                     <li data-id="52" data-pid="5" data-url="${pageContext.request.contextPath}/function" data-tabid="echarts">功能预览</li>
+                       <c:if test="${sessionScope.role  eq '100'}"> 
                     <li data-id="53" data-pid="5" data-url="${pageContext.request.contextPath}/function/add" data-tabid="echarts">功能添加</li>
+                    </c:if>
                 </ul>
             </li>
+            </c:if>  
         </ul>
         <form class="hnav-form">
             <div class="input-group">
@@ -265,21 +298,51 @@ $(function(){
                         <div id="bjui-collapse0" class="panel-collapse panelContent collapse in">
                             <div class="panel-body" >
                                 <ul id="bjui-tree0" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true">
-                                    <li data-id="1" data-pid="0" data-faicon="th-large">用户</li>
-                                    <li data-id="10" data-pid="1" data-url="/user" data-tabid="form-button" data-faicon="hand-o-up">用户查询</li>
-                                    <li data-id="11" data-pid="1" data-url="/user/add" data-tabid="form-input" data-faicon="terminal">用户添加</li>
-                                    <li data-id="12" data-pid="1" data-url="/user" data-tabid="form-select" data-faicon="caret-square-o-down">设置分组</li>
+                                    <li data-id="1" data-pid="0" data-faicon="th-large">用户 </li>
+                                	<c:forEach items="${sessionScope.function}" var="function">
+                                	    <c:if test="${function.id  eq '1'}"> 
+                                   			 <li data-id="10" data-pid="1" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
+                                 		</c:if>
+                                		<c:if test="${function.id  eq '2'}"> 
+                                   			 <li data-id="11" data-pid="1" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
+                                 		</c:if>
+                                 		<c:if test="${function.id  eq '3'}"> 
+                                   			 <li data-id="12" data-pid="1" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
+                                 		</c:if>
+                                    </c:forEach>
                                     <li data-id="2" data-pid="0">账户</li>
-                                    <li data-id="20" data-pid="2" data-url="/order" data-tabid="table">账户信息</li>
-                                    <li data-id="21" data-pid="2" data-url="/order/performance" data-tabid="table-fixed">业绩统计</li>
+                                    <c:forEach items="${sessionScope.function}" var="function">
+                                	    <c:if test="${function.id  eq '4'}"> 
+                                   			 <li data-id="20" data-pid="2" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
+                                 		</c:if>
+                                		<c:if test="${function.id  eq '5'}"> 
+                                   			 <li data-id="21" data-pid="2" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
+                                 		</c:if>
+                                    </c:forEach>
                                     <li data-id="3" data-pid="0">产品</li>
-                                    <li data-id="32" data-pid="3" data-url="/product" data-tabid="datagrid-demo">产品查询</li>
-                                    <li data-id="31" data-pid="3" data-url="/product/add" data-tabid="datagrid-convertable">产品添加</li>
+                                    <c:forEach items="${sessionScope.function}" var="function">
+                                	    <c:if test="${function.id  eq '6'}"> 
+                                   			 <li data-id="30" data-pid="3" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
+                                 		</c:if>
+                                		<c:if test="${function.id  eq '7'}"> 
+                                   			 <li data-id="31" data-pid="3" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
+                                 		</c:if>
+                                    </c:forEach>
                                     <li data-id="4" data-pid="0">课程</li>
-                                    <li data-id="40" data-pid="4" data-url="/course" data-tabid="dialog">课程查询</li>
-                                    <li data-id="41" data-pid="4" data-url="/course/add" data-tabid="alert">课程添加</li>
-                                    <li data-id="6" data-pid="0">P2P</li>
-                                    <li data-id="61" data-pid="6" data-url="/product" data-tabid="tabs">P2P查询</li>
+                                     <c:forEach items="${sessionScope.function}" var="function">
+                                	    <c:if test="${function.id  eq '8'}"> 
+                                   			 <li data-id="40" data-pid="4" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
+                                 		</c:if>
+                                		<c:if test="${function.id  eq '9'}"> 
+                                   			 <li data-id="41" data-pid="4" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
+                                 		</c:if>
+                                    </c:forEach>
+                                    <li data-id="5" data-pid="0">P2P</li>
+                                     <c:forEach items="${sessionScope.function}" var="function">
+                                	    <c:if test="${function.id  eq '10'}"> 
+                                   			 <li data-id="50" data-pid="5" data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
+                                 		</c:if>
+                                    </c:forEach>
                                 </ul>
                             </div>
                         </div>

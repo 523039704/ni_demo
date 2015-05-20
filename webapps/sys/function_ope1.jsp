@@ -24,15 +24,14 @@ function do_OK(json, $form) {
                 <tr>
                     <td>
                         <label for="j_custom_color" class="control-label x85">名称：</label>
-                           <input type="hidden" name="fuid" id="fuid" value="${(function.id)}"   size="15"  >
-                        <input type="text" name="name" id="name" value="${(function.name)}"   size="15"    > 
+                        <input type="text" name="name" id="name"   size="15"    > 
 					</td>
                 
                 </tr>
                  <tr>
                     <td>
                         <label for="j_custom_color" class="control-label x85">路径：</label>
-                          <input type="text" name="path" id="path" value="${(function.path)}"   size="15"  <%if( request.getSession().getAttribute("role").toString().equals("1")){out.print("readonly");}%>>
+                          <input type="text" name="path" id="path"   size="15" >
 					</td>
                 
                 </tr>

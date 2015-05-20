@@ -11,7 +11,7 @@ public class BasiceInterceptor implements Interceptor {
 
 		if (ai.getController().getSession().getAttribute("name") != null) {
 			ai.invoke();
-		} else {
+			} else {
 			ai.getController().redirect("/");
 		}
 	}

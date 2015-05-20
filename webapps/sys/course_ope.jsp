@@ -14,59 +14,50 @@ function do_OK(json, $form) {
     console.log(json)
     console.log($form)
 }
-//护照有效日期  = 签发日期 + 10年
-$('#j_custom_issuedate').on('afterchange.bjui.datepicker', function(e, data) {
-    var pattern = 'yyyy-MM-dd'
-    var start   = end = data.value
-    
-    end.setFullYear(start.getFullYear() + 10)
-    end.setDate(start.getDate() - 1)
-    
-    $('#j_custom_indate').val(end.formatDate(pattern))
-})
+ 
 </script>
 <div class="bjui-pageContent">
-    <form action="${pageContext.request.contextPath}/course/insert" id="j_custom_form" data-toggle="validate" data-alertmsg="false">
-        <input type="hidden" name="custom.id" value="edce142bc2ed4ec6b623aacaf602a4de">
+    <form action="/course/<%if( request.getAttribute("course")==null){out.print("insert");}else{out.print("update");}%>" id="j_custom_form" data-toggle="validate" data-alertmsg="false">
         <table class="table table-condensed table-hover" width="100%">
             <tbody>
                 <tr>
                     <td>
-                        <label for="j_custom_color" class="control-label x85">课程名称：</label>
-                        <input type="text" name="username" id="username" value="" data-toggle="colorpicker" data-bgcolor="true" size="15"  >
+                        <label for="" class="control-label x85">课程名称：</label>
+                        <input type="hidden" name="id" id="id" value="${(course.id)}"   size="15"  >
+                        <input type="text" name="name" id="name" value="${(course.name)}"   size="15"  <%if( request.getAttribute("sid").equals("0")){out.print(" readonly");}%> >
                     </td>
                 
                 </tr>
                 <tr>
                  <td>
-                        <label for="j_custom_birthday" class="control-label x85">起购日期：</label>
-                        <input type="text" name="custom.birthday" id="j_custom_birthday" value="1980-08-08" data-toggle="datepicker" data-rule="required;date" size="15">
+                        <label for="" class="control-label x85">起购日期：</label>
+                        <input type="text" name="createdatetime" id="createdatetime"value="${(course.createdatetime)}"   data-toggle="datepicker" data-rule="required;date" size="15" readonly>
                     </td>
                      <td>
-                        <label for="j_custom_birthday" class="control-label x85">截止日期：</label>
-                        <input type="text" name="custom.birthday" id="j_custom_birthday" value="1980-08-08" data-toggle="datepicker" data-rule="required;date" size="15">
+                        <label for="" class="control-label x85">截止日期：</label>
+                        <input type="text" name="coursedatetime" id="coursedatetime" value="${(course.coursedatetime)}"   data-toggle="datepicker" data-rule="required;date" size="15" readonly>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="j_custom_name" class="control-label x85">金额：</label>
-                        <input type="text" name="custom.name" id="j_custom_name" value="张三" data-rule="required" size="15">
+                        <label for="" class="control-label x85">金额：</label>
+                        <input type="text" name="price" id="price" value="${(course.price)}"  data-rule="required" size="15"  <%if( request.getAttribute("sid").equals("0")){out.print(" readonly");}%>>
                     </td>
                     <td>
-                        <label for="j_custom_fname" class="control-label x85">人数：</label>
-                        <input type="text" name="custom.fname" id="j_custom_fname" value="Zhang" data-rule="required;letters" size="15">
+                        <label for="" class="control-label x85">人数：</label>
+                        <input type="text" name="peoples" id="peoples" value="${(course.peoples)}"   data-rule="required" size="15"  <%if( request.getAttribute("sid").equals("0")){out.print(" readonly");}%>>
                     </td>
                 </tr>
                 <tr>
                 <td>
-                        <label for="j_custom_sale" class="control-label x85">服务费率：</label>
-                          <input type="text" name="custom.fname" id="j_custom_fname" value="Zhang" data-rule="required;letters" size="15">
-                   </td>
+                        <label for="" class="control-label x85">服务费率：</label>
+                        <input type="text" name="service" id="service" value="${(course.service)}"   data-rule="required" size="15"  <%if( request.getAttribute("sid").equals("0")){out.print(" readonly");}%>>
+                </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="j_custom_birthday" class="control-label x85">产品详情：</label>
-                        <textarea name="custom.note" id="j_custom_note" data-toggle="autoheight" cols="60" rows="1"></textarea>
+                        <label for="" class="control-label x85">产品详情：</label>
+                        <textarea name="summary" id="summary" data-toggle="" cols="60" rows="5"  <%if( request.getAttribute("sid").equals("0")){out.print(" readonly");}%>>${(course.summary)}</textarea>
                     </td>
                    
                 </tr>
@@ -75,8 +66,10 @@ $('#j_custom_issuedate').on('afterchange.bjui.datepicker', function(e, data) {
     </form>
 </div>
 <div class="bjui-pageFooter">
+     <%if( request.getAttribute("sid").equals("1")){%>
     <ul>
         <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
         <li><button type="submit" class="btn-default" data-icon="save">保存</button></li>
     </ul>
+ <%} %>  
 </div>

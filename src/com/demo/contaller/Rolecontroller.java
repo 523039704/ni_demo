@@ -20,9 +20,7 @@ public class Rolecontroller extends Controller {
 
 	public void authority() {
 		setAttr("auts", Roleinfo.dao.authority(getPara("id")));
-		System.out.println(Roleinfo.dao.authority(getPara("id")));
 		setAttr("authority", Functioninfo.dao.find("select * from function  "));
-		
 		setAttr("ids", getPara("id"));
 		setAttr("names", getPara("name"));
 		render("/sys/authority_ope.jsp");
@@ -37,7 +35,28 @@ public class Rolecontroller extends Controller {
 			authorityid.append(hour[a]).append(",");
 		}
 		Roleinfo.dao.update(id, authorityid.toString());
-		redirect("/role");
+		renderJson("{\"statusCode\":\"200\",\"message\":\"\u64cd\u4f5c\u6210\u529f\",\"tabid\":\"table, table-fixed\",\"closeCurrent\":true}"); 
+		}
+	public void edit()
+	{
+		setAttr("id", getPara("rid"));	
+		setAttr("role", Roleinfo.dao.findById(getPara("rid")));	
+		
+		render("/sys/role_ope.jsp");
+	} 
+	
+	
+	public void update()
+	{
+		
+		String sid=getPara("sid");	
+		String social=getPara("social");	
+		String serve=getPara("serve");	
+		if(Roleinfo.dao.update_serve(sid, social, serve))
+		{
+			renderJson("{\"statusCode\":\"200\",\"message\":\"\u64cd\u4f5c\u6210\u529f\",\"tabid\":\"table, table-fixed\",\"closeCurrent\":true,\"forward\":\"/role\"}");	
+		}
+		
 	}
-
+	
 }

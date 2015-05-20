@@ -17,22 +17,29 @@ function do_OK(json, $form) {
  
 </script>
 <div class="bjui-pageContent">
-    <form action="${pageContext.request.contextPath}/function/<%if( request.getAttribute("function")==null){out.print("insert");}else{out.print("update");}%>" id="j_custom_form" data-toggle="validate" data-alertmsg="false">
+    <form action="${pageContext.request.contextPath}/range/<%if( request.getAttribute("range")==null){out.print("insert");}else{out.print("update");}%>" id="j_custom_form" data-toggle="validate" data-alertmsg="false">
         <input type="hidden" name="custom.id" value="edce142bc2ed4ec6b623aacaf602a4de">
         <table class="table table-condensed table-hover" width="100%">
             <tbody>
                 <tr>
                     <td>
-                        <label for="j_custom_color" class="control-label x85">名称：</label>
-                           <input type="hidden" name="fuid" id="fuid" value="${(function.id)}"   size="15"  >
-                        <input type="text" name="name" id="name" value="${(function.name)}"   size="15"    > 
+                        <label for="j_custom_color" class="control-label x85">最小金额：</label>
+                     	<input type="hidden" name="id" id="id"  value="${(range.id)}"   size="15"    >
+                     	<input type="text" name="min" id="min"  value="${(range.amount_min)}"   size="15"    >
 					</td>
                 
                 </tr>
                  <tr>
                     <td>
-                        <label for="j_custom_color" class="control-label x85">路径：</label>
-                          <input type="text" name="path" id="path" value="${(function.path)}"   size="15"  <%if( request.getSession().getAttribute("role").toString().equals("1")){out.print("readonly");}%>>
+                        <label for="j_custom_color" class="control-label x85">最大金额：</label>
+                     	<input type="text" name="max" id="max"  value="${(range.amount_max)}"   size="15"   >
+					</td>
+                
+                </tr>
+                 <tr>
+                    <td>
+                        <label for="j_custom_color" class="control-label x85">获取的收益率：</label>
+                      	<input type="text" name="income" id="income"  value="${(range.income)}"   size="15"   >
 					</td>
                 
                 </tr>

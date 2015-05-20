@@ -24,7 +24,7 @@
                     	<input type="hidden" name="username1" id="username1"	value="${auts}" />
 							<input type="hidden" name="ids" id="ids"	value="${ids}" />
 								<c:forEach items="${authority}" var="authority">
-                       			 <input type="checkbox" name="dialog.visa" id="j_dialog_visa" value="${authority.id}"  data-toggle="icheck" data-label="${authority.path}">
+                       			 <input type="checkbox" name="authorityid" id="authorityid" value="${authority.id}"  data-toggle="icheck" data-label="${authority.name}">
                        		 </c:forEach>
                     </td>
                 </tr>

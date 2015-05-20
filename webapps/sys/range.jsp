@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
  <div class="bjui-pageHeader">
-    <form id="pagerForm" data-toggle="ajaxsearch" action="/role" method="post">
+    <form id="pagerForm" data-toggle="ajaxsearch" action="/function" method="post">
         <input type="hidden" name="pageSize" value="${(pager.pageSize)}">
         <input type="hidden" name="pageCurrent" value="${(pager.pageNumber)}">
         <input type="hidden" name="orderField" value="${param.orderField}">
@@ -52,22 +52,24 @@
     <table class="table table-bordered table-hover table-striped table-top" data-selected-multi="true">
         <thead>
             <tr>
-                <th data-order-field="operation" align="center">id</th>
-                <th data-order-field="name">角色名称</th>
-                <th data-order-field="name">服务费率</th>
-                <th width="100">操作</th>
+                  <th data-order-field="operation" align="center">id</th>
+                <th data-order-field="name">最小金额值</th>
+                <th>最大金额值</th>
+                <th>收益率</th>
+                <th align="center">操作</th>
             </tr>
         </thead>
         <tbody>
-				<c:forEach items="${role}" var="role">
+					<c:forEach items="${range}" var="range">
 					<tr>
-						<td>${role.id}</td>
-						<td>${role.social}</td>
-						<td>${role.serve}</td>
-						<td  width="200">
-						<a  class="btn btn-default" data-toggle="navtab" data-id="form"  href="/role/edit?rid=${role.id}">修改</a>
-						<a class="btn btn-default" data-toggle="dialog" data-width="800" data-height="400" data-id="dialog" href="/role/authority?id=${role.id}&name=${role.social}">分配权限</a>
-						</td>
+						<td>${range.id}</td>
+						<td>${range.amount_min}</td>
+						<td>${range.amount_max}</td>
+						<td>${range.income}</td>
+						<td>
+                   			 <a href="/range/edit?id=${range.id}" class="btn btn-green" data-toggle="navtab" data-id="form" >编辑</a>
+							 <a class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除该行信息吗？"  href="/range/delete?id=${range.id}">删</a>
+               			 </td>
 					</tr>
 				</c:forEach>
         </tbody>

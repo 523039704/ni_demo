@@ -7,12 +7,15 @@ import com.demo.contaller.Functioncontroller;
 import com.demo.contaller.Indexcontroller;
 import com.demo.contaller.Ordercontroller;
 import com.demo.contaller.Productcontroller;
+import com.demo.contaller.Rangecontroller;
 import com.demo.contaller.Rolecontroller;
 import com.demo.contaller.Usercontroller;
 import com.demo.model.Courseinfo;
 import com.demo.model.Functioninfo;
 import com.demo.model.Orderinfo;
 import com.demo.model.Productinfo;
+import com.demo.model.Productsoninfo;
+import com.demo.model.Rangeinfo;
 import com.demo.model.Roleinfo;
 import com.demo.model.Userinfo;
 import com.jfinal.config.Constants;
@@ -46,7 +49,7 @@ public class WebConfig extends JFinalConfig {
 		me.add("/order", Ordercontroller.class); 
 		me.add("/function", Functioncontroller.class); 
 		me.add("/role", Rolecontroller.class); 
-		 
+		me.add("/range", Rangecontroller.class); 
 	}
 
 	@Override
@@ -72,6 +75,8 @@ public class WebConfig extends JFinalConfig {
 		arp.addMapping("order", Orderinfo.class); 
 		arp.addMapping("function", Functioninfo.class); 
 		arp.addMapping("role", Roleinfo.class); 
+		arp.addMapping("product_son", Productsoninfo.class); 
+		arp.addMapping("range", Rangeinfo.class); 
 	}
 
 	@Override
