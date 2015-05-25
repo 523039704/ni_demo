@@ -126,6 +126,7 @@ function choose_bg() {
     		<form action="/login" id="login_form" method="post">
     			<div class="form-group">
     				<label for="j_username" class="t">用户名：</label> <input id="name" value="" name="name" type="text" class="form-control x319 in" autocomplete="off">
+    				   <input type="hidden" data-rule="required" name="se" value="0" placeholder="用户名" size="20">
     			</div>
     			<div class="form-group">
     				<label for="j_password" class="t">密　码：</label> <input id="password" value="" name="password" type="password" class="form-control x319 in">

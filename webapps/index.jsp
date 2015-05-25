@@ -171,13 +171,11 @@ $(function(){
         <nav id="bjui-navbar-collapse">
             <ul class="bjui-navbar-right">
                 <li class="datetime"><div><span id="bjui-date"></span><br><i class="fa fa-clock-o"></i> <span id="bjui-clock"></span></div></li>
-                <li><a href="http://www.bootcss.com/" target="_blank">Bootstrap中文网</a></li>
-                <li><a href="http://www.j-ui.com/" target="_blank">DWZ(j-ui)官网</a></li>
-                <li><a href="#">消息 <span class="badge">4</span></a></li>
+               
+            
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">我的账户 <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="changepwd.html" data-toggle="dialog" data-id="changepwd_page" data-mask="true" data-width="400" data-height="260">&nbsp;<span class="glyphicon glyphicon-lock"></span> 修改密码&nbsp;</a></li>
-                        <li><a href="#">&nbsp;<span class="glyphicon glyphicon-user"></span> 我的资料</a></li>
+                        <li><a href="/changepwd.jsp" data-toggle="dialog" data-id="changepwd_page" data-mask="true" data-width="400" data-height="260">&nbsp;<span class="glyphicon glyphicon-lock"></span> 修改密码&nbsp;</a></li>
                         <li class="divider"></li>
                         <li><a href="/logout" class="red">&nbsp;<span class="glyphicon glyphicon-off"></span> 注销登陆</a></li>
                     </ul>

@@ -3,14 +3,15 @@ package com.demo.contaller;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.sf.json.JSONObject;
+
 import com.demo.model.Wxconfig;
-import com.jfinal.kit.HttpKit;
+import com.google.gson.JsonObject;
 import com.jfinal.plugin.activerecord.Page;
 import com.sdk.api.AccessToken;
 import com.sdk.api.AccessTokenApi;
@@ -45,6 +46,7 @@ public class WeixinApiController extends ApiController {
 		Boolean bool = wxconfig.getInt("encryptMessage")==1?true:false;
 		ac.setEncryptMessage(bool);
 		ac.setEncodingAesKey(wxconfig.getStr("encodingAesKey"));
+		
 		return ac;
 	}
 	
@@ -169,7 +171,8 @@ public class WeixinApiController extends ApiController {
 	 * 创建微信服务端菜单
 	 * @param jsonStr
 	 */
-	public void createMenu(String jsonStr) {
+	public void createMenu() {
+		String jsonStr = JSONObject.fromObject(getMenus()).toString();
 		ApiResult apiResult = MenuApi.createMenu(jsonStr);
 		if(apiResult.isSucceed()) {
 			renderText(MenuApi.getMenu().getJson());
@@ -205,46 +208,35 @@ public class WeixinApiController extends ApiController {
     */  
    public Menu getMenus() {  
        CommonButton btn11 = new CommonButton();  
-       btn11.setName("东家信息");  
+       btn11.setName("首页");  
        btn11.setType("view");  
-       btn11.setUrl("http://11.ftezu.com/m/index.php?act=io");
+       btn11.setUrl("http://1.ftezu.net/app/index");
  
        CommonButton btn21 = new CommonButton();  
-       btn21.setName("我的名片");  
+       btn21.setName("申请代理商");  
        btn21.setType("view");  
-       btn21.setUrl("http://11.ftezu.com/m/");  
+       btn21.setUrl("http://1.ftezu.net/app/sqdls");  
  
        CommonButton btn31 = new CommonButton();  
-       btn31.setName("我的资料");  
+       btn31.setName("我的二维码");  
        btn31.setType("view");  
-       btn31.setUrl("http://11.ftezu.com/m/user.php");  
+       btn31.setUrl("http://1.ftezu.net/app/qrcode");  
  
-       CommonButton btn32 = new CommonButton();  
-       btn32.setName("我的订单");  
-       btn32.setType("click");  
-       btn32.setKey("32");  
- 
-       CommonButton btn33 = new CommonButton();  
-       btn33.setName("我的分销");  
-       btn33.setType("click");  
-       btn33.setKey("33");  
-       
        ComplexButton mainBtn1 = new ComplexButton();  
-       mainBtn1.setName("官网");  //直接进入官网
+       mainBtn1.setName("首页");  //直接进入官网
        mainBtn1.setSub_button(new CommonButton[] { btn11 });  
  
        ComplexButton mainBtn2 = new ComplexButton();  
-       mainBtn2.setName("我的名片");  //二维码页面
+       mainBtn2.setName("申请代理商");  //二维码页面
        mainBtn2.setSub_button(new CommonButton[] { btn21 });  
  
        ComplexButton mainBtn3 = new ComplexButton();  
-       mainBtn3.setName("会员中心");  //
-       mainBtn3.setSub_button(new CommonButton[] { btn31, btn32, btn33 });  
+       mainBtn3.setName("我的二维码");  //
+       mainBtn3.setSub_button(new CommonButton[] { btn31 });  
  
      
        Menu menu = new Menu();  
-       menu.setButton(new Button[] { mainBtn1, mainBtn2, mainBtn3 });  
- 
+       menu.setButton(new Button[] { btn11, btn21, btn31 });  
        return menu;  
    }
 	

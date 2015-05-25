@@ -2,10 +2,12 @@ package com.demo.contaller;
 
 import java.util.List;
 
+import com.demo.innterceptor.BasiceInterceptor;
 import com.demo.model.Functioninfo;
+import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Page;
-
+@Before(BasiceInterceptor.class)
 public class Functioncontroller extends Controller {
 
 	public void index() {

@@ -27,6 +27,7 @@ function do_OK(json, $form) {
                         <input type="text" name="name" id="name" value="${(course.name)}"   size="15"  <%if( request.getAttribute("sid").equals("0")){out.print(" readonly");}%> >
                     </td>
                 
+                 
                 </tr>
                 <tr>
                  <td>
@@ -59,7 +60,19 @@ function do_OK(json, $form) {
                         <label for="" class="control-label x85">产品详情：</label>
                         <textarea name="summary" id="summary" data-toggle="" cols="60" rows="5"  <%if( request.getAttribute("sid").equals("0")){out.print(" readonly");}%>>${(course.summary)}</textarea>
                     </td>
-                   
+                     <td colspan="2">
+                        <label class="control-label x85">客人照片：</label>
+                        <div style="display: inline-block; vertical-align: middle;">
+                            <div id="j_custom_pic_up" data-toggle="upload" data-uploader="/product/product_img" 
+                                data-file-size-limit="1024000000"
+                                data-file-type-exts="*.jpg;*.png;*.gif;*.mpg"
+                                data-multi="true"
+                                data-on-upload-success="pic_upload_success"
+                                data-icon="cloud-upload"></div>
+                            <input type="hidden" name="custom.pic" value="" id="j_custom_pic">
+                            <span id="j_custom_span_pic"></span>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -30,12 +30,12 @@
         <tbody>
 			<c:forEach items="${blogPage}" var="blog">
 					<tr>
-						<td>${blog.admin_id}</td>
+						<td>${blog.id}</td>
 						<td>${blog.adminname}</td>
 						<td>${blog.nickname}</td>
 						<td>${blog.phone}</td>
 						<td>${blog.add_time}</td>
-						<td><a data-toggle="navtab" data-id="form"  href="${pageContext.request.contextPath}/user?id=${blog.admin_id}">拥有的人数：${blog.amount}</a></td>
+						<td><a data-toggle="navtab" data-id="form"  href="${pageContext.request.contextPath}/user?id=${blog.id}">拥有的人数：${blog.amount}</a></td>
 						<td> 
 							<c:if test="${blog.role ==1}">系统管理者</c:if>     
 							<c:if test="${blog.role ==2}"> 分公司</c:if>     
@@ -48,7 +48,7 @@
 						<c:if test="${blog.apply ==1}">有</c:if>   
 						</td>
 						<td>
-						<a class="btn btn-default" data-toggle="navtab" data-id="form"   href="/user/edit?id=${blog.admin_id}">修改</a><%-- 
+						<a class="btn btn-default" data-toggle="navtab" data-id="form"   href="/user/edit?id=${blog.id}">修改</a><%-- 
 						<a class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除该行信息吗？"  href="/user/delete?id=${blog.admin_id}">删</a> --%>
 						</td>
 					</tr>

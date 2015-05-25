@@ -47,7 +47,7 @@ public class Usercontroller extends Controller {
 			param.add(datetime[0].trim() + " 00:00:00");
 			param.add(datetime[1].trim() + " 23:59:59");
 		}
-		where.append(" order by admin_id  ");
+		where.append(" order by id  ");
 		Page<Userinfo> pager = Userinfo.dao.paginate(
 				getParaToInt("pageCurrent", 1), getParaToInt("pageSize", 20),
 				where.toString(), param.toArray());
@@ -68,12 +68,24 @@ public class Usercontroller extends Controller {
 		String numbercard = getPara("numbercard");
 		String phone = getPara("phone");
 		String email = getPara("email");
-		String ope = getPara("ope");
+		String ope =  getPara("roleID");
+		String captain = getPara("captain");  
+		String groupID = getPara("groupID");
 		String addtime = DateUtil.getDateStringBySeparator();
-		if (Userinfo.dao.insert(username, password, realtname, numbercard,
-				phone, email, ope, addtime)) {
-			renderJson("{\"statusCode\":\"200\",\"message\":\"\u64cd\u4f5c\u6210\u529f\",\"tabid\":\"table, table-fixed\",\"closeCurrent\":true,   \"forward\":\"/user\"}");
+		String id =Userinfo.dao.insert(username, password, realtname, numbercard,phone, email, ope, addtime,groupID);
+
+		if(!groupID.equals("-1")){
+		if(captain.equals("1"))//设置队长id 更新队长id 和人数
+		{
+			Groupinfo.dao.update_gname(groupID,id);
+		}else
+		{
+			Groupinfo.dao.update_gname(groupID);
 		}
+		}
+		 if(id.length()>0&&!id.equals("")){
+			renderJson("{\"statusCode\":\"200\",\"message\":\"\u64cd\u4f5c\u6210\u529f\",\"tabid\":\"table, table-fixed\",\"closeCurrent\":true,   \"forward\":\"/user\"}");
+		 }
 	}
 
 	public void edit() {
@@ -98,12 +110,14 @@ public class Usercontroller extends Controller {
 		String ope = getPara("roleID");
 		String captain = getPara("captain");
 		String groupID = getPara("groupID");
+		if(!groupID.equals("-1")){
 		if(captain.equals("1"))//设置队长id 更新队长id 和人数
 		{
 			Groupinfo.dao.update_gname(groupID,id);
 		}else
 		{
 			Groupinfo.dao.update_gname(groupID);
+		}
 		}
 		if (Userinfo.dao.update(id, username, realtname, numbercard, phone,
 				email, ope,groupID)) {

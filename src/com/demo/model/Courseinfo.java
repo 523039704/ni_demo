@@ -6,12 +6,28 @@ import com.jfinal.plugin.activerecord.Page;
 @SuppressWarnings("serial")
 public class Courseinfo extends Model<Courseinfo> {
 	public static Courseinfo dao = new Courseinfo();
-
+	/**
+	 * 课程分页
+	 * @param pageNumber 分页的页码
+	 * @param pageSize 分页的条数
+	 * @return 返回分页 的信息
+	 */
 	public Page<Courseinfo> paginate(int pageNumber, int pageSize) {
 		return paginate(pageNumber, pageSize, "select *",
 				"from course where 1=1 ");
 	}
-
+    /**
+     * 更新课程的信息
+     * @param id 课程唯一id
+     * @param name 课程名称
+     * @param createdatetime 创建时间
+     * @param coursedatetime 截止报名时间
+     * @param price 入场费
+     * @param peoples 入场人数
+     * @param service 佣金费率
+     * @param summary  详情 简介
+     * @return true or  fales
+     */
 	public boolean update(String id, String name, String createdatetime,
 			String coursedatetime, String price, String peoples,
 			String service, String summary) {
@@ -20,7 +36,17 @@ public class Courseinfo extends Model<Courseinfo> {
 				.set("peoples", peoples).set("service", service).set("summary", summary).update();
 	}
 
-	
+	/**
+	 * 
+	 * @param name  课程名称
+	 * @param createdatetime  开始日期
+	 * @param coursedatetime   截止日期
+	 * @param price 金额价格
+	 * @param peoples 人数
+	 * @param service 佣金费率
+	 * @param summary 详情简介
+	 * @return true or  fales
+	 */
 	public boolean  insert(String name, String createdatetime,
 			String coursedatetime, String price, String peoples,
 			String service, String summary)

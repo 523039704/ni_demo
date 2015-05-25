@@ -2,10 +2,12 @@ package com.demo.contaller;
 
 import java.util.List;
 
+import com.demo.innterceptor.BasiceInterceptor;
 import com.demo.model.Rangeinfo;
+import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Page;
-
+@Before(BasiceInterceptor.class)
 public class Rangecontroller extends Controller {
 
 	public void index() {

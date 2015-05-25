@@ -29,7 +29,7 @@ function do_OK(json, $form) {
                 <tr>
                     
                     <td>
-						<input type=hidden id="id" name="id" value="${(user.admin_id)}">
+						<input type=hidden id="id" name="id" value="${(user.id)}">
 						<input type=hidden id="role" name="role" value="${(user.role)}">
                         <label for="j_custom_color" class="control-label x85">业务员姓名：</label>
                         <input type="text" name="username" id="username"  value="${(user.adminname)}" data-rule="required"  size="15"  >

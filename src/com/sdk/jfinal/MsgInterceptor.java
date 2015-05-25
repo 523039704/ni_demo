@@ -60,11 +60,10 @@ public class MsgInterceptor implements Interceptor {
 	private boolean checkSignature(Controller controller) {
 		String signature = controller.getPara("signature");
 		String timestamp = controller.getPara("timestamp");
-		String token = "xJ4EPvdb7Pk8bm85y8JN";
 		String nonce = controller.getPara("nonce");
 		if (StrKit.isBlank(signature) || StrKit.isBlank(timestamp) || StrKit.isBlank(nonce)) {
 			controller.renderText("check signature failure");
-			return true;
+			return false;
 		}
 		
 		if (SignatureCheckKit.me.checkSignature(signature, timestamp, nonce)) {
@@ -98,10 +97,10 @@ public class MsgInterceptor implements Interceptor {
         String timestamp = c.getPara("timestamp");
         String nonce = c.getPara("nonce");
 		boolean isOk = SignatureCheckKit.me.checkSignature(signature, timestamp, nonce);
-		if (isOk)
+//		if (isOk)
 			c.renderText(echostr);
-		else
-			log.error("验证失败：configServer");
+//		else
+//			log.error("验证失败：configServer");
 	}
 }
 

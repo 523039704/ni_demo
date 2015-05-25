@@ -22,6 +22,7 @@ public class Indexcontroller extends Controller {
 	public void login() { 
 		String username = getPara("name");
 		String password = getPara("password");
+		String se = getPara("se");
 		if(Userinfo.dao.see_name(username))
 		{
 		if (Userinfo.dao.login(username, password)) {
@@ -41,10 +42,15 @@ public class Indexcontroller extends Controller {
 			}
 			setSessionAttr("function", list);
 			setSessionAttr("role", role.get("role").toString());
-			setSessionAttr("userid", role.getLong("admin_id"));
+			setSessionAttr("userid", role.getLong("id"));
 			setSessionAttr("name", username);
+			if(se.equals("1"))
+			{
+				renderJson("{\"statusCode\":\"200\",\"message\":\"登陆已成功\",\"tabid\":\"table, table-fixed\",\"closeCurrent\":true}");
+			}else{
 			redirect("/");
 		} 
+			}
 		else {
 			renderJsp("/login.jsp");
 		}
@@ -53,9 +59,38 @@ public class Indexcontroller extends Controller {
 		}
 	}
 
+	
+	public void changepassword()
+	{
+		String uid = getSession().getAttribute("userid").toString();
+		String oldpassword = getPara("oldpassword");
+		String newpassword2 = getPara("newpassword2");
+		if(Userinfo.dao.oldpassword(uid,oldpassword))
+		{
+			if(Userinfo.dao.changerpassword(uid, newpassword2)){
+				getSession().invalidate();
+				renderJson("{\"statusCode\":\"200\",\"message\":\"请退出，重新登录！！\",\"tabid\":\"table, table-fixed\",\"closeCurrent\":true,\"forward\":\"/login_timeout.jsp\"}");
+			}
+			
+			
+		}else
+		{
+			
+			renderJson("{\"statusCode\":\"300\",\"message\":\"密码错误，请重新输入！！\",\"tabid\":\"table, table-fixed\",\"closeCurrent\":true}");
+		
+			
+		}
+	}	
+	
 	public void logout() {
 		getSession().invalidate();
 		redirect("/");
 	}
 
+	
+	
+	
+	
+	
+	
 }

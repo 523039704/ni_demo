@@ -7,6 +7,7 @@ import com.demo.model.Productinfo;
 import com.demo.model.Productsoninfo;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.upload.UploadFile;
 
 public class Productcontroller extends Controller {
 
@@ -149,5 +150,14 @@ public class Productcontroller extends Controller {
 	 renderJson("{\"statusCode\":\"200\",\"message\":\"\u64cd\u4f5c\u6210\u529f\",\"tabid\":\"table, table-fixed\",\"closeCurrent\":true, \"forward\":\"/product\"}");
 	  
 	 }
-
+	 public  void  product_img()
+		{
+			String path = "C:/inetpub/wwwroot/";;
+			UploadFile file=	getFile("custom.pic", path, 200 * 1024 * 1024, "UTF-8");
+			String fname="http://localhost/"+file.getFileName();
+			setAttr("seepath",fname); 
+			setAttr("path",path+fname); 
+//			Shopinfo.dao.update_img(id,"http://localhost/"+fname,path+fname);
+			renderJson("{\"statusCode\":\"200\",\"message\":\"上传成功！\",\"filename\":\""+fname+"\"}");	
+		}
 }

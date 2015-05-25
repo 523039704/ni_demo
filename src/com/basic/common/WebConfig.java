@@ -13,6 +13,7 @@ import com.demo.contaller.Rolecontroller;
 import com.demo.contaller.Usercontroller;
 import com.demo.contaller.WeixinApiController;
 import com.demo.contaller.WeixinMsgController;
+import com.demo.contaller.Wxappcontroller;
 import com.demo.contaller.Zonecontroller;
 import com.demo.model.Areainfo;
 import com.demo.model.Cityinfo;
@@ -66,6 +67,7 @@ public class WebConfig extends JFinalConfig {
 		//微信
 		me.add("/msg", WeixinMsgController.class);
 		me.add("/api", WeixinApiController.class, "/api");
+		me.add("/app", Wxappcontroller.class);
 		 
 	}
 
@@ -86,7 +88,7 @@ public class WebConfig extends JFinalConfig {
 		// ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0Plugin);
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(druidPlugin);
 		me.add(arp);
-		arp.addMapping("admin","admin_id", Userinfo.class); 
+		arp.addMapping("admin", Userinfo.class); 
 		arp.addMapping("product", Productinfo.class); 
 		arp.addMapping("course", Courseinfo.class); 
 		arp.addMapping("order", Orderinfo.class); 

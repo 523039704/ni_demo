@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <div class="bjui-pageHeader">
-    <form id="pagerForm" data-toggle="ajaxsearch" action="table-wgzyh.html" method="post">
+  <%--   <form id="pagerForm" data-toggle="ajaxsearch" action="table-wgzyh.html" method="post">
         <input type="hidden" name="pageSize" value="${pageSize}">
         <input type="hidden" name="pageCurrent" value="${pageCurrent}">
         <div class="bjui-searchBar">
@@ -17,7 +17,7 @@
             <button type="submit" class="btn-default" data-icon="search">查询</button>&nbsp;
             <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo">清空查询</a>
         </div>
-    </form>
+    </form> --%>
 </div>
 <div class="bjui-pageContent">
     <table class="table table-bordered table-hover table-striped table-top" data-selected-multi="true">
@@ -56,7 +56,7 @@
         </tbody>
     </table>
 </div>
-<div class="bjui-pageFooter">
+<%-- <div class="bjui-pageFooter">
     <div class="pages">
         <span>每页&nbsp;</span>
         <div class="selectPagesize">
@@ -71,4 +71,4 @@
     </div>
     <div class="pagination-box" data-toggle="pagination" data-total="${pageSize}" data-page-size="5" data-page-current="${pageCurrent}">
     </div>
-</div>
+</div> --%>
