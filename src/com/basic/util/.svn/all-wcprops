@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/work/!svn/ver/41/branches/weixin/trunk/src/com/basic/util
+END
+ChristStringUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/ChristStringUtil.java
+END
+DateUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/work/!svn/ver/41/branches/weixin/trunk/src/com/basic/util/DateUtil.java
+END
+ArithUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/ArithUtil.java
+END
+CommonUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/CommonUtil.java
+END
+SMSProperties.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/SMSProperties.java
+END
+Mathutil.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/work/!svn/ver/31/branches/weixin/trunk/src/com/basic/util/Mathutil.java
+END
+MessageUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/MessageUtil.java
+END
+ModelUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/ModelUtils.java
+END
+ChristDateUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/ChristDateUtils.java
+END
+ImgUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/ImgUtil.java
+END
+CNToSpell.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/CNToSpell.java
+END
+Util.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/Util.java
+END
+FormatData.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/FormatData.java
+END
+MD5Util.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/MD5Util.java
+END
+ParseWrapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/ParseWrapper.java
+END
+RegexChk.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/RegexChk.java
+END
+SerialNumberUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/SerialNumberUtil.java
+END
+ZipFileUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/ZipFileUtil.java
+END
+FileUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/FileUtil.java
+END
+MD5.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/MD5.java
+END
+ChineseNumberUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/basic/util/ChineseNumberUtil.java
+END

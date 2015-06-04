@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/work/!svn/ver/19/branches/weixin/trunk/src/com/sdk/msg/in
+END
+InTextMsg.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/work/!svn/ver/19/branches/weixin/trunk/src/com/sdk/msg/in/InTextMsg.java
+END
+InMsg.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/work/!svn/ver/19/branches/weixin/trunk/src/com/sdk/msg/in/InMsg.java
+END
+InImageMsg.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/work/!svn/ver/19/branches/weixin/trunk/src/com/sdk/msg/in/InImageMsg.java
+END
+InVideoMsg.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/work/!svn/ver/19/branches/weixin/trunk/src/com/sdk/msg/in/InVideoMsg.java
+END
+InLocationMsg.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/work/!svn/ver/19/branches/weixin/trunk/src/com/sdk/msg/in/InLocationMsg.java
+END
+InVoiceMsg.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/work/!svn/ver/19/branches/weixin/trunk/src/com/sdk/msg/in/InVoiceMsg.java
+END
+InLinkMsg.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/work/!svn/ver/19/branches/weixin/trunk/src/com/sdk/msg/in/InLinkMsg.java
+END

@@ -27,7 +27,7 @@ public class Orderinfo extends Model<Orderinfo> {
 	 */
 	public Page<Orderinfo> performance(int pageNumber, int pageSize, String where,
 			Object[] objects) {
-		return paginate(pageNumber, pageSize, "select  id, nickname,createdatetime,ptoducti,productid,sum(montey)as montey ,businessid,agentid,filialeid",
+		return paginate(pageNumber, pageSize, "select  id, nickname,ptoducti,productid,sum(montey)as montey  ,businessid,sum(business)as business ,agentid,sum(agent)as agent,filialeid,sum(filiale)as filiale,sum(admin)as admin,overdate",
 				"from `order` where 1=1 and  status=1 "+ where, objects);
 	}
 	/**
@@ -38,24 +38,23 @@ public class Orderinfo extends Model<Orderinfo> {
 	 * @param price 金额
 	 * @param status 状态
 	 * @param uid 业务员id
+	 * @param overdatetime2 
 	 * @param role 角色
 	 * @return true or  fales
 	 */
 	public boolean insert(String username, String ope, String id, String price,
-			String status, String uid, String role) {
+			String status, String uid, String admin,String filiale,String agent,String business,String longtime,String income,String orderid, String overdatetime) {
 		// 用产品id 去查自己需要的信息 ，用业务员id去查询需要的信息
 		Userinfo user = Userinfo.dao.findById(uid);
 		Productinfo.dao.findById(id);
 		return Orderinfo.dao
 				.set("nickname", username)
 				.set("createdatetime", DateUtil.getDateStringBySeparator())
-				.set("ptoducti", ope)
-				.set("productid", id)
-				.set("montey", price)
-				.set("serviceid",Roleinfo.dao.findById(role).get("serve").toString())
+				.set("ptoducti", ope).set("productid", id).set("montey", price)
+				.set("admin", admin).set("filiale", filiale).set("agent", agent).set("business", business).set("longtime", longtime).set("income", income).set("orderid", orderid).set("overdate", overdatetime)
 				.set("status", status).set("businessid", uid)
 				.set("agentid", user.get("fid").toString())
-				.set("filialeid", user.get("gfid").toString()).save();
+				.set("filialeid", user.get("gfid").toString()).remove("id").save();
 	}
 
 }

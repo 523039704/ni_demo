@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/work/!svn/ver/19/branches/weixin/trunk/src/com/sdk/msg/in/event
+END
+InLocationEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/work/!svn/ver/19/branches/weixin/trunk/src/com/sdk/msg/in/event/InLocationEvent.java
+END
+InQrCodeEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/work/!svn/ver/19/branches/weixin/trunk/src/com/sdk/msg/in/event/InQrCodeEvent.java
+END
+InMenuEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/work/!svn/ver/19/branches/weixin/trunk/src/com/sdk/msg/in/event/InMenuEvent.java
+END
+InFollowEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/work/!svn/ver/19/branches/weixin/trunk/src/com/sdk/msg/in/event/InFollowEvent.java
+END

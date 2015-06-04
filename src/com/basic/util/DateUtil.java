@@ -1,5 +1,6 @@
 package com.basic.util;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,7 +23,7 @@ public class DateUtil {
 			return null;
 		}
 	}
-	
+	 
 	/**
 	 * 生成时间戳,并加入2位随机数,1位和校验
 	 * @return 返回系统当前时间(格式 yyyyMMddHHmmssSSSrrC)
@@ -43,6 +44,16 @@ public class DateUtil {
         temp += String.valueOf(CharCount);
         return temp;
 	}
+	/**
+	 * 格式化时间戳为yyyy-MM-dd HH:mm:ss格式时间
+	 * @return 
+	 */
+	public static String makeLongTime(Long time) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date d = new Date(time);
+		return sdf.format(d);
+		
+	} 
 	/**
 	 * 获取当前系统时间字符串(带分隔符)
 	 * @return 返回系统当前时间(格式 yyyy-MM-dd HH:mm:ss)
@@ -69,6 +80,22 @@ public class DateUtil {
 			return null;
 		}
 	}
+	
+	
+	/**
+	 * 获取当前系统时间字符串(带分隔符)
+	 * @param date 指定日期
+	 * @return 返回指定时间的字符串格式(格式 yyyy-MM-dd HH:mm:ss)
+	 */
+	public static String getDateStringBySeparator_date(Date date) {
+		try {
+			if (DefaultDateFormatSeparator == null) DefaultDateFormatSeparator = new SimpleDateFormat("yyyy-MM-dd");  
+			return DefaultDateFormatSeparator.format(date);
+		} catch (Exception ex) {
+			return null;
+		}
+	}
+	
 	/**
 	 * 获取指定格式的当前系统时间字符串
 	 * @param FormatString 格式化字符串(例如 yyyy-MM-dd HH:mm:ss)
@@ -131,7 +158,22 @@ public class DateUtil {
 		return calendar.getTime();
 	}
 	
-	
+	public static Date getNowDateByAdd(String stringdate,String day) {
+		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		 Date date = null;
+		try {
+			date = sdf.parse(stringdate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.YEAR, 0);
+		calendar.add(Calendar.MONTH, 0);
+		calendar.add(Calendar.DAY_OF_YEAR, Integer.parseInt(day));
+		return calendar.getTime();
+	}
 	public static Date getNowDateByhout(Date date,int hour) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
@@ -150,25 +192,35 @@ public class DateUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	System.out.println(DateUtil.getDateStringBySeparator(DateUtil.getNowDateByhout(date, 8)));	
-	System.out.println(DateUtil.getDateStringBySeparator());	
-	Date d1 =	DateUtil.getNowDateByhout(date, 8);
-
-    Date d2 = new Date();	
-    long diff = d2.getTime() - d1.getTime();
-    if(diff>0 )
-    {
+		 Date d1 =	DateUtil.getNowDateByhout(date, 8);
+		 Date d2 = new Date();	
+		 long diff = d2.getTime() - d1.getTime();
+		 if(diff>0 )
+		 {
     	
-    	susses=true;
-    	
-    }
-     return susses;
-	 }
+			 susses=true;
+    		
+		 	}
+		 return susses;
+	 	}
 	 
 	 
-	 
-	 
-	 
+	  public static boolean compare_date(String DATE1, String DATE2) {
+	        
+		  boolean messager=false;
+		  
+	        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	        try {
+	            Date dt1 = df.parse(DATE1);
+	            Date dt2 = df.parse(DATE2);
+	            if (dt1.getTime()<=dt2.getTime()) { 
+	                 messager=true;
+	            } 
+	        } catch (Exception exception) {
+	            exception.printStackTrace();
+	        }
+	        return messager;
+	    }
 	 
 	 
 	 

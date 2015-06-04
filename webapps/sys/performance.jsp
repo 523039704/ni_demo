@@ -12,19 +12,27 @@
         <thead>
             <tr>
                   <th data-order-field="operation" align="center">id</th>
-                <th data-order-field="name">用户名称</th>
-                <th>购买日期</th>
                 <th>分类</th>
                 <th data-order-field="sex">产品</th>
                 <th data-order-field="birthday">金额</th>
-                  <c:if test="${sessionScope.role  eq '3'}"> 
+                  <c:if test="${sessionScope.role  eq '4'}">
+                <th data-order-field="add"  align="center">业务员应得服务费</th> 
+                </c:if>
+                  <c:if test="${sessionScope.role  eq '3'}">
+                <th data-order-field="add"  align="center">代理商应得服务费</th> 
                 <th data-order-field="birthplace">业务员</th>
                 </c:if>
                   <c:if test="${sessionScope.role  eq '2'}"> 
+                     <th data-order-field="add"  align="center">分公司应得服务费</th>
                 <th data-order-field="add"  align="center">代理商</th>
                 </c:if>
                   <c:if test="${sessionScope.role  eq '1'}"> 
+                <th data-order-field="add"  align="center">总公司应得服务费</th>
                 <th data-order-field="add"  align="center">分公司</th>
+                </c:if>
+                
+                 <c:if test="${sessionScope.role  eq '4'||sessionScope.role  eq '2'||sessionScope.role  eq '3'}"> 
+                <th data-order-field="add"  align="center">操作</th>
                 </c:if>
             </tr>
         </thead>
@@ -32,20 +40,43 @@
 				<c:forEach items="${performance}" var="performance">
 					<tr>
 						<td>${performance.id}</td>
-						<td>${performance.nickname}</td>
-						<td>${performance.createdatetime}</td>
-						<td>${performance.ptoducti}</td>
+						<td> 
+							<c:if test="${performance.ptoducti ==1}">基金产品</c:if>   
+							<c:if test="${performance.ptoducti ==2}">专家课程</c:if>   
+							<c:if test="${performance.ptoducti ==3}">P2P理财</c:if>   
+						</td>
 						<td>${performance.productid}</td>
 						<td>${performance.montey}</td>
+						  <c:if test="${sessionScope.role  eq '4'}"> 
+						   <td>${performance.business}</td>
+						</c:if>
 						   <c:if test="${sessionScope.role  eq '3'}"> 
-						<td>${performance.businessid}</td>
+						   <td>${performance.agent}</td>
+							<td>${performance.businessid}</td>
 						</c:if>
 						   <c:if test="${sessionScope.role  eq '2'}"> 
-						<td>${performance.agentid}</td>
+						   <td>${performance.filiale}</td>
+							<td>${performance.agentid}</td>
 						   </c:if>
 						   <c:if test="${sessionScope.role  eq '1'}"> 
+						<td>${performance.admin}</td>
 						<td>${performance.filialeid}</td>
 						</c:if>
+						 <c:if test="${sessionScope.role  eq '4'}"> 
+						<td>
+                   			 <a class="btn btn-red" data-toggle="doajax"    href="/embody/embody_add?price=${performance.business}&id=${performance.id}&time=${performance.overdate}">提现</a>
+               			 </td>
+                            </c:if>
+                             <c:if test="${sessionScope.role  eq '3'}"> 
+						<td>
+                   			 <a class="btn btn-red" data-toggle="doajax"    href="/embody/embody_add?price=${performance.agent}&id=${performance.id}&time=${performance.overdate}">提现</a>
+               			 </td>
+                            </c:if>
+                             <c:if test="${sessionScope.role  eq '2'}"> 
+						<td>
+                   			 <a class="btn btn-red" data-toggle="doajax"    href="/embody/embody_add?price=${performance.filiale}&id=${performance.id}&time=${performance.overdate}">提现</a>
+               			 </td>
+                            </c:if>
 					</tr>
 				</c:forEach>
         </tbody>

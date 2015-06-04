@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/encrypt
+END
+AesException.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/encrypt/AesException.java
+END
+PKCS7Encoder.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/encrypt/PKCS7Encoder.java
+END
+WXBizMsgCrypt.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/encrypt/WXBizMsgCrypt.java
+END
+XMLParse.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/encrypt/XMLParse.java
+END
+ByteGroup.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/encrypt/ByteGroup.java
+END
+SHA1.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/encrypt/SHA1.java
+END
+Program.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/encrypt/Program.java
+END
+WXBizMsgCryptTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/encrypt/WXBizMsgCryptTest.java
+END

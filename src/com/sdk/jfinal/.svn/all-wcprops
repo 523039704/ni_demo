@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/jfinal
+END
+MsgController.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/jfinal/MsgController.java
+END
+ApiInterceptor.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/jfinal/ApiInterceptor.java
+END
+ApiController.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/jfinal/ApiController.java
+END
+MsgInterceptor.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/jfinal/MsgInterceptor.java
+END
+MsgControllerAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/jfinal/MsgControllerAdapter.java
+END

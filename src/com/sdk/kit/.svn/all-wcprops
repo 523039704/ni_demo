@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/work/!svn/ver/37/branches/weixin/trunk/src/com/sdk/kit
+END
+IpKit.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/kit/IpKit.java
+END
+ParaMap.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/kit/ParaMap.java
+END
+SignatureCheckKit.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/work/!svn/ver/37/branches/weixin/trunk/src/com/sdk/kit/SignatureCheckKit.java
+END
+XmlBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/kit/XmlBuilder.java
+END
+MsgEncryptKit.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/work/!svn/ver/15/branches/weixin/trunk/src/com/sdk/kit/MsgEncryptKit.java
+END
