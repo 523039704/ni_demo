@@ -36,13 +36,32 @@
 </table>
 </div>
 <div class="xinxi">
-<div class="touxiang"><img src="${user.headimgurl}" width="80px" height="80px"></div>
+<div class="touxiang"><img src="${(user.headimgurl)}" width="80px" height="80px"></div>
 <div class="xi">
-<h2>会员ID：533937</h2>
-<h2>昵称：${user.nickname}</h2>
-<h2>加入时间：${user.subscribe_time}</h2>
-<h2>上级公司：XXXX有限公司</h2>
+<h2>会员ID：${(user.user_id)}</h2>
+<h2>昵称：${(user.nickname)}</h2>
+<h2>加入时间：${(user.subscribe_time)}</h2>
+<c:if test="${(userinfo.role  eq '0') }"> 
+<h2>身份：客户</h2>
+</c:if>
+ 
+ <c:if test="${(userinfo.role eq '1')  }"> 
+  <h2>上级公司：${(userinfo.fid)}</h2>
 <h2>身份：业务员</h2>
+
+</c:if>
+
+  <c:if test="${(userinfo.role  eq '2') }"> 
+  <h2>上级公司：${(userinfo.fid)}</h2>
+<h2>身份：代理商</h2>
+
+</c:if>
+
+  <c:if test="${(userinfo.role eq '3')  }"> 
+<h2>上级公司：自己公司的名字</h2>
+<h2>身份：分公司</h2>
+</c:if>
+
 </div>
 <div class="clear"></div>
 </div>
@@ -53,8 +72,33 @@
 <td></td>
 </tr>
 <tr>
-<td style=" border-right:solid 1px #909fa1;">客户数量：0</td>
-<td>我的业绩：0.00</td>
+
+
+
+<c:if test="${!empty userinfo}"> 
+  <c:if test="${(userinfo.role eq '1')}"> 
+<td style=" border-right:solid 1px #909fa1;">客户数量：${(client.much)}</td>
+</c:if>
+ <c:if test="${(userinfo.role eq '2')}"> 
+<td style=" border-right:solid 1px #909fa1;">业务员数量：${(client.much)}</td>
+</c:if>
+ <c:if test="${(userinfo.role eq '3')}"> 
+<td style=" border-right:solid 1px #909fa1;">代理商数量：${(client.much)}</td>
+</c:if>
+<td>我的业绩：${(perfor.price)}</td>
+</c:if>
+<c:if test="${empty userinfo ||(userinfo.role ) eq '0' }"> 
+ 
+<c:if test="${empty invest}"> 
+<td>我的投资金额：0.00</td>
+<td style="text-align:right;"><a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf4d5687f651cbe90&redirect_uri=http://22.ftezu.net/app/sqdls&response_type=code&scope=snsapi_base&state=1#wechat_redirect">申请业务员</a></td>
+</c:if>
+<c:if test="${!empty invest}"> 
+<td>我的投资金额：0.00</td>
+<td style="text-align:right;"><a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf4d5687f651cbe90&redirect_uri=http://22.ftezu.net/app/sqdls&response_type=code&scope=snsapi_base&state=1#wechat_redirect">申请业务员</a></td>
+</c:if>
+</c:if>
+
 </tr>
 <tr>
 <td height="10"></td>
@@ -69,7 +113,7 @@
 <td width="100%" height="100%"></td>
 </tr>
 <tr>
-<td><img src="/qrcode/${user.openid}.jpg" width="100px" height="100px"></td>
+<td><img src="${(wxtok.codeurl)}" width="100px" height="250px"></td>
 
 </tr>
 <tr>
@@ -85,9 +129,9 @@
 </div>
 <div class="dibu" style="position:absolute; top:93%; position:fixed; _top: expression(eval(document.documentElement.scrollTop)+110px); z-index:1000;">
 <ul>
-<li><a href="app/index"><img src="images/tu4.png" style="border:0px;"></a></li>
-<li><a href="app/sqdls?openid=${user.openid}"><img src="images/tu5.png" style="border:0px;"></a></li>
-<li><a href="api/getUserInfo?openid=${user.openid}"><img src="images/tu6.png" style="border:0px;"></a></li>
+<li><a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf4d5687f651cbe90&redirect_uri=http://22.ftezu.net/app/index&response_type=code&scope=snsapi_base&state=1#wechat_redirect"><img src="images/tu4.png" style="border:0px;"></a></li>
+<li><a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf4d5687f651cbe90&redirect_uri=http://22.ftezu.net/app/sqdls&response_type=code&scope=snsapi_base&state=1#wechat_redirect"><img src="images/tu5.png" style="border:0px;"></a></li>
+<li><a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf4d5687f651cbe90&redirect_uri=http://22.ftezu.net/app/qrcode&response_type=code&scope=snsapi_base&state=1#wechat_redirect"><img src="images/tu6.png" style="border:0px;"></a></li>
 </ul>
 <div class="clear"></div>
 </div>

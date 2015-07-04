@@ -96,9 +96,9 @@ public class Productcontroller extends Controller {
 	}
 
 	public void product_img() {
-		String path = "/uploading/";
+		String path = "D:/virtualhost/weixin/ROOT/uploading/product/";
 		UploadFile file = getFile("custom.pic", path, 200 * 1024 * 1024,"UTF-8");
-		String fname = "http://localhost:8081/uploading/" + file.getFileName();
+		String fname = "http://22.ftezu.net/uploading/product/" + file.getFileName();
 		setAttr("seepath", fname);
 		setAttr("path", path + fname);
 		// Shopinfo.dao.update_img(id,"http://localhost/"+fname,path+fname);

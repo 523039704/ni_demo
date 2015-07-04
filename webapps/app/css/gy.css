@@ -2,10 +2,11 @@ body{ margin:0px; padding:0px; background:#FFF; font-family:"微软雅黑"; font
 .clear{ clear:both;}
 a{ text-decoration:none;}
 a:hover{ text-decoration:none;}
-.quanju{ width:100%; max-width:640px; margin:0 auto;}
+.quanju{ width:100%; margin:0 auto;}
 
 .dingbu{ width:100%; background:#2d3e50;}
 .dingbu td{ font-size:1em; color:#FFF; text-align:center;}
+.dingbu td img{ width:100%;}
 .xinxi{ width:100%; background:#dceded; padding:3% 0 3% 0;}
 .touxiang{ width:33%; float:left; text-align:center;}
 .touxiang img{ width:80%; padding-top:12%;}
@@ -14,11 +15,12 @@ a:hover{ text-decoration:none;}
 
 .biao{ width:100%; background:#546c6e;}
 .biao td{ font-size:0.8em; color:#FFF; text-align:center;}
-.nei_a{ width:100%;}
+.nei_a{ width:100%; padding-bottom:5%;}
 .n_a{ width:95%; margin:0 auto 0 auto; border-bottom:solid 1px #d5d5d5;}
 .n_a td{ font-size:0.7em; color:#737373; line-height:35px;}
 .n_a td span{ color:#ff5366;}
 .n_a td img{ width:93%;}
+.n_a td strong{ color:#32b45a; font-weight:normal;}
 
 
 .dibu{ width:100%; max-width:640px; background:#546c6e; padding:2% 0 2% 0;}
@@ -43,6 +45,7 @@ a:hover{ text-decoration:none;}
 .taopu{ width:100%;}
 .taopu td{ font-size:0.9em; color:#797878; text-align:center;}
 .tewr{ width:80%; margin:0 auto;}
+.tewr img{ width:100%; padding-top:30%;}
 .tewr td{ font-size:0.8em; color:#797878;}
 
 .anniu_c{ width:100%; margin-top:5%; text-align:center;}
@@ -50,6 +53,7 @@ a:hover{ text-decoration:none;}
 
 .tewr_ss{ width:90%; margin:0 auto;}
 .tewr_ss td{ font-size:0.8em; color:#797878;}
+.nei_a td img{ width:100%;}
 
-.dubu_ss{ width:100%; background:#FFF; margin-top:3%; border-top:solid 1px #f6f6f6; text-align:right; padding:1% 0 1% 0;}
+.dubu_ss{ width:100%; max-width:640px; background:#FFF; margin-top:3%; border-top:solid 1px #f6f6f6; text-align:right; padding:1% 0 1% 0;}
 .dubu_ss img{ width:35%; padding-right:3%;}

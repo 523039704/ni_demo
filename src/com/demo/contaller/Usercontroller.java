@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.basic.util.DateUtil;
-import com.basic.util.MD5;
+import com.basic.util.MD5base;
 import com.demo.innterceptor.BasiceInterceptor;
 import com.demo.model.Groupinfo;
 import com.demo.model.Userinfo;
+import com.demo.model.Usermessagerinfo;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Page;
@@ -64,7 +65,7 @@ public class Usercontroller extends Controller {
 	public void insert() {
 		String username = getPara("username");
 		String realtname = getPara("realtname");
-		String password = MD5.md5Digest("111111");
+		String password = MD5base.md5Digest("111111");
 		String numbercard = getPara("numbercard");
 		String phone = getPara("phone");
 		String email = getPara("email");
@@ -95,7 +96,10 @@ public class Usercontroller extends Controller {
 	}
 
 	public void delete() {
-		if (Userinfo.dao.findById(getPara("id")).delete()) {
+	String id=getPara("id");
+	Userinfo userinfo = Userinfo.dao.findById(id);
+	Usermessagerinfo umsinfo= Usermessagerinfo.dao.findById(id);
+		if (userinfo.set("fid", umsinfo.get("fid").toString()).update()&&umsinfo.set("role", userinfo.get("role").toString()).update()) {
 			renderJson("{\"statusCode\":\"200\",\"message\":\"\u64cd\u4f5c\u6210\u529f\",\"tabid\":\"table, table-fixed\",\"closeCurrent\":true,   \"forward\":\"/user\"}");
 		}
 	}

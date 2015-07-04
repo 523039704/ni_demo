@@ -8,7 +8,7 @@ import java.security.MessageDigest;
  * @author emck
  *
  */
-public class MD5 {
+public class MD5base {
 
 	/**
 	 * MD5值计算<p>
@@ -80,6 +80,6 @@ public class MD5 {
 	
 	
 	public static void main(String[] args) {
-		System.out.println(MD5.md5Digest("111"));
+		System.out.println(MD5base.md5Digest("111"));
 	}
 }

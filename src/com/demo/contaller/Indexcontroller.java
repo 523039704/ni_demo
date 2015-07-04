@@ -49,7 +49,7 @@ public class Indexcontroller extends Controller {
 				renderJson("{\"statusCode\":\"200\",\"message\":\"登陆已成功\",\"tabid\":\"table, table-fixed\",\"closeCurrent\":true}");
 			}else{
 			redirect("/");
-		} 
+			} 
 			}
 		else {
 			renderJsp("/login.jsp");

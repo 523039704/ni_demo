@@ -30,7 +30,7 @@ public static Functioninfo dao = new Functioninfo();
 	  * @param id  字段唯一id
 	  * @param name 名字
 	  * @param path 路径
-	  * @return true or  fales
+	  * @return true or  false
 	  */
 	public boolean update(String id,String name,String path)
 	{

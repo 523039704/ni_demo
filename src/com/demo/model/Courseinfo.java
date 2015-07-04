@@ -1,7 +1,9 @@
 package com.demo.model;
 
+import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.Record;
 
 @SuppressWarnings("serial")
 public class Courseinfo extends Model<Courseinfo> {
@@ -48,13 +50,32 @@ public class Courseinfo extends Model<Courseinfo> {
 	 * @param summary 详情简介
 	 * @return true or  fales
 	 */
-	public boolean  insert(String name, String createdatetime,
+	public boolean  insert(String id,String name, String createdatetime,
 			String coursedatetime, String price, String peoples,
 			  String summary,String admin,String filiale,String agent,String business)
 	{
-		return Courseinfo.dao.set("name", name)
+		 System.out.println(business);
+		return Courseinfo.dao.findById(id).set("name", name)
 				.set("createdatetime", createdatetime).set("coursedatetime", coursedatetime).set("price", price)
 				.set("admin", admin).set("filiale", filiale).set("agent", agent).set("business", business)
-				.set("peoples", peoples).set("summary", summary).remove("id").save();
+				.set("peoples", peoples).set("summary", summary).update();
 	}
+	
+	
+	
+	
+	
+	
+	
+	public String insert_img(String img, String img_reall) {
+		Record course = new Record().set("img", img).set("img_reall", img_reall);
+		Db.save("course", course);
+		return course.get("id").toString();
+	}
+	
+	
+	
+	
+	
+	
 }

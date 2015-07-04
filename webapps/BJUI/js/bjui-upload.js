@@ -33,7 +33,7 @@
         method              : 'POST', //发送请求的方式，get或post
         multi               : false,  //是否允许选择多个文件
         formData            : {},     //发送给服务端的参数，格式：{key1:value1,key2:value2}
-        fileObjName         : 'file', //在后端接受文件的参数名称，如PHP中的$_FILES['file']
+        fileObjName         : 'custom.pic', //在后端接受文件的参数名称，如PHP中的$_FILES['file']
         fileSizeLimit       : 204800, //允许上传的文件大小，单位KB
         previewImg          : true,   //是否预览上传图片
         previewLoadimg      : null,   //预览图片前的载入图标

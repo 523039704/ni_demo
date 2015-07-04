@@ -252,6 +252,9 @@ $(function(){
                       <c:if test="${function.id  eq '17'}">
                     <li data-id="32" data-pid="3" data-url="${function.path}" data-tabid="datagrid-convertable">${function.name}</li>
                     </c:if>
+                     <c:if test="${function.id  eq '18'}">
+                    <li data-id="33" data-pid="3" data-url="${function.path}" data-tabid="datagrid-convertable">${function.name}</li>
+                    </c:if>
                     </c:forEach>
                 </ul>
             </li>
@@ -343,6 +346,9 @@ $(function(){
                                  		</c:if>
                                  		 <c:if test="${function.id  eq '17'}">
                    						 <li data-id="22" data-pid="2"    data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
+                 					   </c:if>
+                 					    <c:if test="${function.id  eq '18'}">
+                   						 <li data-id="23" data-pid="2"    data-url="${function.path}" data-tabid="form-button" data-faicon="hand-o-up">${function.name}</li>
                  					   </c:if>
                                     </c:forEach>
                                     <li data-id="3" data-pid="0">产品</li>

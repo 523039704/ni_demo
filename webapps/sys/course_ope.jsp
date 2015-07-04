@@ -77,7 +77,7 @@ function do_OK(json, $form) {
                      <td colspan="2">
                         <label class="control-label x85">客人照片：</label>
                         <div style="display: inline-block; vertical-align: middle;">
-                            <div id="j_custom_pic_up" data-toggle="upload" data-uploader="/product/product_img" 
+                            <div id="j_custom_pic_up" data-toggle="upload" data-uploader="/course/course_img" 
                                 data-file-size-limit="1024000000"
                                 data-file-type-exts="*.jpg;*.png;*.gif;*.mpg"
                                 data-multi="true"

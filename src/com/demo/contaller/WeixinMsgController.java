@@ -6,9 +6,16 @@
 
 package com.demo.contaller;
 
+import com.basic.util.DateUtil;
+import com.demo.model.Usermessagerinfo;
 import com.demo.model.Wxconfig;
-import com.jfinal.kit.PropKit;
+import com.demo.model.Wxtokeninfo;
+import com.sdk.api.AccessToken;
+import com.sdk.api.AccessTokenApi;
 import com.sdk.api.ApiConfig;
+import com.sdk.api.ApiConfigKit;
+import com.sdk.api.ApiResult;
+import com.sdk.api.UserApi;
 import com.sdk.jfinal.MsgController;
 import com.sdk.msg.in.InImageMsg;
 import com.sdk.msg.in.InLinkMsg;
@@ -172,8 +179,48 @@ public class WeixinMsgController extends MsgController {
 	 * 实现父类抽方法，处理关注/取消关注消息
 	 */
 	protected void processInFollowEvent(InFollowEvent inFollowEvent) {
+		
+		InFollowEvent in=inFollowEvent;//对加入进来的用户进行添加操作
+		//事件类型，subscribe(订阅)、unsubscribe(取消订阅)
+		Wxconfig wxconfig = Wxconfig.dao.getWxconfig();
+		String openId =in.getFromUserName();
+		if(in.getEvent().toString().equals("subscribe"))
+		{
+			String uid=Wxtokeninfo.dao.insert_openid(openId);
+			setCookie("openid", openId, 3600);
+			
+			ApiConfig ac = new ApiConfig();
+			ac.setAppId(wxconfig.getStr("appId"));
+			ac.setAppSecret(wxconfig.getStr("appSecret"));
+			ApiConfigKit.setThreadLocalApiConfig(ac);
+			
+			AccessToken at =AccessTokenApi. getAccessToken();
+			String path="D:/virtualhost/weixin/ROOT/qrcode/" + openId + ".jpg";
+		 
+			this.CreateDecode(uid,at.getAccessToken(), openId,path); 	
+			Wxtokeninfo.dao.findById(uid).set("codeurl", "http://22.ftezu.net/qrcode/" + openId + ".jpg").update();	
+			
+			ApiResult userinfo = UserApi.getUserInfo(openId);//页面授权获取  openid
+	   		 String subscribe=  userinfo.getInt("subscribe").toString(); 
+	   		 String nickname= userinfo.get("nickname").toString();
+	   		 String sex =userinfo.getInt("sex").toString();
+	   		 String language= userinfo.get("language").toString();
+	   		 String city = userinfo.get("city").toString();
+	   		 String province= userinfo.get("province").toString();
+	   		 String country= userinfo.get("country").toString();
+	   		 String headimgurl= userinfo.get("headimgurl").toString();
+	   		 String subscribe_time=DateUtil.getDateStringBySeparator();
+	   		 String remark= userinfo.get("remark").toString();
+	   		 String groupid=  userinfo.getInt("groupid").toString();
+	   		 Usermessagerinfo.dao.insert(uid,subscribe, nickname, sex, language, city, province, country, headimgurl, subscribe_time, remark, groupid,"0"); //角色   可从属关系不填写 都是从客户往上增加的
+		}else
+		{
+			String uid=Wxtokeninfo.dao.findFirst("select * from wxtoken where openid='"+openId+"'").get("id").toString();
+			Wxtokeninfo.dao.findById(uid).delete();
+			Usermessagerinfo.dao.findById(uid).delete();
+		}
 		OutTextMsg outMsg = new OutTextMsg(inFollowEvent);
-		outMsg.setContent("感谢关注 JFinal Weixin 极速开发，为您节约更多时间，去陪恋人、家人和朋友 :) \n\n\n " + helpStr);
+		outMsg.setContent("欢迎您加入这个大家庭 成为我们系统的业务员，我们将诚挚为您服务  谢谢！！您可以点击申请按钮注册信息成为我们的后台用户注册完成之后系统会给您分配账号和密码" );
 		// 如果为取消关注事件，将无法接收到传回的信息
 		render(outMsg);
 	}
@@ -182,8 +229,40 @@ public class WeixinMsgController extends MsgController {
 	 * 实现父类抽方法，处理扫描带参数二维码事件
 	 */
 	protected void processInQrCodeEvent(InQrCodeEvent inQrCodeEvent) {
+		InQrCodeEvent in =inQrCodeEvent;
+		Wxconfig wxconfig = Wxconfig.dao.getWxconfig();
+		String openId =in.getFromUserName();
+		if(in.getEvent().toString().equals("subscribe"))
+		{
+		String uid=Wxtokeninfo.dao.insert_openid(openId);
+		setCookie("openid", openId, 3600);
+		String fid=in.getEventKey().split("_")[1];
+		 
+		ApiConfig ac = new ApiConfig();
+		ac.setAppId(wxconfig.getStr("appId"));
+		ac.setAppSecret(wxconfig.getStr("appSecret"));
+		ApiConfigKit.setThreadLocalApiConfig(ac);
+		AccessToken at =AccessTokenApi. getAccessToken();
+		String path="D:/virtualhost/weixin/ROOT/qrcode/" + openId + ".jpg";
+		this.CreateDecode(uid,at.getAccessToken(), openId,path);	
+		Wxtokeninfo.dao.findById(uid).set("codeurl", "http://22.ftezu.net/qrcode/" + openId + ".jpg").update();	
+		
+		 ApiResult userinfo = UserApi.getUserInfo(openId);//页面授权获取  openid
+   		 String subscribe=  userinfo.getInt("subscribe").toString(); 
+   		 String nickname= userinfo.get("nickname").toString();
+   		 String sex =userinfo.getInt("sex").toString();
+   		 String language= userinfo.get("language").toString();
+   		 String city = userinfo.get("city").toString();
+   		 String province= userinfo.get("province").toString();
+   		 String country= userinfo.get("country").toString();
+   		 String headimgurl= userinfo.get("headimgurl").toString();
+   		 String subscribe_time=DateUtil.getDateStringBySeparator();
+   		 String remark= userinfo.get("remark").toString();
+   		 String groupid=  userinfo.getInt("groupid").toString();
+   		 Usermessagerinfo.dao.insert(uid,subscribe, nickname, sex, language, city, province, country, headimgurl, subscribe_time, remark, groupid,fid); 
+		}
 		OutTextMsg outMsg = new OutTextMsg(inQrCodeEvent);
-		outMsg.setContent("processInQrCodeEvent() 方法测试成功");
+		outMsg.setContent("欢迎您加入这个大家庭 成为我们系统的会员 ，我们将诚挚为您服务  谢谢！！如果您想成为我们系统的一份子的话欢迎点击申请按钮注册成为我们的业务员");
 		render(outMsg);
 	}
 	
@@ -195,7 +274,6 @@ public class WeixinMsgController extends MsgController {
 		outMsg.setContent("processInLocationEvent() 方法测试成功");
 		render(outMsg);
 	}
-	
 	/**
 	 * 实现父类抽方法，处理自定义菜单事件
 	 */
@@ -209,6 +287,20 @@ public class WeixinMsgController extends MsgController {
 	protected void processInSpeechRecognitionResults(InSpeechRecognitionResults inSpeechRecognitionResults) {
 		renderOutTextMsg("语音识别结果： " + inSpeechRecognitionResults.getRecognition());
 	}
+
+	/**
+	 * 创建二维码
+	 */
+	public void CreateDecode(String uid,String acctocen, String qrname,String path) {
+		System.out.println("------------开始创建二维码--------------------");
+		UserApi.getDCode(UserApi.createDCode(uid, acctocen),path);
+		System.out.println("二维码创建成功！");
+	}
+	
+	
+
+	
+	
 }
 
 

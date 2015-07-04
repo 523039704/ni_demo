@@ -8,9 +8,11 @@ import com.demo.contaller.Functioncontroller;
 import com.demo.contaller.Groupcontroller;
 import com.demo.contaller.Indexcontroller;
 import com.demo.contaller.Ordercontroller;
+import com.demo.contaller.Paycontaller;
 import com.demo.contaller.Productcontroller;
 import com.demo.contaller.Rangecontroller;
 import com.demo.contaller.Rolecontroller;
+import com.demo.contaller.Subscribecontroller;
 import com.demo.contaller.Usercontroller;
 import com.demo.contaller.WeixinApiController;
 import com.demo.contaller.WeixinMsgController;
@@ -29,8 +31,11 @@ import com.demo.model.Productsoninfo;
 import com.demo.model.Provinceinfo;
 import com.demo.model.Rangeinfo;
 import com.demo.model.Roleinfo;
+import com.demo.model.Subscribeinfo;
 import com.demo.model.Userinfo;
+import com.demo.model.Usermessagerinfo;
 import com.demo.model.Wxconfig;
+import com.demo.model.Wxtokeninfo;
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
 import com.jfinal.config.Interceptors;
@@ -66,6 +71,7 @@ public class WebConfig extends JFinalConfig {
 		me.add("/group", Groupcontroller.class); 
 		me.add("/zone", Zonecontroller.class); 
 		me.add("/embody", Embodycontroller.class); 
+		me.add("/subscribe", Subscribecontroller.class); 
 		
 		
 		//微信
@@ -73,6 +79,7 @@ public class WebConfig extends JFinalConfig {
 		me.add("/api", WeixinApiController.class);
 		me.add("/app", Wxappcontroller.class);
 		me.add("/check", Weixincheck.class); 
+		me.add("/pay", Paycontaller.class); 
 	}
 
 	@Override
@@ -105,8 +112,11 @@ public class WebConfig extends JFinalConfig {
 		arp.addMapping("hat_city", Cityinfo.class); 
 		arp.addMapping("hat_area", Areainfo.class); 
 		arp.addMapping("embody", Embodyinfo.class); 
+		arp.addMapping("usermessager", "user_id", Usermessagerinfo.class); 
+		arp.addMapping("subscribe",  Subscribeinfo.class); 
 		//微信配置
 		arp.addMapping("Wxconfig", Wxconfig.class); 
+		arp.addMapping("wxtoken", Wxtokeninfo.class); 
 	}
 
 	@Override

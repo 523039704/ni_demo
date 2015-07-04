@@ -1,4 +1,4 @@
-.quanju_b{width:100%; max-width:640px; margin:0 auto; background:#ececec;}
+.quanju_b{width:100%; margin:0 auto; background:#ececec;}
 .shang_a{ width:100%; height:79px; background:url(../images/tu10.png) repeat-x;}
 .shang_a ul{ margin:0px; padding:0px;}
 .shang_a li{ width:25%; float:left; list-style:none; text-align:center; font-size:0.8em; line-height:70px;}
@@ -79,7 +79,7 @@
 .neirongye p{ font-size:1em; color:#828080; line-height:35px; padding:0 7% 0 7%;}
 
 .jiange_b{ width:100%; height:60px; text-align:center;}
-.wenben_f{width:100%; margin:0 auto; background:#FFF; text-align:center; padding:8% 0 8% 0;}
+.wenben_f{width:100%; max-width:640px; margin:0 auto; background:#FFF; text-align:center; padding:8% 0 8% 0;}
 .wenben_f img{ width:90%;}
 .wenben_f p{ font-size:0.9em; color:#767676; line-height:35px; text-align:left; padding:0 8% 0 8%;}
 

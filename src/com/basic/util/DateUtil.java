@@ -23,14 +23,12 @@ public class DateUtil {
 			return null;
 		}
 	}
-	 
 	/**
 	 * 生成时间戳,并加入2位随机数,1位和校验
 	 * @return 返回系统当前时间(格式 yyyyMMddHHmmssSSSrrC)
 	 */
 	public static String makeTimestampExt() {
 		String temp = makeTimestamp();
-		
 		Random random = new Random();
         //random.setSeed(System.currentTimeMillis());
         String randStr = String.valueOf(random.nextInt(100));
@@ -48,7 +46,7 @@ public class DateUtil {
 	 * 格式化时间戳为yyyy-MM-dd HH:mm:ss格式时间
 	 * @return 
 	 */
-	public static String makeLongTime(Long time) {
+	public static String makeLongTime(int time) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date d = new Date(time);
 		return sdf.format(d);

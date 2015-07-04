@@ -7,6 +7,7 @@ import com.demo.model.Courseinfo;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.upload.UploadFile;
 @Before(BasiceInterceptor.class)
 public class Coursecontroller extends Controller {
 	public void index() {
@@ -67,11 +68,21 @@ public class Coursecontroller extends Controller {
 		 String agent=getPara("agent");
 		 String business=getPara("business");
 		String summary = getPara("summary");
+		String id = getCookie("id");
+		 System.out.println(business);
 		// --------------------------------
-		if(Courseinfo.dao.insert(name, createdatetime, coursedatetime, price, peoples,admin,filiale,agent,business, summary))
+		if(Courseinfo.dao.insert(id,name, createdatetime, coursedatetime, price, peoples,summary,admin,filiale,agent,business))
 		{
 		renderJson("{\"statusCode\":\"200\",\"message\":\"\u64cd\u4f5c\u6210\u529f\",\"tabid\":\"table, table-fixed\",\"closeCurrent\":true, \"forward\":\"/course\"}");
 		}
 	}
-
+	public void course_img() {
+		String path = "D:/virtualhost/weixin/ROOT/uploading/course/";
+		UploadFile file = getFile("custom.pic", path, 200 * 1024 * 1024,"UTF-8");
+		String fname = "http://22.ftezu.net/uploading/course/" + file.getFileName();
+		String reallpath=path + file.getFileName();
+		String uid=Courseinfo.dao.insert_img(fname, reallpath);
+		setCookie("id", uid, 100);
+		renderJson("{\"statusCode\":\"200\",\"message\":\"上传成功！\",\"filename\":\""+ fname + "\"}");
+	}
 }

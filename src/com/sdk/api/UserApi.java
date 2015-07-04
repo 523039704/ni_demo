@@ -76,12 +76,18 @@ public class UserApi {
 		return get_code_url;
 	}
 	
-	public static String GetCode_to_access_token(String APPID,String SECRET,String CODE){
+	
+	 
+	public static JSONObject GetCode_to_json(String APPID,String SECRET,String CODE){
 		CODE_TO_access_token = CODE_TO_access_token.replace("APPID", APPID).replace("SECRET", SECRET).replace("CODE",CODE);
-		JSONObject jsonobject = HttpRequest(CODE_TO_access_token, "GET", null);
-		
-		return jsonobject.getString("access_token");
+		return  HttpRequest(CODE_TO_access_token, "GET", null);
 	}
+	
+	
+	
+	
+	
+
 	
 	/**
 	 * 根据code获取成员信息
@@ -130,7 +136,6 @@ public class UserApi {
      * @return JSONObject(通过JSONObject.get(key)的方式获取json对象的属性值) 
      */  
 	public static JSONObject HttpRequest(String request , String RequestMethod , String output ){
-		@SuppressWarnings("unused")
 		JSONObject jsonObject = null;
 		StringBuffer buffer = new StringBuffer();
 		try {
@@ -304,7 +309,6 @@ public class UserApi {
 		}
 		
 		Gson gson = new Gson();
-		
 		return gson.fromJson(strb.toString(), ResponseDCode.class);
 		
 	}
@@ -313,10 +317,12 @@ public class UserApi {
 	/*请求报文*/
 	private static String getStr(String scene_id){
 		
-		return "{\"action_name\": \"QR_LIMIT_SCENE\", \"action_info\": {\"scene\": {\"scene_id\": "+scene_id+"}}}";
+		return "{\"action_name\": \"QR_LIMIT_SCENE\", \"action_info\": {\"scene\": {\"scene_id\": "+scene_id+", \"messager\": \"123\"}}}";
 		
 	}
-	
+	public static void main(String[] args) {
+		
+	}
 	/*通过ticket换取*/
 	public static void getDCode(ResponseDCode responseDCode , String str){
 		
@@ -361,9 +367,7 @@ public class UserApi {
 		}
 		
 		if(null != urlConnection){
-			
 			urlConnection.disconnect();
-			
 		}
 		
 	}

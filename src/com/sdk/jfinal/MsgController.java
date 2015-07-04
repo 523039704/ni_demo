@@ -48,13 +48,14 @@ public abstract class MsgController extends Controller {
 	@Before(MsgInterceptor.class)
 	public void index() {
 		// 开发模式输出微信服务发送过来的  xml 消息
+		System.out.println("------------1--------------------"+ApiConfigKit.isDevMode());
 		if (ApiConfigKit.isDevMode()) {
 			System.out.println("接收消息:");
 			System.out.println(getInMsgXml());
 		}
-		
 		// 解析消息并根据消息类型分发到相应的处理方法
 		InMsg msg = getInMsg();
+		System.out.println(msg);
 		if (msg instanceof InTextMsg)
 			processInTextMsg((InTextMsg)msg);
 		else if (msg instanceof InImageMsg)

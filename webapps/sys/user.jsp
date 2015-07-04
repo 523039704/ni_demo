@@ -41,15 +41,15 @@
 							<c:if test="${blog.role ==2}"> 分公司</c:if>     
 							<c:if test="${blog.role ==3}"> 分销商</c:if>     
 							<c:if test="${blog.role ==4}"> 业务员</c:if>     
-							<c:if test="${blog.role ==5}"> 普通用户</c:if>     
+							<c:if test="${blog.role ==0}"> 普通用户</c:if>     
 						</td>
 						<td>
 						<c:if test="${blog.apply ==0}">无</c:if>   
 						<c:if test="${blog.apply ==1}">有</c:if>   
 						</td>
 						<td>
-						<a class="btn btn-default" data-toggle="navtab" data-id="form"   href="/user/edit?id=${blog.id}">修改</a><%-- 
-						<a class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除该行信息吗？"  href="/user/delete?id=${blog.admin_id}">删</a> --%>
+						<a class="btn btn-default" data-toggle="navtab" data-id="form"   href="/user/edit?id=${blog.id}">修改</a> 
+						<a class="btn btn-red" data-toggle="doajax"    href="/user/delete?id=${blog.id}">审核</a>  
 						</td>
 					</tr>
 				</c:forEach>

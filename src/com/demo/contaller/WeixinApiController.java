@@ -1,7 +1,5 @@
 package com.demo.contaller;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -12,14 +10,10 @@ import net.sf.json.JSONObject;
 
 import com.basic.util.DateUtil;
 import com.demo.model.Wxconfig;
-import com.google.gson.JsonObject;
 import com.jfinal.plugin.activerecord.Page;
-import com.sdk.api.AccessToken;
-import com.sdk.api.AccessTokenApi;
 import com.sdk.api.ApiConfig;
 import com.sdk.api.ApiResult;
 import com.sdk.api.MenuApi;
-import com.sdk.api.ResponseDCode;
 import com.sdk.api.UserApi;
 import com.sdk.jfinal.ApiController;
 
@@ -132,7 +126,7 @@ public class WeixinApiController extends ApiController {
 			map.put("headimgurl",userinfo.get("headimgurl"));
 //			DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //			map.put("subscribe_time",sdf.format(userinfo.get("subscribe_time")));
-			map.put("subscribe_time",DateUtil.makeLongTime(Long.parseLong(userinfo.get("subscribe_time").toString())));
+			map.put("subscribe_time",DateUtil.makeLongTime(Integer.parseInt(userinfo.get("subscribe_time").toString())));
 			map.put("remark",userinfo.get("remark"));
 			map.put("groupid",userinfo.getInt("groupid"));
 			arrlist.add(map);
@@ -159,8 +153,8 @@ public class WeixinApiController extends ApiController {
 		map.put("country",userinfo.get("country"));
 		map.put("headimgurl",userinfo.get("headimgurl"));
 		this.CreateDecode(userinfo.get("headimgurl").toString(),userinfo.get("openid").toString());
-		System.out.println(DateUtil.makeLongTime(Long.parseLong(userinfo.get("subscribe_time").toString())));
-		map.put("subscribe_time",DateUtil.makeLongTime(Long.parseLong(userinfo.get("subscribe_time").toString())));
+		System.out.println(DateUtil.makeLongTime(Integer.parseInt(userinfo.get("subscribe_time").toString())));
+		map.put("subscribe_time",DateUtil.makeLongTime(Integer.parseInt(userinfo.get("subscribe_time").toString())));
 		map.put("remark",userinfo.get("remark"));
 		map.put("groupid",userinfo.getInt("groupid"));
 		
@@ -188,8 +182,8 @@ public class WeixinApiController extends ApiController {
 	  */
 	 public void CreateDecode(String img,String qrname) {  
 		 System.out.println("------------开始创建二维码--------------------");
-		 UserApi.encoderQRCode("http://1.ftezu.net/app/index", "G:/workspace/weixin/WebContent/qrcode/"+qrname+".jpg");
-		 UserApi.encoderQRCode("http://1.ftezu.net/app/index", "G:/apache-tomcat-7.0.52/webapps/weixin/qrcode/"+qrname+".jpg");
+		 UserApi.encoderQRCode("http://22.ftezu.net/app/index", "D:/virtualhost/weixin/ROOT/qrcode/"+qrname+".jpg");
+		 UserApi.encoderQRCode("http://22.ftezu.net/app/index", "C:/Users/Administrator/Desktop/tomcat/tomcat/apache-tomcat-8.0.15-windows-x64/apache-tomcat-8.0.15/webapps/zi_demo/qrcode/"+qrname+".jpg");
 //		 AccessToken at = AccessTokenApi.getAccessToken(); 
 //		 if (null != at) {  
 			 // 调用接口创建菜单   
@@ -210,36 +204,43 @@ public class WeixinApiController extends ApiController {
     * @return 
     */  
    public Menu getMenus() {  
+	   Wxconfig wxconfig = Wxconfig.dao.getWxconfig();
        CommonButton btn11 = new CommonButton();  
        btn11.setName("首页");  
        btn11.setType("view");  
-       btn11.setUrl("http://1.ftezu.net/app/index");
+       btn11.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+wxconfig.getStr("appId")+"&redirect_uri=http://22.ftezu.net/app/index&response_type=code&scope=snsapi_base&state=1#wechat_redirect");
  
        CommonButton btn21 = new CommonButton();  
-       btn21.setName("申请代理商");  
+       btn21.setName("申请");  
        btn21.setType("view");  
-       btn21.setUrl("http://1.ftezu.net/app/sqdls");  
- 
+       btn21.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+wxconfig.getStr("appId")+"&redirect_uri=http://22.ftezu.net/app/sqdls&response_type=code&scope=snsapi_base&state=1#wechat_redirect");  
+       
        CommonButton btn31 = new CommonButton();  
        btn31.setName("我的二维码");  
        btn31.setType("view");  
-       btn31.setUrl("http://1.ftezu.net/app/qrcode");  
- 
-       ComplexButton mainBtn1 = new ComplexButton();  
-       mainBtn1.setName("首页");  //直接进入官网
-       mainBtn1.setSub_button(new CommonButton[] { btn11 });  
- 
-       ComplexButton mainBtn2 = new ComplexButton();  
-       mainBtn2.setName("申请代理商");  //二维码页面
-       mainBtn2.setSub_button(new CommonButton[] { btn21 });  
- 
+       btn31.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+wxconfig.getStr("appId")+"&redirect_uri=http://22.ftezu.net/app/qrcode&response_type=code&scope=snsapi_base&state=1#wechat_redirect");  
+       
+       CommonButton btn32 = new CommonButton();  
+       btn32.setName("课程列表");  
+       btn32.setType("view");  
+       btn32.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+wxconfig.getStr("appId")+"&redirect_uri=http://22.ftezu.net/app/counrse&response_type=code&scope=snsapi_base&state=1#wechat_redirect");  
+       CommonButton btn33 = new CommonButton();  
+       btn33.setName("预约");  
+       btn33.setType("view");  
+       btn33.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+wxconfig.getStr("appId")+"&redirect_uri=http://22.ftezu.net/app/subscribe&response_type=code&scope=snsapi_base&state=1#wechat_redirect");   
+       CommonButton btn34 = new CommonButton();  
+       btn34.setName("个人信息");  
+       btn34.setType("view");  
+       btn34.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+wxconfig.getStr("appId")+"&redirect_uri=http://22.ftezu.net/app/index_geren&response_type=code&scope=snsapi_base&state=1#wechat_redirect");   
+       
+       
        ComplexButton mainBtn3 = new ComplexButton();  
-       mainBtn3.setName("我的二维码");  //
-       mainBtn3.setSub_button(new CommonButton[] { btn31 });  
+       mainBtn3.setName("个人中心");  //
+       mainBtn3.setSub_button(new CommonButton[] { btn31,btn32,btn33,btn34});  
  
      
        Menu menu = new Menu();  
-       menu.setButton(new Button[] { btn11, btn21, btn31 });  
+       menu.setButton(new Button[] { btn11, btn21, mainBtn3 });  
        return menu;  
    }
 	
