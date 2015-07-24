@@ -182,7 +182,7 @@ public class WeixinApiController extends ApiController {
 	  */
 	 public void CreateDecode(String img,String qrname) {  
 		 System.out.println("------------开始创建二维码--------------------");
-		 UserApi.encoderQRCode("http://22.ftezu.net/app/index", "D:/virtualhost/weixin/ROOT/qrcode/"+qrname+".jpg");
+		 UserApi.encoderQRCode("http://22.ftezu.net/app/index", "C:/virtualhost/weixin/ROOT/qrcode/"+qrname+".jpg");
 		 UserApi.encoderQRCode("http://22.ftezu.net/app/index", "C:/Users/Administrator/Desktop/tomcat/tomcat/apache-tomcat-8.0.15-windows-x64/apache-tomcat-8.0.15/webapps/zi_demo/qrcode/"+qrname+".jpg");
 //		 AccessToken at = AccessTokenApi.getAccessToken(); 
 //		 if (null != at) {  

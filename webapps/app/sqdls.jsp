@@ -86,24 +86,24 @@ with (thisform)
 					<h2>昵称：${(user.nickname)}</h2>
 					<h2>加入时间：${(user.subscribe_time)}</h2>
 
-					<c:if test="${empty userinfo  ||(userinfo.role ) eq '0' }">
+					<c:if test="${empty userinfo  ||(user.role ) eq '0' }">
 						<h2>身份：客户</h2>
 
 					</c:if>
 
-					<c:if test="${(userinfo.role ) eq '1' }">
-						<h2>上级公司：${(userinfo.fid)}</h2>
+					<c:if test="${(user.role ) eq '4' }">
+						<h2>上级公司：${(user.fid)}</h2>
 						<h2>身份：业务员</h2>
 
 					</c:if>
 
-					<c:if test="${(userinfo.role )   eq '2'}">
-						<h2>上级公司：${(userinfo.fid)}</h2>
+					<c:if test="${(user.role )   eq '3'}">
+						<h2>上级公司：${(user.fid)}</h2>
 						<h2>身份：代理商</h2>
 
 					</c:if>
 
-					<c:if test="${(userinfo.role)  eq '3' }">
+					<c:if test="${(user.role)  eq '2' }">
 						<h2>上级公司：自己公司的名字</h2>
 						<h2>身份：分公司</h2>
 					</c:if>
@@ -227,7 +227,7 @@ with (thisform)
 									value="${(usermessager.user_id)}" /> <input name="status"
 									id="status" type="hidden"
 									style="width: 80%; height: 30px; background: #FFF; border: 0px;"
-									value="${(userinfo.role)}" /></td>
+									value="${(user.role)}" /></td>
 							</tr>
 							<tr>
 								<td width="17%" height="10"></td>

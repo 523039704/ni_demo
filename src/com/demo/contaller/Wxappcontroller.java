@@ -51,38 +51,38 @@ public class Wxappcontroller extends ApiController {
 		  		setCookie("openid", openId, 3600);
 		Wxtokeninfo wxtok = Wxtokeninfo.dao.see_openid(openId);
 		String uid = wxtok.get("id").toString();
+	 
 		
 		Userinfo userinfo = Userinfo.dao.findById(uid);
-		setAttr("user", Usermessagerinfo.dao.findById(uid));
+		Usermessagerinfo usermessager=Usermessagerinfo.dao.findById(uid);
+		setAttr("user", usermessager);
 		setAttr("role", userinfo);// 显示角色信息
 	
-		if (userinfo == null||userinfo.get("role").equals("0")) {
-			setAttr("invest",
-					Orderinfo.dao
-							.findFirst("select    sum(montey) as price  from  `order` where userid='"
-									+ uid + "'"));// 显示投资金额
-			System.out
-					.println(Orderinfo.dao
-							.findFirst("select    sum(montey) as price  from  `order` where userid='"
-									+ uid + "'"));
-			List<Orderinfo> productinfo = Orderinfo.dao
-					.find("select c.name,o.montey  ,o.orderdatetime  from `order` o , course c where o.id='"
-							+ uid
-							+ "' and o.ptoducti='2'  and c.id=o.productid ");
-
+		if (userinfo == null||usermessager.get("role").equals("0")) {
+			setAttr("invest",Orderinfo.dao	.findFirst("select    sum(montey) as price  from  `order` where userid='" + uid + "'"));// 显示投资金额
+			List<Orderinfo> productinfo = Orderinfo.dao	.find("select c.img,c.name,o.montey  ,o.orderdatetime  from `order` o , course c where o.userid='"+ uid	+ "' and o.ptoducti='2'  and c.id=o.productid ");
 			setAttr("info", productinfo);
 			render("kehu.jsp");
 		} else {
 			setAttr("client",
 					Userinfo.dao
 							.findFirst(" select 	count(*)   as much   from   admin   where fid='"
-									+ uid + "'"));// 显示客户数量
-			setAttr("perfor",
-					Orderinfo.dao
-							.findFirst("select    sum(montey) as price  from  `order` where businessid='"
-									+ uid + "' "));// 显示业绩金额
+									+ uid + "' and role>='"+usermessager.get("role").toString()+"'"));// 显示客户数量
+			String where="";
+			if(usermessager.get("role").equals("2"))
+			{
+				 where="where agentid='"+ uid + "' ";	
+			}else if(usermessager.get("role").equals("3"))
+			{
+				 where="where filialeid='"+ uid + "' ";	
+			}else if(usermessager.get("role").equals("4"))
+			{
+				 where="where businessid='"+ uid + "' ";	
+			}
+			System.out.println(where);
+			setAttr("perfor",Orderinfo.dao.findFirst("select    sum(montey) as price  from  `order` "+where+""));// 显示业绩金额
 			List<Userinfo> useinfo = Userinfo.dao
-					.find("select * from admin a , usermessager us where a.fid='" + uid + "' and us.fid='"+ uid +"'");
+					.find("select * from admin a , usermessager us where a.fid='"+ uid + "' and us.fid='"+ uid + "' and a.role>='"+usermessager.get("role").toString()+"' and us.role>'"+usermessager.get("role").toString()+"'");
 			setAttr("info", useinfo);
 			render("index.jsp");
 		}
@@ -100,34 +100,36 @@ public class Wxappcontroller extends ApiController {
 		Wxtokeninfo wxtok = Wxtokeninfo.dao.see_openid(openId);
 		String uid = wxtok.get("id").toString();
 		Userinfo userinfo = Userinfo.dao.findById(uid);
-		setAttr("user", Usermessagerinfo.dao.findById(uid));
+		Usermessagerinfo usermessager=Usermessagerinfo.dao.findById(uid);
+		setAttr("user",usermessager);
 		setAttr("role", userinfo);// 显示角色信息
-
-		if (userinfo == null) {
-			setAttr("invest",
-					Orderinfo.dao
-							.findFirst("select    sum(montey) as price  from  `order` where userid='"
-									+ uid + "'"));// 显示投资金额
-			 
-			List<Orderinfo> productinfo = Orderinfo.dao
-					.find("select c.name,o.montey  ,o.orderdatetime  from `order` o , course c where o.id='"
-							+ wxtok.get("id").toString()
-							+ "' and o.ptoducti='2'  and c.id=o.productid ");
-			setAttr("info", productinfo);
+		List<Orderinfo> productinfo = Orderinfo.dao	.find("select c.img,c.name,o.montey  ,o.orderdatetime  from `order` o , course c where o.userid='" + uid + "' and o.ptoducti='2'  and c.id=o.productid ");
+		if (userinfo == null||usermessager.get("role").equals("0")) {
+			System.out.println("1");
+			setAttr("invest",	Orderinfo.dao.findFirst("select    sum(montey) as price  from  `order` where userid='"	+ uid + "'"));// 显示投资金额
+ 			setAttr("product", productinfo);
 		} else {
-			setAttr("client",
-					Userinfo.dao
-							.findFirst(" select 	count(*)   as much   from   admin   where fid='"
-									+ uid + "'"));// 显示客户数量
-			setAttr("perfor",
-					Orderinfo.dao
-							.findFirst("select    sum(montey) as price  from  `order` where businessid='"
-									+ uid + "' "));// 显示业绩金额
+			System.out.println("2");
+			setAttr("client",Userinfo.dao.findFirst(" select 	count(*)   as much   from   admin   where fid='"+ uid + "'"));// 显示客户数量
+			String where="";
+			if(usermessager.get("role").equals("2"))
+			{
+				 where="where agentid='"+ uid + "' ";	
+			}else if(usermessager.get("role").equals("3"))
+			{
+				 where="where filialeid='"+ uid + "' ";	
+			}else if(usermessager.get("role").equals("4"))
+			{
+				 where="where businessid='"+ uid + "' ";	
+			}
+			
+			setAttr("perfor",Orderinfo.dao	.findFirst("select    sum(montey) as price  from  `order` "+where+""));// 显示业绩金额
 			List<Userinfo> useinfo = Userinfo.dao
 					.find("select * from admin a , usermessager us where a.fid='" + uid + "' and us.fid='"+ uid +"'");
+			setAttr("product", productinfo);
 			setAttr("info", useinfo);
 		}
-		render("index.jsp");
+		render("index_geren.jsp");
 	}
 
 	// 申请代理商
@@ -145,7 +147,23 @@ public class Wxappcontroller extends ApiController {
 		setAttr("usermessager", Usermessagerinfo.dao.findById(uid));
 		setAttr("invest",Orderinfo.dao.findFirst("select    sum(montey) as price  from  `order` where userid='"	+ uid + "'"));// 显示投资金额
 		setAttr("client",Userinfo.dao.findFirst(" select 	count(*)   as much   from   admin   where fid='"+ uid + "'"));// 显示客户数量
-		setAttr("perfor",Orderinfo.dao.findFirst("select    sum(montey) as price  from  `order` where businessid='"+ uid + "' "));// 显示业绩金额
+		Userinfo userinfo = Userinfo.dao.findById(uid);
+		if(userinfo!=null)
+		{
+		String where="";
+		if(userinfo.get("role").equals("2"))
+		{
+			 where="where agentid='"+ uid + "' ";	
+		}else if(userinfo.get("role").equals("3"))
+		{
+			 where="where filialeid='"+ uid + "' ";	
+		}else if(userinfo.get("role").equals("4"))
+		{
+			 where="where businessid='"+ uid + "' ";	
+		}
+		
+		setAttr("perfor",Orderinfo.dao	.findFirst("select    sum(montey) as price  from  `order` "+where+""));// 显示业绩金额
+		}
 		setAttr("user", Usermessagerinfo.dao.findById(uid));
 		setAttr("userinfo", Userinfo.dao.findById(uid));
 		render("sqdls.jsp");
@@ -171,10 +189,23 @@ public class Wxappcontroller extends ApiController {
 				Userinfo.dao
 						.findFirst(" select 	count(*)   as much   from   admin   where fid='"
 								+ uid + "'"));// 显示客户数量
-		setAttr("perfor",
-				Orderinfo.dao
-						.findFirst("select    sum(montey) as price  from  `order` where businessid='"
-								+ uid + "' "));// 显示业绩金额
+		Userinfo userinfo = Userinfo.dao.findById(uid);
+		if(userinfo!=null)
+		{
+		String where="";
+		if(userinfo.get("role").equals("2"))
+		{
+			 where="where agentid='"+ uid + "' ";	
+		}else if(userinfo.get("role").equals("3"))
+		{
+			 where="where filialeid='"+ uid + "' ";	
+		}else if(userinfo.get("role").equals("4"))
+		{
+			 where="where businessid='"+ uid + "' ";	
+		}
+		
+		setAttr("perfor",Orderinfo.dao	.findFirst("select    sum(montey) as price  from  `order` "+where+""));// 显示业绩金额
+		}
 		setAttr("wxtok", wxtok);
 		setAttr("user", Usermessagerinfo.dao.findById(uid));
 		setAttr("userinfo", Userinfo.dao.findById(uid));

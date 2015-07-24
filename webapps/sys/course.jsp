@@ -16,7 +16,7 @@
                 <th>起购日期</th>
                 <th>截止日期</th>
                 <th>金额</th>
-                <th>人数</th>
+                <th>地区</th>
                 <th>费率</th>
                 <th data-order-field="add"  align="center">操作</th>
             </tr>
@@ -34,7 +34,7 @@
 						<td  width="200">
 						   <c:if test="${sessionScope.role  eq '1'}"> 
                    			 <a href="/course/edit?sid=1&id=${course.id}" class="btn btn-green"  data-toggle="navtab" data-id="form" >编辑</a>
-                  			 <a href="/course/delete?id=${course.id}" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除该行信息吗？">删</a>
+                  			 <a href="/course/delete?id=${course.id}" class="btn btn-red" data-toggle="doajax"  >删</a>
                    			 </c:if>
                    			 <a href="/course/edit?sid=0&id=${course.id}" class="btn btn-green"  data-toggle="navtab" data-id="form" >详情</a>
                    			 <a  class="btn btn-default" href="/order/add?id=${course.id}&ptoducti=2" data-toggle="navtab" data-id="form">认购</a>

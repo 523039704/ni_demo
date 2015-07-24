@@ -286,14 +286,8 @@ $(function(){
                         <c:if test="${function.id  eq '13'}"> 
                     <li data-id="60" data-pid="6" data-url="${function.path}" data-tabid="table-wgzyh1">${function.name}</li>
                     </c:if>
-                     <c:if test="${function.id  eq '14'}"> 
-                    <li data-id="61" data-pid="6" data-url="${function.path}" data-tabid="table-wgzyh2">${function.name}</li>
-                    </c:if>
-                     <c:if test="${function.id  eq '15'}"> 
-                    <li data-id="62" data-pid="6" data-url="${function.path}" data-tabid="table-wgzyh3">${function.name}</li>
-                    </c:if>
                      <c:if test="${function.id  eq '16'}"> 
-                    <li data-id="63" data-pid="6" data-url="${function.path}" data-tabid="table-wgzyh4">${function.name}</li>
+                    <li data-id="61" data-pid="6" data-url="${function.path}" data-tabid="table-wgzyh4">${function.name}</li>
                     </c:if>
                     </c:forEach>
                 </ul>
@@ -380,14 +374,8 @@ $(function(){
                                         <c:if test="${function.id  eq '13'}"> 
 				                    <li data-id="60" data-pid="6" data-url="${function.path}" data-tabid="table-wgzyh1">${function.name}</li>
 				                    </c:if>
-				                    <c:if test="${function.id  eq '14'}"> 
+				                    <c:if test="${function.id  eq '16'}"> 
 				                    <li data-id="61" data-pid="6" data-url="${function.path}" data-tabid="table-wgzyh2">${function.name}</li>
-				                    </c:if>
-				                     <c:if test="${function.id  eq '15'}"> 
-				                    <li data-id="62" data-pid="6" data-url="${function.path}" data-tabid="table-wgzyh3">${function.name}</li>
-				                    </c:if>
-				                     <c:if test="${function.id  eq '16'}"> 
-				                    <li data-id="63" data-pid="6" data-url="${function.path}" data-tabid="table-wgzyh4">${function.name}</li>
 				                    </c:if>
 				                    </c:forEach>
                                 </ul>

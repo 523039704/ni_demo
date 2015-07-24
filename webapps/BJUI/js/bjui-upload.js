@@ -29,7 +29,7 @@
     Upload.DEFAULTS = {
         fileTypeExts        : '*.jpg;*.png',     //允许上传的文件类型，格式'*.jpg;*.doc'
         uploader            : '',     //文件提交的地址
-        auto                : false,  //是否开启自动上传
+        auto                : true,  //是否开启自动上传
         method              : 'POST', //发送请求的方式，get或post
         multi               : false,  //是否允许选择多个文件
         formData            : {},     //发送给服务端的参数，格式：{key1:value1,key2:value2}

@@ -75,11 +75,11 @@ public class WebConfig extends JFinalConfig {
 		
 		
 		//微信
-		me.add("/msg", WeixinMsgController.class);
-		me.add("/api", WeixinApiController.class);
-		me.add("/app", Wxappcontroller.class);
-		me.add("/check", Weixincheck.class); 
-		me.add("/pay", Paycontaller.class); 
+		me.add("/msg", WeixinMsgController.class);//基础 在中间 用户关注的时候和用户取消关注的时候 能用到
+		me.add("/api", WeixinApiController.class);//这个基本上在这个后台没有用得到了   中间有一个方法使用到的了 就是  重置  微信上面的菜单  
+		me.add("/app", Wxappcontroller.class);// 在开发的微信账户上显示的内容接口  具体的都是怎样显示 怎样处理的逻辑代码
+		me.add("/check", Weixincheck.class); // 这个不用去管  就是一个微信机制的校验功能
+		me.add("/pay", Paycontaller.class); //微信支付
 	}
 
 	@Override
@@ -122,13 +122,9 @@ public class WebConfig extends JFinalConfig {
 	@Override
 	public void configInterceptor(Interceptors me) {
 		// TODO Auto-generated method stub
-
 	}
-
 	@Override
 	public void configHandler(Handlers me) {
 		// TODO Auto-generated method stub
-
 	}
-
 }

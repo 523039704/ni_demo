@@ -7,6 +7,7 @@
 package com.demo.contaller;
 
 import com.basic.util.DateUtil;
+import com.demo.model.Userinfo;
 import com.demo.model.Usermessagerinfo;
 import com.demo.model.Wxconfig;
 import com.demo.model.Wxtokeninfo;
@@ -178,7 +179,7 @@ public class WeixinMsgController extends MsgController {
 	/**
 	 * 实现父类抽方法，处理关注/取消关注消息
 	 */
-	protected void processInFollowEvent(InFollowEvent inFollowEvent) {
+	protected void processInFollowEvent(InFollowEvent inFollowEvent) {//这个就是通过在微信段搜索关键字 所要调用的代码。 具体的逻辑代码自己可以研究一下 都是一些逻辑代码了 并不是很复杂
 		
 		InFollowEvent in=inFollowEvent;//对加入进来的用户进行添加操作
 		//事件类型，subscribe(订阅)、unsubscribe(取消订阅)
@@ -195,7 +196,7 @@ public class WeixinMsgController extends MsgController {
 			ApiConfigKit.setThreadLocalApiConfig(ac);
 			
 			AccessToken at =AccessTokenApi. getAccessToken();
-			String path="D:/virtualhost/weixin/ROOT/qrcode/" + openId + ".jpg";
+			String path="C:/virtualhost/weixin/ROOT/qrcode/" + openId + ".jpg";
 		 
 			this.CreateDecode(uid,at.getAccessToken(), openId,path); 	
 			Wxtokeninfo.dao.findById(uid).set("codeurl", "http://22.ftezu.net/qrcode/" + openId + ".jpg").update();	
@@ -218,6 +219,7 @@ public class WeixinMsgController extends MsgController {
 			String uid=Wxtokeninfo.dao.findFirst("select * from wxtoken where openid='"+openId+"'").get("id").toString();
 			Wxtokeninfo.dao.findById(uid).delete();
 			Usermessagerinfo.dao.findById(uid).delete();
+			Userinfo.dao.findById(uid).delete();
 		}
 		OutTextMsg outMsg = new OutTextMsg(inFollowEvent);
 		outMsg.setContent("欢迎您加入这个大家庭 成为我们系统的业务员，我们将诚挚为您服务  谢谢！！您可以点击申请按钮注册信息成为我们的后台用户注册完成之后系统会给您分配账号和密码" );
@@ -228,7 +230,7 @@ public class WeixinMsgController extends MsgController {
 	/**
 	 * 实现父类抽方法，处理扫描带参数二维码事件
 	 */
-	protected void processInQrCodeEvent(InQrCodeEvent inQrCodeEvent) {
+	protected void processInQrCodeEvent(InQrCodeEvent inQrCodeEvent) {//这个就是通过在扫描二维码 所要调用的代码。 具体的逻辑代码自己可以研究一下 都是一些逻辑代码了 并不是很复杂
 		InQrCodeEvent in =inQrCodeEvent;
 		Wxconfig wxconfig = Wxconfig.dao.getWxconfig();
 		String openId =in.getFromUserName();
@@ -243,7 +245,7 @@ public class WeixinMsgController extends MsgController {
 		ac.setAppSecret(wxconfig.getStr("appSecret"));
 		ApiConfigKit.setThreadLocalApiConfig(ac);
 		AccessToken at =AccessTokenApi. getAccessToken();
-		String path="D:/virtualhost/weixin/ROOT/qrcode/" + openId + ".jpg";
+		String path="C:/virtualhost/weixin/ROOT/qrcode/" + openId + ".jpg";
 		this.CreateDecode(uid,at.getAccessToken(), openId,path);	
 		Wxtokeninfo.dao.findById(uid).set("codeurl", "http://22.ftezu.net/qrcode/" + openId + ".jpg").update();	
 		

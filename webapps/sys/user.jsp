@@ -44,8 +44,8 @@
 							<c:if test="${blog.role ==0}"> 普通用户</c:if>     
 						</td>
 						<td>
-						<c:if test="${blog.apply ==0}">无</c:if>   
-						<c:if test="${blog.apply ==1}">有</c:if>   
+						<c:if test="${blog.apply ==1}">无</c:if>   
+						<c:if test="${blog.apply ==0}">有</c:if>   
 						</td>
 						<td>
 						<a class="btn btn-default" data-toggle="navtab" data-id="form"   href="/user/edit?id=${blog.id}">修改</a> 

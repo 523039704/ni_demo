@@ -24,7 +24,7 @@
                 <th>业务员服务费</th>
                 <th>状态</th>
                 <th>业务员</th>
-                   <c:if test="${sessionScope.role  eq '1'||sessionScope.role  eq '2'||sessionScope.role  eq '3'}"> 
+                   <c:if test="${sessionScope.role  eq '100'||sessionScope.role  eq '200'||sessionScope.role  eq '300'}"> 
                 <th data-order-field="add"  align="center">操作</th>
                 </c:if>
             </tr>
@@ -55,9 +55,9 @@
 						
 						</td>
 						<td>${order.businessid}</td>
-						   <c:if test="${sessionScope.role  eq '1'||sessionScope.role  eq '2'||sessionScope.role  eq '3'}"> 
+						   <c:if test="${sessionScope.role  eq '100'||sessionScope.role  eq '200'||sessionScope.role  eq '300'}"> 
 						<td>
-                   			 <a class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除该行信息吗？"  href="#">审核</a>
+                   			 <a class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要修改此行状态吗？"  href="#">审核</a>
                			 </td>
                             </c:if>
 					</tr>

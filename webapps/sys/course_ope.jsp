@@ -45,7 +45,7 @@ function do_OK(json, $form) {
                         <input type="text" name="price" id="price" value="${(course.price)}"  data-rule="required" size="15"  <%if( request.getAttribute("sid").equals("0")){out.print(" readonly");}%>>
                     </td>
                     <td>
-                        <label for="" class="control-label x85">人数：</label>
+                        <label for="" class="control-label x85">地区：</label>
                         <input type="text" name="peoples" id="peoples" value="${(course.peoples)}"   data-rule="required" size="15"  <%if( request.getAttribute("sid").equals("0")){out.print(" readonly");}%>>
                     </td>
                 </tr>
@@ -72,10 +72,11 @@ function do_OK(json, $form) {
                 <tr>
                     <td>
                         <label for="" class="control-label x85">产品详情：</label>
-                        <textarea name="summary" id="summary" data-toggle="" cols="60" rows="5"  <%if( request.getAttribute("sid").equals("0")){out.print(" readonly");}%>>${(course.summary)}</textarea>
+                        <textarea name="summary" id="summary" data-toggle="" cols="60" rows="5"  data-rule="required" <%if( request.getAttribute("sid").equals("0")){out.print(" readonly");}%>>${(course.summary)}</textarea>
                     </td>
+                   <%if( request.getAttribute("course")==null){%>
                      <td colspan="2">
-                        <label class="control-label x85">客人照片：</label>
+                        <label class="control-label x85">课程照片：</label>
                         <div style="display: inline-block; vertical-align: middle;">
                             <div id="j_custom_pic_up" data-toggle="upload" data-uploader="/course/course_img" 
                                 data-file-size-limit="1024000000"
@@ -87,6 +88,13 @@ function do_OK(json, $form) {
                             <span id="j_custom_span_pic"></span>
                         </div>
                     </td>
+                    <%} else { %>
+                       <td colspan="2">
+                        <label class="control-label x85">课程照片：</label>
+                        <img alt="" src="${(course.img)}" width="80" height="80">
+                    </td>
+                    <%} %>
+                    
                 </tr>
             </tbody>
         </table>
